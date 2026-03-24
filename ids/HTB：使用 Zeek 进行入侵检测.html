@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="作为 Hack the Box 认证防御安全分析师认证培训的一部分，Zeek 是一款强大的安全监控工具，它能够帮助我们深入了解网络流量并提取有用的信息，是网络入侵检测和调查的核心工具。 本模块深入讲解了 Zeek 的功能，解释了 Zeek 由事件引擎和脚本解释器组成。事件引擎接收传入的数据包流，并将其转换为一系列高级事件。随后，脚本解释器执行一组用 Zeek 脚本语言编写的事件处理程序，这些程序表">
+<meta property="og:type" content="website">
+<meta property="og:title" content="w3q14">
+<meta property="og:url" content="http://example.com/ids/HTB%EF%BC%9A%E4%BD%BF%E7%94%A8%20Zeek%20%E8%BF%9B%E8%A1%8C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.html">
+<meta property="og:site_name" content="w3q14">
+<meta property="og:description" content="作为 Hack the Box 认证防御安全分析师认证培训的一部分，Zeek 是一款强大的安全监控工具，它能够帮助我们深入了解网络流量并提取有用的信息，是网络入侵检测和调查的核心工具。 本模块深入讲解了 Zeek 的功能，解释了 Zeek 由事件引擎和脚本解释器组成。事件引擎接收传入的数据包流，并将其转换为一系列高级事件。随后，脚本解释器执行一组用 Zeek 脚本语言编写的事件处理程序，这些程序表">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-24T11:45:31.760Z">
+<meta property="article:modified_time" content="2026-03-24T11:45:31.760Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>w3q14</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">w3q14</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+   --><!--
+     --><li><a href="/aptlabs/">Aptlabs</a></li><!--
+   --><!--
+     --><li><a href="/ctfshow/">Ctfshow</a></li><!--
+   --><!--
+     --><li><a href="/ids/">Ids</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <p>作为 Hack the Box 认证防御安全分析师认证培训的一部分，Zeek 是一款强大的安全监控工具，它能够帮助我们深入了解网络流量并提取有用的信息，是网络入侵检测和调查的核心工具。</p>
+<p>本模块深入讲解了 Zeek 的功能，解释了 Zeek 由事件引擎和脚本解释器组成。事件引擎接收传入的数据包流，并将其转换为一系列高级事件。随后，脚本解释器执行一组用 Zeek 脚本语言编写的事件处理程序，这些程序表达了站点的安全策略，定义了在检测到特定事件时应采取的操作。</p>
+<p>在对 Zeek 有了深入的了解之后，我准备好回答这些问题了。</p>
+<p><strong>问题 1</strong></p>
+<p><em>在 &#x2F;home&#x2F;htb-student&#x2F;pcaps 目录下有一个名为 printnightmare.pcap 的文件，其中包含与 PrintNightmare 漏洞（</em><a target="_blank" rel="noopener" href="https://labs.jumpsec.com/printnightmare-network-analysis/"><em>https://labs.jumpsec.com/printnightmare-network-analysis/</em></a><em>）相关的网络流量。请提供有助于我们识别可疑后台打印程序函数的 zeek 日志作为答案。答案格式：_.log</em></p>
+<p>首先，需要使用 Zeek 重新组装相关 pcap 文件的日志。我使用了模块前面提到的命令，但根据所需的 pcap 文件进行了修改。</p>
+<p>$ &#x2F;usr&#x2F;local&#x2F;zeek&#x2F;bin&#x2F;zeek -C -r &#x2F;home&#x2F;htb-student&#x2F;pcaps&#x2F;printnightmare.pcap</p>
+<p>之后，我查看了许多不同的日志。在深入研究这些日志之前，我先对 PrintNightmare 漏洞进行了更深入的研究。我使用了问题中提供的超链接来阅读更多相关信息，其中包括如何使用 Wireshark 检测该漏洞的详细解释。该漏洞常用的端口是 57007。掌握了这些信息后，我尝试查看了许多日志，最终找到了 dce_rpc.log 文件，其中包含了与 PrintNightmare 漏洞相关的足够信息。</p>
+<p>Press enter or click to view image in full size</p>
+<p>![img](.&#x2F;HTB：使用 Zeek 进行入侵检测.assets&#x2F;1-66xjPna6j9PrOpkTntiJQ.png)</p>
+<p>我输入了日志文件作为答案，它被接受为正确答案：dce_rpc.log。之后，我继续回答下一个问题。</p>
+<p><strong>问题 2</strong></p>
+<p><em>在 &#x2F;home&#x2F;htb-student&#x2F;pcaps 目录下有一个名为 revilkaseya.pcap 的文件，其中包含与 REvil 勒索软件 Kaseya 供应链攻击相关的网络流量。请输入受害者向 IP 地址 178.23.155.240 发送的总字节数作为答案。</em></p>
+<p>这个问题需要计算发送到 IP 地址 178.23.155.240 的数据总字节数。为此，我需要从原始机器上获取 pcap 文件。幸运的是，该模块提供了相应的命令。</p>
+<p>scp htb-student[目标机器]:&#x2F;home&#x2F;htb-student&#x2F;pcaps&#x2F;revilkayseya.pcap .</p>
+<p>之后，我在 Wireshark 中打开了 pcap 文件，并使用此过滤器将 IP 地址显示为目标 IP 地址。</p>
+<p>ip.dst &#x3D;&#x3D; 178.23.155.240</p>
+<p>接下来只需调出统计信息即可。依次点击“统计信息”&gt;“协议层次结构”，即可查看特定过滤器的数据包数量和字节数等更多信息。统计信息按协议分类，阅读后发现正确答案列在传输层安全协议 (TLS) 下：2311。</p>
+<p>Press enter or click to view image in full size</p>
+<p>![img](.&#x2F;HTB：使用 Zeek 进行入侵检测.assets&#x2F;1F3H2EVqwwybHsOfoaMok3w.png)</p>
+<p><strong>概括</strong></p>
+<p>本模块证明了 Zeek 的确如其描述的那样实用，包括工具的结构和正确使用方法。这些问题并不难，有些确实需要回顾 Wireshark 的相关知识以及如何获取必要信息。总的来说，在 Hack the Box IDS&#x2F;IPS 路径的最终评估之前，这是一个很好的开源工具入门介绍。</p>
+
+        
+  </div>
+</article>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     --><!--
+       --><li><a href="/aptlabs/">Aptlabs</a></li><!--
+     --><!--
+       --><li><a href="/ctfshow/">Ctfshow</a></li><!--
+     --><!--
+       --><li><a href="/ids/">Ids</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
