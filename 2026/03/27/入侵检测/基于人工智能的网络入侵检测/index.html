@@ -13,46 +13,46 @@
 <meta property="og:site_name" content="w3q14">
 <meta property="og:description" content="2 网络入侵检测基础理论2.1 网络入侵检测系统的基本概念网络入侵检测系统（Intrusion Detection System, IDS）是用于监测网络或主机系统中异常行为或已知攻击行为的一类安全防护技术。其核心目标是通过分析网络流量或系统日志，识别潜在的恶意活动，并及时发出告警或采取防御措施。 IDS通常不直接阻断攻击（区别于防火墙），而是侧重于检测与响应，在现代网络安全体系中，IDS已成为防">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/image-20260326201832807.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/doPBOsACrBs4gjgl72h9qXrhNImTRp1N_3hr108oZp3g7pPRWy9Totm1KRMEMrf3kIGc_evCFA1wK4A2B3VN3AO5HMiFYskOxATbwVmijif5-vUnZpzC17GBalDYDvfrn4g1GTkGQJvcZMePRBZzmg.jpeg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/v6bvwQ9TdoPXHllTgLYUCAiAQHbYXSfQowhpCqp5hPu3jZJQibO4VQ7R6J-1PmsFySKGyOJYUeEu5pFF5GYsAiChiZV_b9QMJ0BoCLX85CQ5L8eGmngdV8ZHzovyUykQXi2IIX6AlvpmY30DnS0dEw.jpeg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/bBhOV37afzkJPMG1lHwVHzER10JleVyyaNxB-JGZeZkHK3sh8TDjGpwvcOYuNgYVkPBISXtyzp2Vtg-a3BvZhGhVSm-Cgs6jhNfu13u80v03VNtOo9bW5bwxeX28rf-s52iyTR2qB1DzsVIaoPmblg.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/M1pFCGNOsqwu6Fq1H-GWpLXkR6swRvLzlMrCZp-Tjmno63ZC_nH8ZtlqTBu_lKtsVxef93vJLljJYMmL6cRIVpbi5Fy_PM7kOGPBPdXG_upu31_vkHVhaOll7rJoFndIRk4xMo4uc6zA8KpnmbH4dA.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//image-20260326201832807.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//doPBOsACrBs4gjgl72h9qXrhNImTRp1N_3hr108oZp3g7pPRWy9Totm1KRMEMrf3kIGc_evCFA1wK4A2B3VN3AO5HMiFYskOxATbwVmijif5-vUnZpzC17GBalDYDvfrn4g1GTkGQJvcZMePRBZzmg.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//v6bvwQ9TdoPXHllTgLYUCAiAQHbYXSfQowhpCqp5hPu3jZJQibO4VQ7R6J-1PmsFySKGyOJYUeEu5pFF5GYsAiChiZV_b9QMJ0BoCLX85CQ5L8eGmngdV8ZHzovyUykQXi2IIX6AlvpmY30DnS0dEw.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//bBhOV37afzkJPMG1lHwVHzER10JleVyyaNxB-JGZeZkHK3sh8TDjGpwvcOYuNgYVkPBISXtyzp2Vtg-a3BvZhGhVSm-Cgs6jhNfu13u80v03VNtOo9bW5bwxeX28rf-s52iyTR2qB1DzsVIaoPmblg.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//M1pFCGNOsqwu6Fq1H-GWpLXkR6swRvLzlMrCZp-Tjmno63ZC_nH8ZtlqTBu_lKtsVxef93vJLljJYMmL6cRIVpbi5Fy_PM7kOGPBPdXG_upu31_vkHVhaOll7rJoFndIRk4xMo4uc6zA8KpnmbH4dA.png">
 <meta property="og:image" content="https://www.mdpi.com/applsci/applsci-15-01552/article_deploy/html./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/applsci-15-01552-g001.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/3JNgZ8MnaNUbhG6rh2d1CSc-X2PVLtds-rvBUeGzyJ4fiYZ9OY-DbH6vPFcRzKOEFq7h6jkmX3306UMn_glJ8m0sbt4aNn9yUpfDLiYpNoR3e2ovf7yKk9GZZmpiBPzKtvzY1d2HcaaqOs4apoT3ig.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/BR6gqZd9pEyQ_Ab-ysnM27BpD_kuDP8Izu-_6yVN4nB9_GgoevVE5l402TR2LojGc9O6XKfMQLUbQSuKaaVxwk0jdC-BnrqPgB2gZTjP8w90otgxblLJq7ZM78zeUBWOtWGeejxpuMcvLorQxO0X8g.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/neural_network_architecture.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/_nma1Hip8wO3trAukYg2W9FMCUES4_dsSs6OJi5u3DvGbfx57HkdtdGIyR4toB0CHnnKcCjRfeB2fnFhXWKR84hjZHW2QUWLjpiMfpRbuQwYEION74iZZQwNYwl_pFv6QmYAJhz29kv2SX33MjzOaA.jpeg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1AeKfV2uAPeMg9j8HhQZk2w-1774528081213-110.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1vrSX_Ku3EmGPyqF_E-2_Vg-1774528145715-112.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/41598_2025_24869_Fig1_HTML-1774528526267-115.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1Z17DvNPmrKDtbxan4HuGcA-1774528569395-117.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/3eAE-Xicu5meUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4xMI00zDJNjwyxdMuPNHbPycoNSg2ODw81SnRxCrXMMTbULUzJs3A2SjVIVyu2NTQAAOu3I8E.jpeg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1bxxbmAIbn8iqv7zJlk576Q-1774528681932-125.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/0Ga2SY3cwKnkCRCTZ-1774528716573-128.jpg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/sphx_glr_plot_classification_001.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/img__1_1.jpg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/YuHyfB3mf-LT53u_xjoeoAIolSNMkO1xwBFmenG5drsgl6aGpPatF9ZP-a368TIhGIjINJPRa4XHXX7ac6MBjgxKomP6ix4Vkqxa1EZjxmLvEydHs1cGU9a4LJKfdq4e_EORznGLNze1xlroibmoug.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/71Re5aygLlxu2eMqWS--1MVf2HB6xZaR50eAUub2eQDvmNa-pL0MmtagswQg8UKlb5ZDUBVUREJKKBY_WRaJkFLa0dliaMqGP-OXJWn_8e-wtwYuqk_xLBtGQ9alu5-VPfBN8pe3mXuqhNZwkWs5Bw.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/a00f3301-9f4f-4de3-a5bb-dc8866c1afc4_819x580.jpg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/dnQIonui68gIJVPExW392cNOPHLehiUJ4HfpF5cKafy8NFKlCPKnZmhHniAzLSnnNm31sOMG1hEQ0gqIQvNWY9oSWaYCxcj7KyeYXFGVJg636FZsK7D8HheNqcfUXFXmmcTTtSUVver4nrEJ2POrAw.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/cYf1flkXwtf-LbhfCXrfefMtvwDh-KtGK5JrIBDKeLsYtccCZhH4YUZ49AW40-7t4aPLggKwQJgJym14F6okzS5zLzjNibhUK6FNoD-2CCWMXUaZyODWf0ACoIhMYe6f5E-v0VJlPCWzarGS2imXfw.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/Jv1NMTgRy4A-5rKMX3pQYrThqeAglCbdZ6m7x0T3qBLnZcY2JEfiSlJpkG5qHC_s9xrw-P3vABgNvSzyvjVsauvLhID-d-JZOWPPngZEnRFHIipQ2EDrxewdz1Qt76DuNp5gvH-J1eXS7LMpTL_Vug.jpeg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1ce89U6z-MhgGRln9VRAMxQ-1774528932661-144.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//3JNgZ8MnaNUbhG6rh2d1CSc-X2PVLtds-rvBUeGzyJ4fiYZ9OY-DbH6vPFcRzKOEFq7h6jkmX3306UMn_glJ8m0sbt4aNn9yUpfDLiYpNoR3e2ovf7yKk9GZZmpiBPzKtvzY1d2HcaaqOs4apoT3ig.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//BR6gqZd9pEyQ_Ab-ysnM27BpD_kuDP8Izu-_6yVN4nB9_GgoevVE5l402TR2LojGc9O6XKfMQLUbQSuKaaVxwk0jdC-BnrqPgB2gZTjP8w90otgxblLJq7ZM78zeUBWOtWGeejxpuMcvLorQxO0X8g.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//neural_network_architecture.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//_nma1Hip8wO3trAukYg2W9FMCUES4_dsSs6OJi5u3DvGbfx57HkdtdGIyR4toB0CHnnKcCjRfeB2fnFhXWKR84hjZHW2QUWLjpiMfpRbuQwYEION74iZZQwNYwl_pFv6QmYAJhz29kv2SX33MjzOaA.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//1AeKfV2uAPeMg9j8HhQZk2w-1774528081213-110.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//1vrSX_Ku3EmGPyqF_E-2_Vg-1774528145715-112.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//41598_2025_24869_Fig1_HTML-1774528526267-115.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//1Z17DvNPmrKDtbxan4HuGcA-1774528569395-117.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//3eAE-Xicu5meUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4xMI00zDJNjwyxdMuPNHbPycoNSg2ODw81SnRxCrXMMTbULUzJs3A2SjVIVyu2NTQAAOu3I8E.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//1bxxbmAIbn8iqv7zJlk576Q-1774528681932-125.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//0Ga2SY3cwKnkCRCTZ-1774528716573-128.jpg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//sphx_glr_plot_classification_001.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//img__1_1.jpg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//YuHyfB3mf-LT53u_xjoeoAIolSNMkO1xwBFmenG5drsgl6aGpPatF9ZP-a368TIhGIjINJPRa4XHXX7ac6MBjgxKomP6ix4Vkqxa1EZjxmLvEydHs1cGU9a4LJKfdq4e_EORznGLNze1xlroibmoug.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//71Re5aygLlxu2eMqWS--1MVf2HB6xZaR50eAUub2eQDvmNa-pL0MmtagswQg8UKlb5ZDUBVUREJKKBY_WRaJkFLa0dliaMqGP-OXJWn_8e-wtwYuqk_xLBtGQ9alu5-VPfBN8pe3mXuqhNZwkWs5Bw.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//a00f3301-9f4f-4de3-a5bb-dc8866c1afc4_819x580.jpg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//dnQIonui68gIJVPExW392cNOPHLehiUJ4HfpF5cKafy8NFKlCPKnZmhHniAzLSnnNm31sOMG1hEQ0gqIQvNWY9oSWaYCxcj7KyeYXFGVJg636FZsK7D8HheNqcfUXFXmmcTTtSUVver4nrEJ2POrAw.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//cYf1flkXwtf-LbhfCXrfefMtvwDh-KtGK5JrIBDKeLsYtccCZhH4YUZ49AW40-7t4aPLggKwQJgJym14F6okzS5zLzjNibhUK6FNoD-2CCWMXUaZyODWf0ACoIhMYe6f5E-v0VJlPCWzarGS2imXfw.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//Jv1NMTgRy4A-5rKMX3pQYrThqeAglCbdZ6m7x0T3qBLnZcY2JEfiSlJpkG5qHC_s9xrw-P3vABgNvSzyvjVsauvLhID-d-JZOWPPngZEnRFHIipQ2EDrxewdz1Qt76DuNp5gvH-J1eXS7LMpTL_Vug.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//1ce89U6z-MhgGRln9VRAMxQ-1774528932661-144.png">
 <meta property="og:image" content="https://www.mdpi.com/biology/biology-12-01033/article_deploy/html./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/biology-12-01033-g001.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/gRj7cT9tudwMNV4iHEUEj_yAuPsETJtnFkmbRO_ZeF_ODmjx07Ffuu2rHMqNaw-kUBLeYn-DA6IriEUXhW9e8t88NmFFTib1R5u_QhLbE0vPpVKrkB1JC_fYDPx3OLCErZmyIjCRtyqRRL6A1azNoQ.jpeg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/A_y94lSwyJjz0AE9_SQmSFX0ffqv89Y2rIg0Rc70eNWI_Zvc3uRttVCJeDFPyYtJVOZfKaDvLRRQTDbegkEGo6_Dy6XFAOJiCY2XHQJSw5EmIdAGgiTrGmMPhdBtWOQX6X6E3JXX3B8L2UtpMARxow.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/AhX1qwRW01tsP8WRokVq4ZQ92JsnS6VXj_pzObuF6W6Ia1YNlvzL1apOdZuTY5uQyqmW_EZoFNv1PKFYyBE0QjTIfhNUrfzjZaoBfGlYLnizw2QWvtwuVxb2LUikiATYrI2PTx_1JgGYD9Vc9x124Q.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/NyVcxPQPXnfjAcVBArH_Co0uczCaQ6z6F4lDi-VfOl8GdHQw2jBTEBoKrlNNq9a41iz7NGJswwOb0Y1Hh0oAUpsSCkh-rt4QvlWR-dqC3iY7kvWxbQBZFJiPo4Nw6WWqXqEYVcVw6RsU5xVqZgaEPA.jpeg">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1VkqtY82pa6FS0TLORkijYg-1774529074608-156.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/q5GBMI4uLL2vYgqzf5X5d2EYVW7L8lhdqJ79tZnoRvT-fz0BLsD3L1vNDOocnr2_Z8BazRmhkDh7MKJr1XmLYHdzx3rAx3XXEa-5CVMcpZKj_DWav0-wNS7-mGHZcpRj9VcMmKgBr-UIKqCbf2oxRA.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/13W_D0VQhVs5S_02Q7ql35A-1774529131215-161.png">
-<meta property="og:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/VURD0xsog-MmFLD88f0tNcjuNyKBryo-FQgHnNZtFYm_GPveZ_lF6-4beuSbMStoKm9N4OLbduXGNA5tyVjdMyjGL5Gv_lLbemTqAEA22uN-ux9YyPxnijwqdvzC9ETW__YnVD5KZES_FkBy5kQlXQ.jpg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//gRj7cT9tudwMNV4iHEUEj_yAuPsETJtnFkmbRO_ZeF_ODmjx07Ffuu2rHMqNaw-kUBLeYn-DA6IriEUXhW9e8t88NmFFTib1R5u_QhLbE0vPpVKrkB1JC_fYDPx3OLCErZmyIjCRtyqRRL6A1azNoQ.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//A_y94lSwyJjz0AE9_SQmSFX0ffqv89Y2rIg0Rc70eNWI_Zvc3uRttVCJeDFPyYtJVOZfKaDvLRRQTDbegkEGo6_Dy6XFAOJiCY2XHQJSw5EmIdAGgiTrGmMPhdBtWOQX6X6E3JXX3B8L2UtpMARxow.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//AhX1qwRW01tsP8WRokVq4ZQ92JsnS6VXj_pzObuF6W6Ia1YNlvzL1apOdZuTY5uQyqmW_EZoFNv1PKFYyBE0QjTIfhNUrfzjZaoBfGlYLnizw2QWvtwuVxb2LUikiATYrI2PTx_1JgGYD9Vc9x124Q.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//NyVcxPQPXnfjAcVBArH_Co0uczCaQ6z6F4lDi-VfOl8GdHQw2jBTEBoKrlNNq9a41iz7NGJswwOb0Y1Hh0oAUpsSCkh-rt4QvlWR-dqC3iY7kvWxbQBZFJiPo4Nw6WWqXqEYVcVw6RsU5xVqZgaEPA.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/.io//1VkqtY82pa6FS0TLORkijYg-1774529074608-156.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//q5GBMI4uLL2vYgqzf5X5d2EYVW7L8lhdqJ79tZnoRvT-fz0BLsD3L1vNDOocnr2_Z8BazRmhkDh7MKJr1XmLYHdzx3rAx3XXEa-5CVMcpZKj_DWav0-wNS7-mGHZcpRj9VcMmKgBr-UIKqCbf2oxRA.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//13W_D0VQhVs5S_02Q7ql35A-1774529131215-161.png">
+<meta property="og:image" content="https://w3nq14.github.io/.io//VURD0xsog-MmFLD88f0tNcjuNyKBryo-FQgHnNZtFYm_GPveZ_lF6-4beuSbMStoKm9N4OLbduXGNA5tyVjdMyjGL5Gv_lLbemTqAEA22uN-ux9YyPxnijwqdvzC9ETW__YnVD5KZES_FkBy5kQlXQ.jpg">
 <meta property="article:published_time" content="2026-03-27T03:39:00.000Z">
 <meta property="article:modified_time" content="2026-03-27T12:01:28.378Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://w3nq14.github.io/%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/image-20260326201832807.png">
+<meta name="twitter:image" content="https://w3nq14.github.io/.io//image-20260326201832807.png">
     
     
       
@@ -122,7 +122,7 @@
         <li><a class="icon" aria-label="Previous post" href="/2026/03/27/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B/%E4%BC%A0%E7%BB%9F%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2026/03/27/WAF%E7%BB%95%E8%BF%87/WAF%E7%BB%95%E8%BF%87/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2026/03/27/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-%E7%9B%91%E7%9D%A3%E5%BC%8F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0%E5%92%8C%E5%A4%9A%E5%87%86%E5%88%99%E8%AF%84%E4%BC%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -208,9 +208,9 @@
 </ul>
 <hr>
 <h2 id="2-2-网络入侵检测系统的分类"><a href="#2-2-网络入侵检测系统的分类" class="headerlink" title="2.2 网络入侵检测系统的分类"></a><strong>2.2 网络入侵检测系统的分类</strong></h2><p>根据部署位置与检测方式的不同，IDS通常可以分为以下几类：</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/image-20260326201832807.png" alt="image-20260326201832807"></p>
+<p><img src="/.io//image-20260326201832807.png" alt="image-20260326201832807"></p>
 <h3 id="2-2-1-基于主机的入侵检测系统（HIDS）"><a href="#2-2-1-基于主机的入侵检测系统（HIDS）" class="headerlink" title="2.2.1 基于主机的入侵检测系统（HIDS）"></a><strong>2.2.1 基于主机的入侵检测系统（HIDS）</strong></h3><p>基于主机的入侵检测系统（Host-based IDS, HIDS）主要部署在单个主机上，通过分析操作系统日志、文件系统变化、系统调用等信息来检测入侵行为。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/doPBOsACrBs4gjgl72h9qXrhNImTRp1N_3hr108oZp3g7pPRWy9Totm1KRMEMrf3kIGc_evCFA1wK4A2B3VN3AO5HMiFYskOxATbwVmijif5-vUnZpzC17GBalDYDvfrn4g1GTkGQJvcZMePRBZzmg.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;338458738&#x2F;figure&#x2F;fig2&#x2F;AS%3A845143267622912%401578509265413&#x2F;Architecture-of-HIDS.jpg"></p>
+<p><img src="/.io//doPBOsACrBs4gjgl72h9qXrhNImTRp1N_3hr108oZp3g7pPRWy9Totm1KRMEMrf3kIGc_evCFA1wK4A2B3VN3AO5HMiFYskOxATbwVmijif5-vUnZpzC17GBalDYDvfrn4g1GTkGQJvcZMePRBZzmg.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;338458738&#x2F;figure&#x2F;fig2&#x2F;AS%3A845143267622912%401578509265413&#x2F;Architecture-of-HIDS.jpg"></p>
 <p>其特点包括：</p>
 <ul>
 <li>检测精度较高（可获取底层行为）</li>
@@ -219,7 +219,7 @@
 </ul>
 <hr>
 <h3 id="2-2-2-基于网络的入侵检测系统（NIDS）"><a href="#2-2-2-基于网络的入侵检测系统（NIDS）" class="headerlink" title="2.2.2 基于网络的入侵检测系统（NIDS）"></a><strong>2.2.2 基于网络的入侵检测系统（NIDS）</strong></h3><p>基于网络的入侵检测系统（Network-based IDS, NIDS）通过监听网络中的数据包，对流量进行实时分析，从而检测异常或攻击行为。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/v6bvwQ9TdoPXHllTgLYUCAiAQHbYXSfQowhpCqp5hPu3jZJQibO4VQ7R6J-1PmsFySKGyOJYUeEu5pFF5GYsAiChiZV_b9QMJ0BoCLX85CQ5L8eGmngdV8ZHzovyUykQXi2IIX6AlvpmY30DnS0dEw.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;371702535&#x2F;figure&#x2F;fig3&#x2F;AS%3A11431281169189001%401687261281310&#x2F;Network-based-Intrusion-Detection-System-Architecture.jpg"></p>
+<p><img src="/.io//v6bvwQ9TdoPXHllTgLYUCAiAQHbYXSfQowhpCqp5hPu3jZJQibO4VQ7R6J-1PmsFySKGyOJYUeEu5pFF5GYsAiChiZV_b9QMJ0BoCLX85CQ5L8eGmngdV8ZHzovyUykQXi2IIX6AlvpmY30DnS0dEw.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;371702535&#x2F;figure&#x2F;fig3&#x2F;AS%3A11431281169189001%401687261281310&#x2F;Network-based-Intrusion-Detection-System-Architecture.jpg"></p>
 <p>其特点包括：</p>
 <ul>
 <li>部署灵活（可集中监控）</li>
@@ -231,7 +231,7 @@
 <hr>
 <h2 id="2-3-入侵检测方法分类"><a href="#2-3-入侵检测方法分类" class="headerlink" title="2.3 入侵检测方法分类"></a><strong>2.3 入侵检测方法分类</strong></h2><p>根据检测机制的不同，IDS主要分为以下两类：</p>
 <h3 id="2-3-1-误用检测（Signature-based-Detection）"><a href="#2-3-1-误用检测（Signature-based-Detection）" class="headerlink" title="2.3.1 误用检测（Signature-based Detection）"></a><strong>2.3.1 误用检测（Signature-based Detection）</strong></h3><p>误用检测通过匹配已知攻击特征（签名）来识别入侵行为，类似于病毒特征库检测。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/bBhOV37afzkJPMG1lHwVHzER10JleVyyaNxB-JGZeZkHK3sh8TDjGpwvcOYuNgYVkPBISXtyzp2Vtg-a3BvZhGhVSm-Cgs6jhNfu13u80v03VNtOo9bW5bwxeX28rf-s52iyTR2qB1DzsVIaoPmblg.png" alt="Regular expression matching in the Snort IDS. | Download Scientific Diagram"></p>
+<p><img src="/.io//bBhOV37afzkJPMG1lHwVHzER10JleVyyaNxB-JGZeZkHK3sh8TDjGpwvcOYuNgYVkPBISXtyzp2Vtg-a3BvZhGhVSm-Cgs6jhNfu13u80v03VNtOo9bW5bwxeX28rf-s52iyTR2qB1DzsVIaoPmblg.png" alt="Regular expression matching in the Snort IDS. | Download Scientific Diagram"></p>
 <p>优点：</p>
 <ul>
 <li>检测准确率高</li>
@@ -244,7 +244,7 @@
 </ul>
 <hr>
 <h3 id="2-3-2-异常检测（Anomaly-based-Detection）"><a href="#2-3-2-异常检测（Anomaly-based-Detection）" class="headerlink" title="2.3.2 异常检测（Anomaly-based Detection）"></a><strong>2.3.2 异常检测（Anomaly-based Detection）</strong></h3><p>异常检测通过建立“正常行为模型”，当检测到偏离正常行为的模式时，即认为可能存在入侵。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/M1pFCGNOsqwu6Fq1H-GWpLXkR6swRvLzlMrCZp-Tjmno63ZC_nH8ZtlqTBu_lKtsVxef93vJLljJYMmL6cRIVpbi5Fy_PM7kOGPBPdXG_upu31_vkHVhaOll7rJoFndIRk4xMo4uc6zA8KpnmbH4dA.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;324189357&#x2F;figure&#x2F;fig1&#x2F;AS%3A611706963255296%401522853713003&#x2F;a-Anomaly-Based-Intrusion-Detection-System-b-Signature-Based-Intrusion-Detection-System.png"></p>
+<p><img src="/.io//M1pFCGNOsqwu6Fq1H-GWpLXkR6swRvLzlMrCZp-Tjmno63ZC_nH8ZtlqTBu_lKtsVxef93vJLljJYMmL6cRIVpbi5Fy_PM7kOGPBPdXG_upu31_vkHVhaOll7rJoFndIRk4xMo4uc6zA8KpnmbH4dA.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;324189357&#x2F;figure&#x2F;fig1&#x2F;AS%3A611706963255296%401522853713003&#x2F;a-Anomaly-Based-Intrusion-Detection-System-b-Signature-Based-Intrusion-Detection-System.png"></p>
 <p>优点：</p>
 <ul>
 <li>能检测未知攻击</li>
@@ -300,11 +300,11 @@
 <hr>
 <h1 id="3-人工智能技术基础"><a href="#3-人工智能技术基础" class="headerlink" title="3 人工智能技术基础"></a><strong>3 人工智能技术基础</strong></h1><h2 id="3-1-机器学习基础"><a href="#3-1-机器学习基础" class="headerlink" title="3.1 机器学习基础"></a><strong>3.1 机器学习基础</strong></h2><p>机器学习（Machine Learning, ML）是人工智能的重要分支，其核心思想是通过数据训练模型，使其具备从数据中自动学习规律并进行预测或决策的能力。在网络入侵检测中，机器学习方法能够从海量网络流量中提取潜在模式，实现对异常行为的识别。</p>
 <h3 id="3-1-1-监督学习"><a href="#3-1-1-监督学习" class="headerlink" title="3.1.1 监督学习"></a><strong>3.1.1 监督学习</strong></h3><p>监督学习通过带标签的数据进行训练，学习输入特征与输出类别之间的映射关系。在入侵检测中，常用于分类任务，如正常流量与攻击流量的区分。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/3JNgZ8MnaNUbhG6rh2d1CSc-X2PVLtds-rvBUeGzyJ4fiYZ9OY-DbH6vPFcRzKOEFq7h6jkmX3306UMn_glJ8m0sbt4aNn9yUpfDLiYpNoR3e2ovf7yKk9GZZmpiBPzKtvzY1d2HcaaqOs4apoT3ig.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;301841976&#x2F;figure&#x2F;fig3&#x2F;AS%3A360957965553700%401463070493976&#x2F;ML-classification-pipeline-Feature-extraction-from-raw-data-ML-model-fitting-and.png"></p>
+<p><img src="/.io//3JNgZ8MnaNUbhG6rh2d1CSc-X2PVLtds-rvBUeGzyJ4fiYZ9OY-DbH6vPFcRzKOEFq7h6jkmX3306UMn_glJ8m0sbt4aNn9yUpfDLiYpNoR3e2ovf7yKk9GZZmpiBPzKtvzY1d2HcaaqOs4apoT3ig.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;301841976&#x2F;figure&#x2F;fig3&#x2F;AS%3A360957965553700%401463070493976&#x2F;ML-classification-pipeline-Feature-extraction-from-raw-data-ML-model-fitting-and.png"></p>
 <p>典型算法包括支持向量机（SVM）、决策树（Decision Tree）、随机森林（Random Forest）等。</p>
 <hr>
 <h3 id="3-1-2-无监督学习"><a href="#3-1-2-无监督学习" class="headerlink" title="3.1.2 无监督学习"></a><strong>3.1.2 无监督学习</strong></h3><p>无监督学习在没有标签数据的情况下，通过挖掘数据内在结构进行学习，常用于异常检测任务。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/BR6gqZd9pEyQ_Ab-ysnM27BpD_kuDP8Izu-_6yVN4nB9_GgoevVE5l402TR2LojGc9O6XKfMQLUbQSuKaaVxwk0jdC-BnrqPgB2gZTjP8w90otgxblLJq7ZM78zeUBWOtWGeejxpuMcvLorQxO0X8g.png" alt="Grouping methods of unsupervised learning. (a) Clustering; (b)... |  Download Scientific Diagram"></p>
+<p><img src="/.io//BR6gqZd9pEyQ_Ab-ysnM27BpD_kuDP8Izu-_6yVN4nB9_GgoevVE5l402TR2LojGc9O6XKfMQLUbQSuKaaVxwk0jdC-BnrqPgB2gZTjP8w90otgxblLJq7ZM78zeUBWOtWGeejxpuMcvLorQxO0X8g.png" alt="Grouping methods of unsupervised learning. (a) Clustering; (b)... |  Download Scientific Diagram"></p>
 <p>常见方法包括K-means聚类、DBSCAN、孤立森林（Isolation Forest）等。</p>
 <hr>
 <h3 id="3-1-3-半监督学习"><a href="#3-1-3-半监督学习" class="headerlink" title="3.1.3 半监督学习"></a><strong>3.1.3 半监督学习</strong></h3><p>半监督学习结合少量标注数据与大量未标注数据进行训练，适用于网络安全领域中标注数据稀缺的场景。</p>
@@ -312,19 +312,19 @@
 <h2 id="3-2-深度学习基础"><a href="#3-2-深度学习基础" class="headerlink" title="3.2 深度学习基础"></a><strong>3.2 深度学习基础</strong></h2><p>深度学习（Deep Learning）是机器学习的一个重要分支，通过多层神经网络对数据进行逐层特征提取，在复杂模式识别任务中表现出优越性能。</p>
 <hr>
 <h3 id="3-2-1-神经网络基础"><a href="#3-2-1-神经网络基础" class="headerlink" title="3.2.1 神经网络基础"></a><strong>3.2.1 神经网络基础</strong></h3><p>人工神经网络（Artificial Neural Network, ANN）由输入层、隐藏层和输出层组成，通过非线性激活函数实现复杂映射。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/neural_network_architecture.png" alt="https:&#x2F;&#x2F;static-assets.codecademy.com&#x2F;building-neural-network&#x2F;neural_network_architecture.png"></p>
+<p><img src="/.io//neural_network_architecture.png" alt="https:&#x2F;&#x2F;static-assets.codecademy.com&#x2F;building-neural-network&#x2F;neural_network_architecture.png"></p>
 <p>神经网络通过反向传播算法（Backpropagation）更新权重，从而不断优化模型性能。</p>
 <hr>
 <h3 id="3-2-2-卷积神经网络（CNN）"><a href="#3-2-2-卷积神经网络（CNN）" class="headerlink" title="3.2.2 卷积神经网络（CNN）"></a><strong>3.2.2 卷积神经网络（CNN）</strong></h3><p>卷积神经网络（Convolutional Neural Network, CNN）通过卷积操作提取局部特征，广泛应用于图像识别和流量特征提取。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/_nma1Hip8wO3trAukYg2W9FMCUES4_dsSs6OJi5u3DvGbfx57HkdtdGIyR4toB0CHnnKcCjRfeB2fnFhXWKR84hjZHW2QUWLjpiMfpRbuQwYEION74iZZQwNYwl_pFv6QmYAJhz29kv2SX33MjzOaA.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;374143931&#x2F;figure&#x2F;fig4&#x2F;AS%3A11431281190918268%401695521918070&#x2F;Architecture-of-CNN-with-convolutional-pooling-fully-connected-layer-and-output.png"></p>
+<p><img src="/.io//_nma1Hip8wO3trAukYg2W9FMCUES4_dsSs6OJi5u3DvGbfx57HkdtdGIyR4toB0CHnnKcCjRfeB2fnFhXWKR84hjZHW2QUWLjpiMfpRbuQwYEION74iZZQwNYwl_pFv6QmYAJhz29kv2SX33MjzOaA.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;374143931&#x2F;figure&#x2F;fig4&#x2F;AS%3A11431281190918268%401695521918070&#x2F;Architecture-of-CNN-with-convolutional-pooling-fully-connected-layer-and-output.png"></p>
 <p>在入侵检测中，CNN可用于提取网络流量中的局部空间特征，提高检测精度。</p>
 <hr>
 <h3 id="3-2-3-循环神经网络（RNN、LSTM、GRU）"><a href="#3-2-3-循环神经网络（RNN、LSTM、GRU）" class="headerlink" title="3.2.3 循环神经网络（RNN、LSTM、GRU）"></a><strong>3.2.3 循环神经网络（RNN、LSTM、GRU）</strong></h3><p>循环神经网络（Recurrent Neural Network, RNN）适用于处理序列数据，能够捕获时间依赖关系。其中，LSTM和GRU通过门控机制解决了传统RNN的梯度消失问题。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1AeKfV2uAPeMg9j8HhQZk2w-1774528081213-110.png" alt="1AeKfV2uAPeMg9j8HhQZk2w"></p>
+<p><img src="/.io//1AeKfV2uAPeMg9j8HhQZk2w-1774528081213-110.png" alt="1AeKfV2uAPeMg9j8HhQZk2w"></p>
 <p>在网络入侵检测中，RNN类模型能够分析流量的时序特征，例如攻击行为的演化过程。</p>
 <hr>
 <h3 id="3-2-4-注意力机制（Attention）与Transformer"><a href="#3-2-4-注意力机制（Attention）与Transformer" class="headerlink" title="3.2.4 注意力机制（Attention）与Transformer"></a><strong>3.2.4 注意力机制（Attention）与Transformer</strong></h3><p>注意力机制通过为不同特征分配不同权重，使模型能够关注关键部分，从而提升性能。Transformer模型则基于自注意力机制，具有强大的全局建模能力。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1vrSX_Ku3EmGPyqF_E-2_Vg-1774528145715-112.png" alt="1vrSX_Ku3EmGPyqF_E-2_Vg"></p>
+<p><img src="/.io//1vrSX_Ku3EmGPyqF_E-2_Vg-1774528145715-112.png" alt="1vrSX_Ku3EmGPyqF_E-2_Vg"></p>
 <p>在入侵检测中，注意力机制可以增强模型对关键攻击特征的识别能力，常与CNN、RNN结合构建混合模型。</p>
 <hr>
 <h2 id="3-3-其他人工智能技术"><a href="#3-3-其他人工智能技术" class="headerlink" title="3.3 其他人工智能技术"></a><strong>3.3 其他人工智能技术</strong></h2><h3 id="3-3-1-集成学习"><a href="#3-3-1-集成学习" class="headerlink" title="3.3.1 集成学习"></a><strong>3.3.1 集成学习</strong></h3><p>集成学习通过组合多个弱学习器，提高整体模型性能。典型方法包括：</p>
@@ -335,13 +335,13 @@
 <p>其优点是稳定性强、泛化能力好。</p>
 <hr>
 <h3 id="3-3-2-强化学习"><a href="#3-3-2-强化学习" class="headerlink" title="3.3.2 强化学习"></a><strong>3.3.2 强化学习</strong></h3><p>强化学习（Reinforcement Learning, RL）通过智能体与环境的交互进行学习，在动态网络环境中可用于自适应安全策略优化。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/41598_2025_24869_Fig1_HTML-1774528526267-115.png" alt="41598_2025_24869_Fig1_HTML"></p>
+<p><img src="/.io//41598_2025_24869_Fig1_HTML-1774528526267-115.png" alt="41598_2025_24869_Fig1_HTML"></p>
 <hr>
 <h3 id="3-3-3-图神经网络（GNN）"><a href="#3-3-3-图神经网络（GNN）" class="headerlink" title="3.3.3 图神经网络（GNN）"></a><strong>3.3.3 图神经网络（GNN）</strong></h3><p>图神经网络（Graph Neural Network, GNN）适用于处理网络结构数据，可用于分析主机之间的通信关系，从而发现复杂攻击行为（如APT攻击）。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1Z17DvNPmrKDtbxan4HuGcA-1774528569395-117.png" alt="1Z17DvNPmrKDtbxan4HuGcA"></p>
+<p><img src="/.io//1Z17DvNPmrKDtbxan4HuGcA-1774528569395-117.png" alt="1Z17DvNPmrKDtbxan4HuGcA"></p>
 <h1 id="4-基于机器学习的入侵检测方法"><a href="#4-基于机器学习的入侵检测方法" class="headerlink" title="4 基于机器学习的入侵检测方法"></a><strong>4 基于机器学习的入侵检测方法</strong></h1><h2 id="4-1-传统机器学习方法概述"><a href="#4-1-传统机器学习方法概述" class="headerlink" title="4.1 传统机器学习方法概述"></a><strong>4.1 传统机器学习方法概述</strong></h2><p>在深度学习广泛应用之前，传统机器学习方法已被大量用于网络入侵检测。该类方法通常依赖人工设计特征，通过分类或聚类算法对网络流量进行建模与分析，实现对异常行为的识别。</p>
 <p>传统机器学习方法具有计算复杂度低、可解释性强等优点，在资源受限环境或实时检测场景中仍具有重要价值。然而，其性能在很大程度上依赖于特征工程的质量。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/3eAE-Xicu5meUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4xMI00zDJNjwyxdMuPNHbPycoNSg2ODw81SnRxCrXMMTbULUzJs3A2SjVIVyu2NTQAAOu3I8E.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;360556266&#x2F;figure&#x2F;fig1&#x2F;AS%3A11431281095624020%401667963834716&#x2F;Basic-intrusion-detection-machine-learning-pipeline.png"></p>
+<p><img src="/.io//3eAE-Xicu5meUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4xMI00zDJNjwyxdMuPNHbPycoNSg2ODw81SnRxCrXMMTbULUzJs3A2SjVIVyu2NTQAAOu3I8E.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;360556266&#x2F;figure&#x2F;fig1&#x2F;AS%3A11431281095624020%401667963834716&#x2F;Basic-intrusion-detection-machine-learning-pipeline.png"></p>
 <p>一般流程包括：</p>
 <ol>
 <li>数据采集与预处理</li>
@@ -352,7 +352,7 @@
 <hr>
 <h2 id="4-2-基于监督学习的入侵检测方法"><a href="#4-2-基于监督学习的入侵检测方法" class="headerlink" title="4.2 基于监督学习的入侵检测方法"></a><strong>4.2 基于监督学习的入侵检测方法</strong></h2><p>监督学习方法通过带标签的数据训练分类模型，是入侵检测中应用最广泛的一类方法。</p>
 <h3 id="4-2-1-支持向量机（SVM）"><a href="#4-2-1-支持向量机（SVM）" class="headerlink" title="4.2.1 支持向量机（SVM）"></a><strong>4.2.1 支持向量机（SVM）</strong></h3><p>支持向量机（Support Vector Machine, SVM）通过构建最优分类超平面，实现不同类别样本的分离，适用于高维数据场景。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1bxxbmAIbn8iqv7zJlk576Q-1774528681932-125.png" alt="1bxxbmAIbn8iqv7zJlk576Q"></p>
+<p><img src="/.io//1bxxbmAIbn8iqv7zJlk576Q-1774528681932-125.png" alt="1bxxbmAIbn8iqv7zJlk576Q"></p>
 <p>优点：</p>
 <ul>
 <li>对小样本数据表现良好</li>
@@ -365,7 +365,7 @@
 </ul>
 <hr>
 <h3 id="4-2-2-决策树与随机森林"><a href="#4-2-2-决策树与随机森林" class="headerlink" title="4.2.2 决策树与随机森林"></a><strong>4.2.2 决策树与随机森林</strong></h3><p>决策树通过构建树状结构进行分类，而随机森林通过集成多个决策树提升性能。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/0Ga2SY3cwKnkCRCTZ-1774528716573-128.jpg" alt="0Ga2SY3cwKnkCRCTZ"></p>
+<p><img src="/.io//0Ga2SY3cwKnkCRCTZ-1774528716573-128.jpg" alt="0Ga2SY3cwKnkCRCTZ"></p>
 <p>优点：</p>
 <ul>
 <li>易于理解和解释</li>
@@ -377,7 +377,7 @@
 </ul>
 <hr>
 <h3 id="4-2-3-K近邻（KNN）"><a href="#4-2-3-K近邻（KNN）" class="headerlink" title="4.2.3 K近邻（KNN）"></a><strong>4.2.3 K近邻（KNN）</strong></h3><p>K近邻算法（K-Nearest Neighbors）基于样本之间的距离进行分类，将测试样本归类为其邻近样本的多数类别。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/sphx_glr_plot_classification_001.png" alt="sphx_glr_plot_classification_001"></p>
+<p><img src="/.io//sphx_glr_plot_classification_001.png" alt="sphx_glr_plot_classification_001"></p>
 <p>优点：</p>
 <ul>
 <li>简单直观</li>
@@ -390,7 +390,7 @@
 </ul>
 <hr>
 <h3 id="4-2-4-朴素贝叶斯（Naive-Bayes）"><a href="#4-2-4-朴素贝叶斯（Naive-Bayes）" class="headerlink" title="4.2.4 朴素贝叶斯（Naive Bayes）"></a><strong>4.2.4 朴素贝叶斯（Naive Bayes）</strong></h3><p>朴素贝叶斯基于概率统计，通过假设特征之间相互独立，计算后验概率进行分类。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/img__1_1.jpg" alt="img__1_1"></p>
+<p><img src="/.io//img__1_1.jpg" alt="img__1_1"></p>
 <p>优点：</p>
 <ul>
 <li>计算效率高</li>
@@ -403,7 +403,7 @@
 <hr>
 <h2 id="4-3-基于无监督学习的异常检测方法"><a href="#4-3-基于无监督学习的异常检测方法" class="headerlink" title="4.3 基于无监督学习的异常检测方法"></a><strong>4.3 基于无监督学习的异常检测方法</strong></h2><p>在实际网络环境中，攻击样本难以完全获取，因此无监督学习方法被广泛用于异常检测。</p>
 <h3 id="4-3-1-聚类方法"><a href="#4-3-1-聚类方法" class="headerlink" title="4.3.1 聚类方法"></a><strong>4.3.1 聚类方法</strong></h3><p>聚类方法通过将相似样本划分为同一类，从而识别异常点。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/YuHyfB3mf-LT53u_xjoeoAIolSNMkO1xwBFmenG5drsgl6aGpPatF9ZP-a368TIhGIjINJPRa4XHXX7ac6MBjgxKomP6ix4Vkqxa1EZjxmLvEydHs1cGU9a4LJKfdq4e_EORznGLNze1xlroibmoug.png" alt="YuHyfB3mf-LT53u_xjoeoAIolSNMkO1xwBFmenG5drsgl6aGpPatF9ZP-a368TIhGIjINJPRa4XHXX7ac6MBjgxKomP6ix4Vkqxa1EZjxmLvEydHs1cGU9a4LJKfdq4e_EORznGLNze1xlroibmoug"></p>
+<p><img src="/.io//YuHyfB3mf-LT53u_xjoeoAIolSNMkO1xwBFmenG5drsgl6aGpPatF9ZP-a368TIhGIjINJPRa4XHXX7ac6MBjgxKomP6ix4Vkqxa1EZjxmLvEydHs1cGU9a4LJKfdq4e_EORznGLNze1xlroibmoug.png" alt="YuHyfB3mf-LT53u_xjoeoAIolSNMkO1xwBFmenG5drsgl6aGpPatF9ZP-a368TIhGIjINJPRa4XHXX7ac6MBjgxKomP6ix4Vkqxa1EZjxmLvEydHs1cGU9a4LJKfdq4e_EORznGLNze1xlroibmoug"></p>
 <p>典型方法：</p>
 <ul>
 <li>K-means</li>
@@ -411,7 +411,7 @@
 </ul>
 <hr>
 <h3 id="4-3-2-基于密度与孤立的检测方法"><a href="#4-3-2-基于密度与孤立的检测方法" class="headerlink" title="4.3.2 基于密度与孤立的检测方法"></a><strong>4.3.2 基于密度与孤立的检测方法</strong></h3><p>孤立森林（Isolation Forest）通过随机划分数据空间，使异常点更容易被孤立，从而实现异常检测。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/71Re5aygLlxu2eMqWS--1MVf2HB6xZaR50eAUub2eQDvmNa-pL0MmtagswQg8UKlb5ZDUBVUREJKKBY_WRaJkFLa0dliaMqGP-OXJWn_8e-wtwYuqk_xLBtGQ9alu5-VPfBN8pe3mXuqhNZwkWs5Bw.png" alt="71Re5aygLlxu2eMqWS--1MVf2HB6xZaR50eAUub2eQDvmNa-pL0MmtagswQg8UKlb5ZDUBVUREJKKBY_WRaJkFLa0dliaMqGP-OXJWn_8e-wtwYuqk_xLBtGQ9alu5-VPfBN8pe3mXuqhNZwkWs5Bw"></p>
+<p><img src="/.io//71Re5aygLlxu2eMqWS--1MVf2HB6xZaR50eAUub2eQDvmNa-pL0MmtagswQg8UKlb5ZDUBVUREJKKBY_WRaJkFLa0dliaMqGP-OXJWn_8e-wtwYuqk_xLBtGQ9alu5-VPfBN8pe3mXuqhNZwkWs5Bw.png" alt="71Re5aygLlxu2eMqWS--1MVf2HB6xZaR50eAUub2eQDvmNa-pL0MmtagswQg8UKlb5ZDUBVUREJKKBY_WRaJkFLa0dliaMqGP-OXJWn_8e-wtwYuqk_xLBtGQ9alu5-VPfBN8pe3mXuqhNZwkWs5Bw"></p>
 <p>优点：</p>
 <ul>
 <li>对高维数据适应性强</li>
@@ -424,11 +424,11 @@
 <li>特征选择（如信息增益、卡方检验）</li>
 <li>降维方法（如PCA）</li>
 </ul>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/a00f3301-9f4f-4de3-a5bb-dc8866c1afc4_819x580.jpg" alt="a00f3301-9f4f-4de3-a5bb-dc8866c1afc4_819x580"></p>
+<p><img src="/.io//a00f3301-9f4f-4de3-a5bb-dc8866c1afc4_819x580.jpg" alt="a00f3301-9f4f-4de3-a5bb-dc8866c1afc4_819x580"></p>
 <p>通过有效的特征处理，可以减少冗余信息，提高模型训练效率与泛化能力。</p>
 <hr>
 <h1 id="5-基于深度学习的入侵检测方法"><a href="#5-基于深度学习的入侵检测方法" class="headerlink" title="5 基于深度学习的入侵检测方法"></a><strong>5 基于深度学习的入侵检测方法</strong></h1><h2 id="5-1-深度学习在入侵检测中的优势"><a href="#5-1-深度学习在入侵检测中的优势" class="headerlink" title="5.1 深度学习在入侵检测中的优势"></a><strong>5.1 深度学习在入侵检测中的优势</strong></h2><p>与传统机器学习方法相比，深度学习（Deep Learning）能够通过多层神经网络自动学习数据的高层次特征表示，避免对人工特征工程的依赖。在复杂网络环境中，深度学习模型能够更有效地捕获非线性关系和隐藏模式，从而显著提升入侵检测性能。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/dnQIonui68gIJVPExW392cNOPHLehiUJ4HfpF5cKafy8NFKlCPKnZmhHniAzLSnnNm31sOMG1hEQ0gqIQvNWY9oSWaYCxcj7KyeYXFGVJg636FZsK7D8HheNqcfUXFXmmcTTtSUVver4nrEJ2POrAw.png" alt="https:&#x2F;&#x2F;media.springernature.com&#x2F;lw685&#x2F;springer-static&#x2F;image&#x2F;art%3A10.1038%2Fs41598-025-34166-1&#x2F;MediaObjects&#x2F;41598_2025_34166_Fig2_HTML.png"></p>
+<p><img src="/.io//dnQIonui68gIJVPExW392cNOPHLehiUJ4HfpF5cKafy8NFKlCPKnZmhHniAzLSnnNm31sOMG1hEQ0gqIQvNWY9oSWaYCxcj7KyeYXFGVJg636FZsK7D8HheNqcfUXFXmmcTTtSUVver4nrEJ2POrAw.png" alt="https:&#x2F;&#x2F;media.springernature.com&#x2F;lw685&#x2F;springer-static&#x2F;image&#x2F;art%3A10.1038%2Fs41598-025-34166-1&#x2F;MediaObjects&#x2F;41598_2025_34166_Fig2_HTML.png"></p>
 <p>其主要优势包括：</p>
 <ul>
 <li>自动特征提取能力强</li>
@@ -437,7 +437,7 @@
 </ul>
 <hr>
 <h2 id="5-2-基于卷积神经网络（CNN）的入侵检测方法"><a href="#5-2-基于卷积神经网络（CNN）的入侵检测方法" class="headerlink" title="5.2 基于卷积神经网络（CNN）的入侵检测方法"></a><strong>5.2 基于卷积神经网络（CNN）的入侵检测方法</strong></h2><p>卷积神经网络（CNN）通过卷积操作提取局部特征，适用于处理具有空间结构的数据。在入侵检测中，网络流量数据通常被转换为二维或一维形式输入CNN模型，从而提取局部模式特征。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/cYf1flkXwtf-LbhfCXrfefMtvwDh-KtGK5JrIBDKeLsYtccCZhH4YUZ49AW40-7t4aPLggKwQJgJym14F6okzS5zLzjNibhUK6FNoD-2CCWMXUaZyODWf0ACoIhMYe6f5E-v0VJlPCWzarGS2imXfw.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;340697891&#x2F;figure&#x2F;fig1&#x2F;AS%3A956497890664448%401605058276135&#x2F;The-architecture-of-the-1D-CNN-simple-model-for-intrusion-detection-The-network-consists.ppm"></p>
+<p><img src="/.io//cYf1flkXwtf-LbhfCXrfefMtvwDh-KtGK5JrIBDKeLsYtccCZhH4YUZ49AW40-7t4aPLggKwQJgJym14F6okzS5zLzjNibhUK6FNoD-2CCWMXUaZyODWf0ACoIhMYe6f5E-v0VJlPCWzarGS2imXfw.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;340697891&#x2F;figure&#x2F;fig1&#x2F;AS%3A956497890664448%401605058276135&#x2F;The-architecture-of-the-1D-CNN-simple-model-for-intrusion-detection-The-network-consists.ppm"></p>
 <p>CNN在入侵检测中的应用特点：</p>
 <ul>
 <li>提取局部流量特征（如包结构、字段关系）</li>
@@ -447,7 +447,7 @@
 <p>然而，CNN在建模时间序列依赖方面存在一定局限。</p>
 <hr>
 <h2 id="5-3-基于循环神经网络（RNN、LSTM、GRU）的入侵检测方法"><a href="#5-3-基于循环神经网络（RNN、LSTM、GRU）的入侵检测方法" class="headerlink" title="5.3 基于循环神经网络（RNN、LSTM、GRU）的入侵检测方法"></a><strong>5.3 基于循环神经网络（RNN、LSTM、GRU）的入侵检测方法</strong></h2><p>循环神经网络（RNN）能够处理序列数据，适用于分析网络流量的时间依赖关系。其中，LSTM和GRU通过门控机制解决了传统RNN的梯度消失问题。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/Jv1NMTgRy4A-5rKMX3pQYrThqeAglCbdZ6m7x0T3qBLnZcY2JEfiSlJpkG5qHC_s9xrw-P3vABgNvSzyvjVsauvLhID-d-JZOWPPngZEnRFHIipQ2EDrxewdz1Qt76DuNp5gvH-J1eXS7LMpTL_Vug.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;370934315&#x2F;figure&#x2F;fig2&#x2F;AS%3A11431281171146578%401688053412706&#x2F;LSTM-GRU-architecture-for-the-proposed-IDS-model.ppm"></p>
+<p><img src="/.io//Jv1NMTgRy4A-5rKMX3pQYrThqeAglCbdZ6m7x0T3qBLnZcY2JEfiSlJpkG5qHC_s9xrw-P3vABgNvSzyvjVsauvLhID-d-JZOWPPngZEnRFHIipQ2EDrxewdz1Qt76DuNp5gvH-J1eXS7LMpTL_Vug.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;370934315&#x2F;figure&#x2F;fig2&#x2F;AS%3A11431281171146578%401688053412706&#x2F;LSTM-GRU-architecture-for-the-proposed-IDS-model.ppm"></p>
 <p>在入侵检测中的应用：</p>
 <ul>
 <li>捕获攻击行为的时间演化特征</li>
@@ -456,7 +456,7 @@
 <p>但其训练复杂度较高，且对长序列计算开销较大。</p>
 <hr>
 <h2 id="5-4-基于自编码器（Autoencoder）的异常检测方法"><a href="#5-4-基于自编码器（Autoencoder）的异常检测方法" class="headerlink" title="5.4 基于自编码器（Autoencoder）的异常检测方法"></a><strong>5.4 基于自编码器（Autoencoder）的异常检测方法</strong></h2><p>自编码器（Autoencoder）是一种无监督学习模型，通过重构输入数据来学习数据的低维表示。当输入异常数据时，模型重构误差通常较大，从而实现异常检测。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1ce89U6z-MhgGRln9VRAMxQ-1774528932661-144.png" alt="1ce89U6z-MhgGRln9VRAMxQ"></p>
+<p><img src="/.io//1ce89U6z-MhgGRln9VRAMxQ-1774528932661-144.png" alt="1ce89U6z-MhgGRln9VRAMxQ"></p>
 <p>其优势包括：</p>
 <ul>
 <li>无需标签数据</li>
@@ -474,7 +474,7 @@
 <p>但模型复杂度较高，对计算资源要求较大。</p>
 <hr>
 <h2 id="5-6-混合深度学习模型（CNN-RNN-Attention）"><a href="#5-6-混合深度学习模型（CNN-RNN-Attention）" class="headerlink" title="5.6 混合深度学习模型（CNN-RNN-Attention）"></a><strong>5.6 混合深度学习模型（CNN-RNN-Attention）</strong></h2><p>近年来，研究者逐渐将多种深度学习模型进行融合，以充分发挥各自优势。例如，CNN用于提取局部特征，RNN用于建模时间依赖，Attention用于增强关键特征表达。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/gRj7cT9tudwMNV4iHEUEj_yAuPsETJtnFkmbRO_ZeF_ODmjx07Ffuu2rHMqNaw-kUBLeYn-DA6IriEUXhW9e8t88NmFFTib1R5u_QhLbE0vPpVKrkB1JC_fYDPx3OLCErZmyIjCRtyqRRL6A1azNoQ.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;382098367&#x2F;figure&#x2F;fig1&#x2F;AS%3A11431281259509809%401720536253617&#x2F;CNN-BiGRU-Attention-model-for-network-intrusion-detection.png"></p>
+<p><img src="/.io//gRj7cT9tudwMNV4iHEUEj_yAuPsETJtnFkmbRO_ZeF_ODmjx07Ffuu2rHMqNaw-kUBLeYn-DA6IriEUXhW9e8t88NmFFTib1R5u_QhLbE0vPpVKrkB1JC_fYDPx3OLCErZmyIjCRtyqRRL6A1azNoQ.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;382098367&#x2F;figure&#x2F;fig1&#x2F;AS%3A11431281259509809%401720536253617&#x2F;CNN-BiGRU-Attention-model-for-network-intrusion-detection.png"></p>
 <p>典型结构（与你的模型一致）：</p>
 <ul>
 <li>CNN层：提取局部空间特征</li>
@@ -525,9 +525,9 @@
 </tr>
 </tbody></table>
 <hr>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="6-数据集与实验评估方法"><a href="#6-数据集与实验评估方法" class="headerlink" title="6 数据集与实验评估方法"></a><strong>6 数据集与实验评估方法</strong></h1><h2 id="6-1-常用入侵检测数据集"><a href="#6-1-常用入侵检测数据集" class="headerlink" title="6.1 常用入侵检测数据集"></a><strong>6.1 常用入侵检测数据集</strong></h2><p>在基于人工智能的网络入侵检测研究中，数据集的质量直接影响模型性能与泛化能力。目前，常用的公开数据集主要包括以下几类：</p>
+<h3 id><a href="#" class="headerlink" title></a></h3><h1 id="6-数据集与实验评估方法"><a href="#6-数据集与实验评估方法" class="headerlink" title="6 数据集与实验评估方法"></a><strong>6 数据集与实验评估方法</strong></h1><h2 id="6-1-常用入侵检测数据集"><a href="#6-1-常用入侵检测数据集" class="headerlink" title="6.1 常用入侵检测数据集"></a><strong>6.1 常用入侵检测数据集</strong></h2><p>在基于人工智能的网络入侵检测研究中，数据集的质量直接影响模型性能与泛化能力。目前，常用的公开数据集主要包括以下几类：</p>
 <h3 id="6-1-1-KDD-Cup-1999-与-NSL-KDD"><a href="#6-1-1-KDD-Cup-1999-与-NSL-KDD" class="headerlink" title="6.1.1 KDD Cup 1999 与 NSL-KDD"></a><strong>6.1.1 KDD Cup 1999 与 NSL-KDD</strong></h3><p>KDD99数据集是早期入侵检测研究的经典数据集，包含多种攻击类型（DoS、Probe、R2L、U2R）。然而，由于其存在大量重复样本，后续提出了改进版本NSL-KDD。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/A_y94lSwyJjz0AE9_SQmSFX0ffqv89Y2rIg0Rc70eNWI_Zvc3uRttVCJeDFPyYtJVOZfKaDvLRRQTDbegkEGo6_Dy6XFAOJiCY2XHQJSw5EmIdAGgiTrGmMPhdBtWOQX6X6E3JXX3B8L2UtpMARxow.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;341224118&#x2F;figure&#x2F;fig2&#x2F;AS%3A941761950150657%401601544954399&#x2F;NSL-KDD-dataset-distribution.png"></p>
+<p><img src="/.io//A_y94lSwyJjz0AE9_SQmSFX0ffqv89Y2rIg0Rc70eNWI_Zvc3uRttVCJeDFPyYtJVOZfKaDvLRRQTDbegkEGo6_Dy6XFAOJiCY2XHQJSw5EmIdAGgiTrGmMPhdBtWOQX6X6E3JXX3B8L2UtpMARxow.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;341224118&#x2F;figure&#x2F;fig2&#x2F;AS%3A941761950150657%401601544954399&#x2F;NSL-KDD-dataset-distribution.png"></p>
 <p>特点：</p>
 <ul>
 <li>数据结构清晰</li>
@@ -536,7 +536,7 @@
 </ul>
 <hr>
 <h3 id="6-1-2-UNSW-NB15-数据集"><a href="#6-1-2-UNSW-NB15-数据集" class="headerlink" title="6.1.2 UNSW-NB15 数据集"></a><strong>6.1.2 UNSW-NB15 数据集</strong></h3><p>UNSW-NB15由澳大利亚新南威尔士大学发布，包含现代网络攻击类型，数据更加接近真实网络环境。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/AhX1qwRW01tsP8WRokVq4ZQ92JsnS6VXj_pzObuF6W6Ia1YNlvzL1apOdZuTY5uQyqmW_EZoFNv1PKFYyBE0QjTIfhNUrfzjZaoBfGlYLnizw2QWvtwuVxb2LUikiATYrI2PTx_1JgGYD9Vc9x124Q.png" alt="Binary Classification (UNSW-NB15 dataset) using Machine Learning... |  Download Scientific Diagram"></p>
+<p><img src="/.io//AhX1qwRW01tsP8WRokVq4ZQ92JsnS6VXj_pzObuF6W6Ia1YNlvzL1apOdZuTY5uQyqmW_EZoFNv1PKFYyBE0QjTIfhNUrfzjZaoBfGlYLnizw2QWvtwuVxb2LUikiATYrI2PTx_1JgGYD9Vc9x124Q.png" alt="Binary Classification (UNSW-NB15 dataset) using Machine Learning... |  Download Scientific Diagram"></p>
 <p>特点：</p>
 <ul>
 <li>包含更多现代攻击类型</li>
@@ -545,7 +545,7 @@
 </ul>
 <hr>
 <h3 id="6-1-3-CIC-IDS2017-数据集"><a href="#6-1-3-CIC-IDS2017-数据集" class="headerlink" title="6.1.3 CIC-IDS2017 数据集"></a><strong>6.1.3 CIC-IDS2017 数据集</strong></h3><p>CIC-IDS2017是目前应用最广泛的数据集之一，涵盖多种攻击场景（如DDoS、Web攻击、Botnet等）。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/NyVcxPQPXnfjAcVBArH_Co0uczCaQ6z6F4lDi-VfOl8GdHQw2jBTEBoKrlNNq9a41iz7NGJswwOb0Y1Hh0oAUpsSCkh-rt4QvlWR-dqC3iY7kvWxbQBZFJiPo4Nw6WWqXqEYVcVw6RsU5xVqZgaEPA.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;348762783&#x2F;figure&#x2F;fig3&#x2F;AS%3A1080260850393137%401634565665349&#x2F;Distribution-of-labels-in-the-CICIDS2017-dataset.jpg"></p>
+<p><img src="/.io//NyVcxPQPXnfjAcVBArH_Co0uczCaQ6z6F4lDi-VfOl8GdHQw2jBTEBoKrlNNq9a41iz7NGJswwOb0Y1Hh0oAUpsSCkh-rt4QvlWR-dqC3iY7kvWxbQBZFJiPo4Nw6WWqXqEYVcVw6RsU5xVqZgaEPA.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;348762783&#x2F;figure&#x2F;fig3&#x2F;AS%3A1080260850393137%401634565665349&#x2F;Distribution-of-labels-in-the-CICIDS2017-dataset.jpg"></p>
 <p>特点：</p>
 <ul>
 <li>高度贴近真实网络流量</li>
@@ -556,7 +556,7 @@
 <h3 id="6-1-4-CSE-CIC-IDS2018-数据集"><a href="#6-1-4-CSE-CIC-IDS2018-数据集" class="headerlink" title="6.1.4 CSE-CIC-IDS2018 数据集"></a><strong>6.1.4 CSE-CIC-IDS2018 数据集</strong></h3><p>该数据集是CIC-IDS2017的扩展版本，包含更多复杂攻击场景和更大规模数据，适用于大规模模型训练。</p>
 <hr>
 <h2 id="6-2-数据预处理方法"><a href="#6-2-数据预处理方法" class="headerlink" title="6.2 数据预处理方法"></a><strong>6.2 数据预处理方法</strong></h2><p>原始网络流量数据通常存在噪声、不平衡和高维等问题，因此需要进行预处理以提升模型性能。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/1VkqtY82pa6FS0TLORkijYg-1774529074608-156.png" alt="1VkqtY82pa6FS0TLORkijYg"></p>
+<p><img src="/.io//1VkqtY82pa6FS0TLORkijYg-1774529074608-156.png" alt="1VkqtY82pa6FS0TLORkijYg"></p>
 <p>主要步骤包括：</p>
 <h3 id="6-2-1-数据清洗"><a href="#6-2-1-数据清洗" class="headerlink" title="6.2.1 数据清洗"></a><strong>6.2.1 数据清洗</strong></h3><ul>
 <li>去除缺失值与异常值</li>
@@ -577,7 +577,7 @@
 </ul>
 <hr>
 <h2 id="6-3-实验设计与评价指标"><a href="#6-3-实验设计与评价指标" class="headerlink" title="6.3 实验设计与评价指标"></a><strong>6.3 实验设计与评价指标</strong></h2><h3 id="6-3-1-实验设计流程"><a href="#6-3-1-实验设计流程" class="headerlink" title="6.3.1 实验设计流程"></a><strong>6.3.1 实验设计流程</strong></h3><p>在入侵检测研究中，通常采用训练集与测试集划分的方法进行模型评估。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/q5GBMI4uLL2vYgqzf5X5d2EYVW7L8lhdqJ79tZnoRvT-fz0BLsD3L1vNDOocnr2_Z8BazRmhkDh7MKJr1XmLYHdzx3rAx3XXEa-5CVMcpZKj_DWav0-wNS7-mGHZcpRj9VcMmKgBr-UIKqCbf2oxRA.png" alt="Flowchart of data split for training, validation, and testing of the... |  Download Scientific Diagram"></p>
+<p><img src="/.io//q5GBMI4uLL2vYgqzf5X5d2EYVW7L8lhdqJ79tZnoRvT-fz0BLsD3L1vNDOocnr2_Z8BazRmhkDh7MKJr1XmLYHdzx3rAx3XXEa-5CVMcpZKj_DWav0-wNS7-mGHZcpRj9VcMmKgBr-UIKqCbf2oxRA.png" alt="Flowchart of data split for training, validation, and testing of the... |  Download Scientific Diagram"></p>
 <p>典型流程包括：</p>
 <ol>
 <li>数据集划分（训练集&#x2F;测试集）</li>
@@ -598,7 +598,7 @@
 <li>ROC曲线（Receiver Operating Characteristic）</li>
 <li>AUC值（Area Under Curve）</li>
 </ul>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/13W_D0VQhVs5S_02Q7ql35A-1774529131215-161.png" alt="13W_D0VQhVs5S_02Q7ql35A"></p>
+<p><img src="/.io//13W_D0VQhVs5S_02Q7ql35A-1774529131215-161.png" alt="13W_D0VQhVs5S_02Q7ql35A"></p>
 <hr>
 <h2 id="6-4-不同方法性能对比分析"><a href="#6-4-不同方法性能对比分析" class="headerlink" title="6.4 不同方法性能对比分析"></a><strong>6.4 不同方法性能对比分析</strong></h2><p>为了评估不同模型的性能，研究通常在相同数据集上进行对比实验。一般比较内容包括：</p>
 <ul>
@@ -615,7 +615,7 @@
 </ul>
 <hr>
 <h2 id="6-5-跨数据集泛化能力分析"><a href="#6-5-跨数据集泛化能力分析" class="headerlink" title="6.5 跨数据集泛化能力分析"></a><strong>6.5 跨数据集泛化能力分析</strong></h2><p>由于不同数据集之间存在分布差异，模型在一个数据集上的性能并不能完全代表其实际应用能力。因此，近年来越来越多研究关注跨数据集测试。</p>
-<p><img src="/./%E5%9F%BA%E4%BA%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B.assets/VURD0xsog-MmFLD88f0tNcjuNyKBryo-FQgHnNZtFYm_GPveZ_lF6-4beuSbMStoKm9N4OLbduXGNA5tyVjdMyjGL5Gv_lLbemTqAEA22uN-ux9YyPxnijwqdvzC9ETW__YnVD5KZES_FkBy5kQlXQ.jpg" alt="VURD0xsog-MmFLD88f0tNcjuNyKBryo-FQgHnNZtFYm_GPveZ_lF6-4beuSbMStoKm9N4OLbduXGNA5tyVjdMyjGL5Gv_lLbemTqAEA22uN-ux9YyPxnijwqdvzC9ETW__YnVD5KZES_FkBy5kQlXQ"></p>
+<p><img src="/.io//VURD0xsog-MmFLD88f0tNcjuNyKBryo-FQgHnNZtFYm_GPveZ_lF6-4beuSbMStoKm9N4OLbduXGNA5tyVjdMyjGL5Gv_lLbemTqAEA22uN-ux9YyPxnijwqdvzC9ETW__YnVD5KZES_FkBy5kQlXQ.jpg" alt="VURD0xsog-MmFLD88f0tNcjuNyKBryo-FQgHnNZtFYm_GPveZ_lF6-4beuSbMStoKm9N4OLbduXGNA5tyVjdMyjGL5Gv_lLbemTqAEA22uN-ux9YyPxnijwqdvzC9ETW__YnVD5KZES_FkBy5kQlXQ"></p>
 <p>挑战包括：</p>
 <ul>
 <li>数据分布差异（Domain Shift）</li>
