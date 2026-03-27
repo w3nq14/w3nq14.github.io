@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Conversor 是一台运行 Flask Web 应用的 Linux 服务器，该应用使用 XSLT 将 nmap XML 输出转换为 HTML。我会找到它的源代码，并利用 os.path.join 的不安全用法，将一个 Python 反向 shell 写入 cron 定时执行的脚本目录；或者，我会滥用 XSLT 的 exslt:document 扩展名，将文件写入服务器。之后，我会找到 SQLi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTB：转换器">
+<meta property="og:title" content="needrestart - Restart daemons after library updates.">
 <meta property="og:url" content="https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/index.html">
 <meta property="og:site_name" content="w3q14">
 <meta property="og:description" content="Conversor 是一台运行 Flask Web 应用的 Linux 服务器，该应用使用 XSLT 将 nmap XML 输出转换为 HTML。我会找到它的源代码，并利用 os.path.join 的不安全用法，将一个 Python 反向 shell 写入 cron 定时执行的脚本目录；或者，我会滥用 XSLT 的 exslt:document 扩展名，将文件写入服务器。之后，我会找到 SQLi">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://w3nq14.github.io/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8.assets/expand.png">
 <meta property="og:image" content="https://w3nq14.github.io/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8.assets/image-20260324105407515-1774320917444-5.png">
 <meta property="article:published_time" content="2026-03-27T03:39:00.000Z">
-<meta property="article:modified_time" content="2026-03-27T11:44:22.191Z">
+<meta property="article:modified_time" content="2026-03-27T11:59:52.960Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://w3nq14.github.io/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8.assets/box-conversor.png">
@@ -56,7 +56,7 @@
       
     
     <!-- title -->
-    <title>HTB：转换器</title>
+    <title>needrestart - Restart daemons after library updates.</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -103,10 +103,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2026/03/27/CTF/CtfShow-Pwn/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2026/03/27/CTF/Buuctf-Re/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2026/03/27/CTF/Nullcon%20Goa%20HackIM%202026%20CTF/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2026/03/27/HTB-Vulhub/HackTheBox-Linux-Walkthrough/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -120,16 +120,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&text=HTB：转换器"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&is_video=false&description=HTB：转换器"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=HTB：转换器&body=Check out this article: https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&name=HTB：转换器&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&t=HTB：转换器"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&text=needrestart - Restart daemons after library updates."><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&is_video=false&description=needrestart - Restart daemons after library updates."><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=needrestart - Restart daemons after library updates.&body=Check out this article: https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&name=needrestart - Restart daemons after library updates.&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&t=needrestart - Restart daemons after library updates."><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -149,7 +149,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        HTB：转换器
+        needrestart - Restart daemons after library updates.
     </h1>
 
 
@@ -515,16 +515,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&text=HTB：转换器"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&is_video=false&description=HTB：转换器"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=HTB：转换器&body=Check out this article: https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=HTB：转换器"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&name=HTB：转换器&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&t=HTB：转换器"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&text=needrestart - Restart daemons after library updates."><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&is_video=false&description=needrestart - Restart daemons after library updates."><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=needrestart - Restart daemons after library updates.&body=Check out this article: https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&title=needrestart - Restart daemons after library updates."><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&name=needrestart - Restart daemons after library updates.&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/27/HTB-Vulhub/HTB%EF%BC%9A%E8%BD%AC%E6%8D%A2%E5%99%A8/&t=needrestart - Restart daemons after library updates."><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
