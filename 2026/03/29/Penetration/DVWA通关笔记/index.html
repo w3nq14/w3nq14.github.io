@@ -15,8 +15,8 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://w3nq14.github.io/images/3106872127.png">
 <meta property="og:image" content="https://w3nq14.github.io/images/4042635291.png">
-<meta property="article:published_time" content="2026-03-29T10:10:49.896Z">
-<meta property="article:modified_time" content="2026-03-29T10:10:49.898Z">
+<meta property="article:published_time" content="2026-03-29T10:18:35.335Z">
+<meta property="article:modified_time" content="2026-03-29T10:18:35.336Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://w3nq14.github.io/images/3106872127.png">
@@ -86,10 +86,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2026/03/29/Penetration/Pikachu%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" aria-label="Next post" href="/2026/03/27/Anti-Detection/WAF-Bypassing/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2026/03/29/Penetration/Xss-Labs%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -144,7 +142,7 @@
       
     <div class="postdate">
       
-        <time datetime="2026-03-29T10:10:49.896Z" class="dt-published" itemprop="datePublished">2026-03-29</time>
+        <time datetime="2026-03-29T10:18:35.335Z" class="dt-published" itemprop="datePublished">2026-03-29</time>
         
       
     </div>
@@ -335,7 +333,7 @@
 <li>表单中增加了隐藏的 input 组件 <code>user_token</code>，值为每次随机的字符串，用于防止 CSRF 攻击。</li>
 </ul>
 <p>添加了 token 只是略微增加了我们爆破的复杂性：每一个登录请求都必须对应一个对表单的请求。可以使用 BurpSuite 的「Grep - Extract」功能提取 token，用 Pitchfork 模式逐一尝试。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.skywt.cn/usr/uploads/2024/05/3106872127.png"><img src="/images/3106872127.png" alt="截屏2022-08-03 17.44.14.png"></a></p>
+<p><img src="/images/3106872127.png" alt="截屏2022-08-03 17.44.14.png"></p>
 <h3 id="Impossible：账户锁定"><a href="#Impossible：账户锁定" class="headerlink" title="Impossible：账户锁定"></a>Impossible：账户锁定</h3><p>在 high 的基础上：</p>
 <ul>
 <li>使用 POST 提交表单。</li>
@@ -402,7 +400,7 @@
 
 <h3 id="Medium：限制-MIME"><a href="#Medium：限制-MIME" class="headerlink" title="Medium：限制 MIME"></a>Medium：限制 MIME</h3><p>只限制请求的 MIME 为 <code>image/jpeg</code> 或者 <code>image/png</code>，并不实际检测上传的内容。</p>
 <p>可以仍然上传这个 PHP 文件，只要在上传的请求中修改一下 Content-Type 就行了。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.skywt.cn/usr/uploads/2024/05/4042635291.png"><img src="/images/4042635291.png" alt="截屏2022-08-05 12.11.55.png"></a></p>
+<p><img src="/images/4042635291.png" alt="截屏2022-08-05 12.11.55.png"></p>
 <p>也可以在真实的图片文件后加 PHP 一句话木马再上传。下文 high 中详述。</p>
 <h3 id="High：限制文件拓展名"><a href="#High：限制文件拓展名" class="headerlink" title="High：限制文件拓展名"></a>High：限制文件拓展名</h3><p>相比 medium，这个等级：</p>
 <ul>
