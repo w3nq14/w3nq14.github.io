@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="upload-labs通关全教程（建议萌新收藏）Web安全-文件上传漏洞超详细解析不多废话，直接上理论呛死你(❍ᴥ❍ʋ)  什么是文件上传漏洞？环境靶场：upload-labs 服务器：centos7 数据库：mysql5.7 php：5.5 nginx：1.24 在开始之前先介绍一款windows defender卸载工具，提高渗透效率，不然文件上传成功就被杀了，文章在这儿，使用方法和下载链接很">
 <meta property="og:type" content="article">
-<meta property="og:title" content="w3nq14">
-<meta property="og:url" content="https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Upload-Labs通关笔记">
+<meta property="og:url" content="https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="w3nq14">
 <meta property="og:description" content="upload-labs通关全教程（建议萌新收藏）Web安全-文件上传漏洞超详细解析不多废话，直接上理论呛死你(❍ᴥ❍ʋ)  什么是文件上传漏洞？环境靶场：upload-labs 服务器：centos7 数据库：mysql5.7 php：5.5 nginx：1.24 在开始之前先介绍一款windows defender卸载工具，提高渗透效率，不然文件上传成功就被杀了，文章在这儿，使用方法和下载链接很">
 <meta property="og:locale" content="en_US">
@@ -77,8 +77,8 @@
 <meta property="og:image" content="https://w3nq14.github.io/images/1718180140556-12d0cdfb-ea10-46de-bfc9-11c45c212b9c.png">
 <meta property="og:image" content="https://w3nq14.github.io/images/1718180160878-1384a630-0a08-4821-b338-fc193bfb773f.png">
 <meta property="og:image" content="https://w3nq14.github.io/images/1718179698193-36036882-e545-48f7-a31f-55b558be497d.png">
-<meta property="article:published_time" content="2026-03-29T10:49:00.015Z">
-<meta property="article:modified_time" content="2026-03-29T10:49:00.016Z">
+<meta property="article:published_time" content="2024-05-07T23:30:00.000Z">
+<meta property="article:modified_time" content="2026-03-29T11:06:15.234Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://w3nq14.github.io/images/1718173771959-1c35876e-ab19-4aaa-b5e8-b9ca3abe53f4.png">
@@ -101,7 +101,7 @@
       
     
     <!-- title -->
-    <title>w3nq14</title>
+    <title>Upload-Labs通关笔记</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -148,10 +148,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2026/03/29/Penetration/WebGoat%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2024/05/08/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2024/05/08/Penetration/WebGoat%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -164,17 +164,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&text=Upload-Labs通关笔记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&is_video=false&description=Upload-Labs通关笔记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Upload-Labs通关笔记&body=Check out this article: https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&name=Upload-Labs通关笔记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&t=Upload-Labs通关笔记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -194,7 +194,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        
+        Upload-Labs通关笔记
     </h1>
 
 
@@ -206,13 +206,18 @@
       
     <div class="postdate">
       
-        <time datetime="2026-03-29T10:49:00.015Z" class="dt-published" itemprop="datePublished">2026-03-29</time>
+        <time datetime="2024-05-07T23:30:00.000Z" class="dt-published" itemprop="datePublished">2024-05-08</time>
         
       
     </div>
 
 
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Penetration/">Penetration</a>
+    </div>
+
 
       
 
@@ -465,17 +470,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&text=Upload-Labs通关笔记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&is_video=false&description=Upload-Labs通关笔记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Upload-Labs通关笔记&body=Check out this article: https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&title=Upload-Labs通关笔记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&name=Upload-Labs通关笔记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2024/05/08/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/&t=Upload-Labs通关笔记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
