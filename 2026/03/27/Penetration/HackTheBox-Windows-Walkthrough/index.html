@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="HackTheBox-Windows-Walkthrough">
 <meta property="og:url" content="https://w3nq14.github.io/2026/03/27/Penetration/HackTheBox-Windows-Walkthrough/index.html">
-<meta property="og:site_name" content="w3q14">
+<meta property="og:site_name" content="w3nq14">
 <meta property="og:description" content="HackTheBox-windows-Access 本文由 简悦 SimpRead 转码， 原文地址 mp.weixin.qq.com  大余安全   一个每日分享渗透小技巧的公众号 大家好，这里是 大余安全 的第 79 篇文章，本公众号会每日分享攻防渗透技术给大家。  靶机地址：https:&#x2F;&#x2F;www.hackthebox.eu&#x2F;home&#x2F;machines&#x2F;profile&#x2F;156 靶机难度：初级">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://w3nq14.github.io/images/1ae4d4127a2b1745_38.png">
@@ -1743,7 +1743,7 @@
 <meta property="og:image" content="https://w3nq14.github.io/images/6ca38a9e9bc0ba07_38.png">
 <meta property="og:image" content="https://w3nq14.github.io/images/0fdb4b976032a863_38.png">
 <meta property="article:published_time" content="2026-03-27T03:39:00.000Z">
-<meta property="article:modified_time" content="2026-03-28T09:50:08.495Z">
+<meta property="article:modified_time" content="2026-03-29T04:48:36.608Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://w3nq14.github.io/images/1ae4d4127a2b1745_38.png">
@@ -1813,10 +1813,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2026/03/27/NIDS/NIDS%20Based%20on%20AI/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2026/03/27/Penetration/Upload-Labs%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2026/03/27/Penetration/VulnHub-Walkthrough/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2026/03/27/Penetration/WebGoat%E9%80%9A%E5%85%B3%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -6143,7 +6143,7 @@
 <p><img src="/images/6ced76414a4d223a.png"></p>
 <p>意思是可以发送 xtf 格式的电子邮件给靶机… 继续查看下一个文件</p>
 <p><img src="/images/3e999b74e60f1686.png"></p>
-<p>果然，查看到了电子邮件<a href="mailto:&#x2e;&#x2e;&#46;&#110;&#105;&#99;&#111;&#64;&#x6d;&#x65;&#103;&#x61;&#x62;&#97;&#x6e;&#x6b;&#46;&#x63;&#111;&#109;">...nico@megabank.com</a></p>
+<p>果然，查看到了电子邮件<a href="mailto:&#46;&#x2e;&#46;&#110;&#x69;&#x63;&#x6f;&#64;&#x6d;&#101;&#x67;&#x61;&#98;&#97;&#x6e;&#107;&#46;&#x63;&#x6f;&#x6d;">...nico@megabank.com</a></p>
 <p>这边有了电子邮件号，肯定是要给他发邮件的，而且发送的邮件内容得是. xtf 的… 这里又可以用钓鱼邮件恶意程序进行提权了…</p>
 <p><img src="/images/b70dc2f1476f8bad.png"></p>
 <p>这里我搜索了 rtf 的漏洞，这是一个 Microsoft Office oday 漏洞…</p>
