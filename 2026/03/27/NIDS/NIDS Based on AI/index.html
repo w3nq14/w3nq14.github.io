@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://w3nq14.github.io/2026/03/27/NIDS/NIDS%20Based%20on%20AI/index.html">
 <meta property="og:site_name" content="w3nq14">
 <meta property="og:description" content="2 网络入侵检测基础理论2.1 网络入侵检测系统的基本概念网络入侵检测系统（Intrusion Detection System, IDS）是用于监测网络或主机系统中异常行为或已知攻击行为的一类安全防护技术。其核心目标是通过分析网络流量或系统日志，识别潜在的恶意活动，并及时发出告警或采取防御措施。 IDS通常不直接阻断攻击（区别于防火墙），而是侧重于检测与响应，在现代网络安全体系中，IDS已成为防">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://w3nq14.github.io/images/image-20260326201832807.png">
 <meta property="og:image" content="https://w3nq14.github.io/images/doPBOsACrBs4gjgl72h9qXrhNImTRp1N_3hr108oZp3g7pPRWy9Totm1KRMEMrf3kIGc_evCFA1wK4A2B3VN3AO5HMiFYskOxATbwVmijif5-vUnZpzC17GBalDYDvfrn4g1GTkGQJvcZMePRBZzmg.jpeg">
 <meta property="og:image" content="https://w3nq14.github.io/images/v6bvwQ9TdoPXHllTgLYUCAiAQHbYXSfQowhpCqp5hPu3jZJQibO4VQ7R6J-1PmsFySKGyOJYUeEu5pFF5GYsAiChiZV_b9QMJ0BoCLX85CQ5L8eGmngdV8ZHzovyUykQXi2IIX6AlvpmY30DnS0dEw.jpeg">
@@ -50,7 +50,7 @@
 <meta property="og:image" content="https://w3nq14.github.io/images/VURD0xsog-MmFLD88f0tNcjuNyKBryo-FQgHnNZtFYm_GPveZ_lF6-4beuSbMStoKm9N4OLbduXGNA5tyVjdMyjGL5Gv_lLbemTqAEA22uN-ux9YyPxnijwqdvzC9ETW__YnVD5KZES_FkBy5kQlXQ.jpg">
 <meta property="article:published_time" content="2026-03-27T03:39:00.000Z">
 <meta property="article:modified_time" content="2026-03-29T10:48:59.747Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="w3nq14">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://w3nq14.github.io/images/image-20260326201832807.png">
     
@@ -96,20 +96,20 @@
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="/">Home</a></li><!--
+       --><li><a href="/">首页</a></li><!--
      --><!--
-       --><li><a href="/about/">About</a></li><!--
+       --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
+       --><li><a href="/archives/">归档</a></li><!--
      --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/WHOAMI-xiaoyu">Projects</a></li><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/WHOAMI-xiaoyu">项目</a></li><!--
      --><!--
        --><li><a href="/links/">Links</a></li><!--
      -->
@@ -119,18 +119,18 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2026/03/27/Anti-Detection/Binary-Anti-Detection-Part1/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/2026/03/27/Anti-Detection/Binary-Anti-Detection-Part2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2026/03/27/NIDS/Literature%20Review%20-%20A%20Review%20and%20Multi-criteria%20Evaluation%20of%20Supervised%20Machine%20Learning%20Intrusion%20Detection/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/2026/03/27/Anti-Detection/WAF-Bypassing/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -172,7 +172,7 @@
 
     <div class="meta">
       <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">John Doe</span>
+        <span class="p-name" itemprop="name">w3nq14</span>
       </span>
       
     <div class="postdate">
@@ -641,13 +641,13 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="/">Home</a></li>
+          <li><a href="/">首页</a></li>
         
-          <li><a href="/about/">About</a></li>
+          <li><a href="/about/">关于</a></li>
         
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">归档</a></li>
         
-          <li><a target="_blank" rel="noopener" href="https://github.com/WHOAMI-xiaoyu">Projects</a></li>
+          <li><a target="_blank" rel="noopener" href="https://github.com/WHOAMI-xiaoyu">项目</a></li>
         
           <li><a href="/links/">Links</a></li>
         
@@ -679,12 +679,12 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
         
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
         
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
     </div>
 
   </div>
@@ -697,19 +697,19 @@
     
     
     2016-2026
-    John Doe
+    w3nq14
   </div>
   <div class="footer-right">
     <nav>
       <ul>
         <!--
-       --><li><a href="/">Home</a></li><!--
+       --><li><a href="/">首页</a></li><!--
      --><!--
-       --><li><a href="/about/">About</a></li><!--
+       --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
+       --><li><a href="/archives/">归档</a></li><!--
      --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/WHOAMI-xiaoyu">Projects</a></li><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/WHOAMI-xiaoyu">项目</a></li><!--
      --><!--
        --><li><a href="/links/">Links</a></li><!--
      -->
@@ -741,7 +741,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
     btn += '<i class="fa-regular fa-clone"></i>';
     btn += '</span>';
     // mount it!
@@ -752,7 +752,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "复制成功！");
       e.clearSelection();
     })
   })
