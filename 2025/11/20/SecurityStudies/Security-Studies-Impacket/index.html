@@ -9,7 +9,7 @@
     <meta name="description" content="security-studies-Impacket 源码研究：一个以协议实现为核心的 Windows 安全研究框架摘要在很多安全从业者的印象里，Impacket 往往等同于若干经典脚本；但从官方仓库与源码组织方式来看，它首先是一个面向网络协议的 Python 类库，其重点是提供对协议报文的低层编程访问，并对部分协议直接给出实现。官方 README 列出的能力范围覆盖 SMB1&#x2F;2&amp;#x2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Security-Studies-Impacket">
-<meta property="og:url" content="https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/index.html">
+<meta property="og:url" content="https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/index.html">
 <meta property="og:site_name" content="w3nq14">
 <meta property="og:description" content="security-studies-Impacket 源码研究：一个以协议实现为核心的 Windows 安全研究框架摘要在很多安全从业者的印象里，Impacket 往往等同于若干经典脚本；但从官方仓库与源码组织方式来看，它首先是一个面向网络协议的 Python 类库，其重点是提供对协议报文的低层编程访问，并对部分协议直接给出实现。官方 README 列出的能力范围覆盖 SMB1&#x2F;2&amp;#x2">
 <meta property="og:locale" content="zh_CN">
@@ -18,8 +18,8 @@
 <meta property="og:image" content="https://w3nq14.github.io/images/f241bdd4c6514e70c7c2b620c6d4e074_MD5.jpg">
 <meta property="og:image" content="https://w3nq14.github.io/images/e0c7496fa377487830a918e7a0c34e0c_MD5.jpg">
 <meta property="og:image" content="https://w3nq14.github.io/images/e510a6e8e582678b397e6622a64be27f_MD5.jpg">
-<meta property="article:published_time" content="2024-09-29T04:39:00.000Z">
-<meta property="article:modified_time" content="2026-03-31T09:12:19.812Z">
+<meta property="article:published_time" content="2025-11-20T04:39:00.000Z">
+<meta property="article:modified_time" content="2026-03-31T10:17:04.700Z">
 <meta property="article:author" content="w3nq14">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://w3nq14.github.io/images/624439edeeb658fc911b39f5db8c3866_MD5.jpg">
@@ -83,10 +83,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="上一篇" href="/2024/10/14/Security-Studies/NIDS%20Based%20on%20AI/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/2026/02/27/CTF/Nullcon%20Goa%20HackIM%202026%20CTF/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="下一篇" href="/2024/09/29/Security-Studies/Vulnerability-Analysis-CVE-2026-22169/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/2025/11/15/Penetration/HTB-Conversor/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -99,17 +99,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&text=Security-Studies-Impacket"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&is_video=false&description=Security-Studies-Impacket"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Security-Studies-Impacket&body=Check out this article: https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&name=Security-Studies-Impacket&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&t=Security-Studies-Impacket"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&text=Security-Studies-Impacket"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&is_video=false&description=Security-Studies-Impacket"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Security-Studies-Impacket&body=Check out this article: https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&name=Security-Studies-Impacket&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&t=Security-Studies-Impacket"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -141,7 +141,7 @@
       
     <div class="postdate">
       
-        <time datetime="2024-09-29T04:39:00.000Z" class="dt-published" itemprop="datePublished">2024-09-29</time>
+        <time datetime="2025-11-20T04:39:00.000Z" class="dt-published" itemprop="datePublished">2025-11-20</time>
         
       
     </div>
@@ -150,7 +150,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/Security-Studies/">Security-Studies</a>
+        <a class="category-link" href="/categories/SecurityStudies/">SecurityStudies</a>
     </div>
 
 
@@ -227,17 +227,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&text=Security-Studies-Impacket"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&is_video=false&description=Security-Studies-Impacket"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Security-Studies-Impacket&body=Check out this article: https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&name=Security-Studies-Impacket&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&t=Security-Studies-Impacket"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&text=Security-Studies-Impacket"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&is_video=false&description=Security-Studies-Impacket"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Security-Studies-Impacket&body=Check out this article: https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&name=Security-Studies-Impacket&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2025/11/20/SecurityStudies/Security-Studies-Impacket/&t=Security-Studies-Impacket"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
