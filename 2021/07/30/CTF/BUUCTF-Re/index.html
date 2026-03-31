@@ -297,16 +297,16 @@
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="القائمة"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="القائمة"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="الأعلى" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="/">الرئيسية</a></li><!--
+       --><li><a href="/">Inici</a></li><!--
      --><!--
-       --><li><a href="/archives/">منشورات</a></li><!--
+       --><li><a href="/archives/">Articles</a></li><!--
      -->
       </ul>
     </span>
@@ -314,18 +314,18 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="المنشور السابق" href="/2021/08/14/Penetration/DVWA-Walkthrough/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Post Anterior" href="/2021/08/14/Penetration/DVWA-Walkthrough/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="المنشور التالي" href="/2021/07/24/CTF/CTFShow-Pwn/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Post Següent" href="/2021/07/24/CTF/CTFShow-Pwn/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="العودة إلى الأعلى" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="مشاركة المنشور" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Adalt" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartir Post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">المنشور السابق</span>
-      <span id="i-next" class="info" style="display:none;">المنشور التالي</span>
-      <span id="i-top" class="info" style="display:none;">العودة إلى الأعلى</span>
-      <span id="i-share" class="info" style="display:none;">مشاركة المنشور</span>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -875,7 +875,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import angr</span><br><span class="line"></span><br><span class="line">base_addr = 0x400000</span><br><span class="line"></span><br><span class="line">project = angr.Project(&quot;./UniverseFinalAnswer&quot;, </span><br><span class="line">				main_opts = &#123;&quot;base_addr&quot; : base_addr&#125;,</span><br><span class="line">				auto_load_libs = False)</span><br><span class="line"></span><br><span class="line">state = project.factory.entry_state(add_options = &#123;angr.options.LAZY_SOLVES&#125;)</span><br><span class="line">simManager = project.factory.simgr(state)</span><br><span class="line">simManager.explore(find = base_addr + 0x71A, avoid = base_addr + 0x6EF)</span><br><span class="line"></span><br><span class="line">flag = simManager.found[0].posix.dumps(0)</span><br><span class="line">print(flag[:10].decode())</span><br></pre></td></tr></table></figure>
 
 <p>得到 F0uRTy_7w@，运行程序，输入该 key 得到 flag</p>
-<p><strong>文章作者:</strong> <a href="mailto:&#117;&#x6e;&#x64;&#x65;&#102;&#x69;&#x6e;&#101;&#100;">in1t</a></p>
+<p><strong>文章作者:</strong> <a href="mailto:&#x75;&#x6e;&#x64;&#101;&#102;&#x69;&#x6e;&#x65;&#x64;">in1t</a></p>
 <p><strong>封面画师:</strong> <a target="_blank" rel="noopener" href="https://www.pixiv.net/users/9790122">9790122</a></p>
 <p><strong>文章链接:</strong> <a target="_blank" rel="noopener" href="https://in1t.top/2020/11/10/buuoj-%E9%80%86%E5%90%91%E5%88%B7%E9%A2%98%E4%B9%8B%E6%97%85%EF%BC%88%E4%B8%80%EF%BC%89/">https://in1t.top/2020/11/10/buuoj-逆向刷题之旅（一）/</a></p>
 <p><strong>版权声明:</strong> 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a target="_blank" rel="noopener" href="https://in1t.top/">in1t’s blog</a>！</p>
@@ -1255,7 +1255,7 @@
 <p>比较简单就直接贴脚本了：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from struct import *</span><br><span class="line"></span><br><span class="line">table = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234&#123;&#125;789+/=&quot;</span><br><span class="line">raw = [0xFD370FEB59C9B9E, 0xDEAB7F029C4FD1B2, 0xFACD9D40E7636559]</span><br><span class="line">target = &#x27;&#x27;</span><br><span class="line"></span><br><span class="line">for i in range(3):</span><br><span class="line">	target += pack(&quot;Q&quot;, raw[i])</span><br><span class="line"></span><br><span class="line">flag = &#x27;&#x27;</span><br><span class="line">for i in range(0, len(target), 3):</span><br><span class="line">	v8 = 0</span><br><span class="line">	for j in range(3):</span><br><span class="line">		v8 |= ord(target[i+j]) &lt;&lt; 8 * (2 - j)</span><br><span class="line">	</span><br><span class="line">	v7 = v8</span><br><span class="line">	for j in range(3, -1, -1):</span><br><span class="line">		idx = (v7 &gt;&gt; 6 * j) &amp; 0b111111</span><br><span class="line">		flag += table[idx]</span><br><span class="line">print flag</span><br></pre></td></tr></table></figure>
 
-<p><strong>文章作者:</strong> <a href="mailto:&#x75;&#x6e;&#100;&#x65;&#x66;&#105;&#110;&#x65;&#x64;">in1t</a></p>
+<p><strong>文章作者:</strong> <a href="mailto:&#117;&#110;&#100;&#x65;&#x66;&#105;&#x6e;&#x65;&#x64;">in1t</a></p>
 <p><strong>封面画师:</strong> <a target="_blank" rel="noopener" href="https://www.pixiv.net/users/9790122">9790122</a></p>
 <p><strong>文章链接:</strong> <a target="_blank" rel="noopener" href="https://in1t.top/2020/11/28/buuoj-%E9%80%86%E5%90%91%E5%88%B7%E9%A2%98%E4%B9%8B%E6%97%85%EF%BC%88%E4%BA%8C%EF%BC%89/">https://in1t.top/2020/11/28/buuoj-逆向刷题之旅（二）/</a></p>
 <p><strong>版权声明:</strong> 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a target="_blank" rel="noopener" href="https://in1t.top/">in1t’s blog</a>！</p>
@@ -1400,7 +1400,7 @@
 <h3 id="CISCN2018-2ex-mips-elf-base64"><a href="#CISCN2018-2ex-mips-elf-base64" class="headerlink" title="[CISCN2018]2ex | mips,elf,base64"></a>[CISCN2018]2ex | mips,elf,base64</h3><p>简单的替换编码表的变种 base64</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line"></span><br><span class="line">new = &#x27;@,.1fgvw#`/2ehux$~&quot;3dity%_;4cjsz^+&#123;5bkrA&amp;=&#125;6alqB*-[70mpC()]89noD&#x27;</span><br><span class="line">old = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span><br><span class="line">out = &quot;_r-+_Cl5;vgq_pdme7#7eC0=&quot;</span><br><span class="line">func = lambda x : &#x27;=&#x27; if x == &#x27;=&#x27; else old[new.index(x)]</span><br><span class="line"></span><br><span class="line">bflag = &#x27;&#x27;.join(map(func, out))</span><br><span class="line">print base64.b64decode(bflag)</span><br></pre></td></tr></table></figure>
 
-<p><strong>文章作者:</strong> <a href="mailto:&#117;&#110;&#x64;&#101;&#x66;&#105;&#x6e;&#101;&#x64;">in1t</a></p>
+<p><strong>文章作者:</strong> <a href="mailto:&#117;&#x6e;&#100;&#x65;&#x66;&#x69;&#110;&#101;&#x64;">in1t</a></p>
 <p><strong>封面画师:</strong> <a target="_blank" rel="noopener" href="https://www.pixiv.net/users/9790122">9790122</a></p>
 <p><strong>文章链接:</strong> <a target="_blank" rel="noopener" href="https://in1t.top/2021/02/03/buuoj-%E9%80%86%E5%90%91%E5%88%B7%E9%A2%98%E4%B9%8B%E6%97%85%EF%BC%88%E4%B8%89%EF%BC%89/">https://in1t.top/2021/02/03/buuoj-逆向刷题之旅（三）/</a></p>
 <p><strong>版权声明:</strong> 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a target="_blank" rel="noopener" href="https://in1t.top/">in1t’s blog</a>！</p>
@@ -1417,9 +1417,9 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="/">الرئيسية</a></li>
+          <li><a href="/">Inici</a></li>
         
-          <li><a href="/archives/">منشورات</a></li>
+          <li><a href="/archives/">Articles</a></li>
         
       </ul>
     </div>
@@ -1449,12 +1449,12 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> القائمة</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
         
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> المحتويات</a>
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> مشاركة</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> العودة إلى الأعلى</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
     </div>
 
   </div>
@@ -1463,7 +1463,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    حقوق النشر &copy;
+    Copyright &copy;
     
     
     2016-2026
@@ -1473,9 +1473,9 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="/">الرئيسية</a></li><!--
+       --><li><a href="/">Inici</a></li><!--
      --><!--
-       --><li><a href="/archives/">منشورات</a></li><!--
+       --><li><a href="/archives/">Articles</a></li><!--
      -->
       </ul>
     </nav>
@@ -1505,7 +1505,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"انسخ!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
     btn += '<i class="fa-regular fa-clone"></i>';
     btn += '</span>';
     // mount it!
@@ -1516,7 +1516,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "تم النسخ!");
+      e.trigger.setAttribute('aria-label', "Copied!");
       e.clearSelection();
     })
   })
