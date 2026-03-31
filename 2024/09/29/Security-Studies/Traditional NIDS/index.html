@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="二、网络入侵检测基础理论网络入侵检测技术是网络安全防护体系的重要组成部分，其主要任务是在计算机系统或网络环境运行过程中，对可能出现的非法访问、异常通信、恶意攻击和安全策略违规行为进行持续监测、分析与识别，并在发现异常后及时发出告警或触发响应措施。与防火墙、访问控制等偏重事前阻断的安全机制不同，入侵检测更强调对系统运行状态和网络行为的动态观察，因此通常被视为网络安全体系中的重要“第二道防线”。为了系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Traditional NIDS">
+<meta property="og:url" content="https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/index.html">
+<meta property="og:site_name" content="w3nq14">
+<meta property="og:description" content="二、网络入侵检测基础理论网络入侵检测技术是网络安全防护体系的重要组成部分，其主要任务是在计算机系统或网络环境运行过程中，对可能出现的非法访问、异常通信、恶意攻击和安全策略违规行为进行持续监测、分析与识别，并在发现异常后及时发出告警或触发响应措施。与防火墙、访问控制等偏重事前阻断的安全机制不同，入侵检测更强调对系统运行状态和网络行为的动态观察，因此通常被视为网络安全体系中的重要“第二道防线”。为了系">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w3nq14.github.io/images/image2-1774526635024-43.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image10-1774526834402-55.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image7-1774526684261-45.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image8-1774526684261-47.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image9-1774526684261-46.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image3-1774526713052-51.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image1-1774526733027-53.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/93gc0Cxr2cVOGEVClU4XWsYxIsDXTiAZ7iOsoFiDwEPDGHRsX7lAddL57ZW4gFqpP5YtvndKzaHHLVp4C-DC73YLB-aDhzJVREJ4fgOsjUA9anIBuCDLx3dIKT6GG-ll5fWzDhbs94dstsm8GAiWoA.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/waxPa8pLYe7NfAm44aAlVHW7t6I7pV-31JvItskTIRudWGue8xY-CtBLHPN7p3mDYefOvrGQgVXrn_drwmABPlW9M__v_PX0zYV2mc2tpxQ2Z7YJfymf-N36zbTQfqn799Iy0arKVjf2BK5dLsm0JA.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/Ay5QufeAhY6aqSCw0plFHPUlONctXjf0OyqaTaHp7HLjlTckHDJxYBJIZdzPThc_ffvd_X0b_8h5nh2vv4k-o6E4cdKP8kfDzXnGwYIqjLS5LCSBIFouHCsDOrqMc_NgB1ofo7Ha9nclTIphgLSgVg.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/kg-_Np-pd2QAVIq6DzaO_UmwF5QjFhyGTC8aQ7zpOPfkoj1MsFOj8Up_7Mh5fBgkCHm7vNqjftJsqC27AdPLot5FZIzhMff-YbWFI0azNnMk9Nb883yq32FgcL2FoKkowJNGXncQeBuub8HLdxI78w.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/images/8FJ8C0YiUfI-PYCHssbFgvH3RrJisCYQfVmS8P2iCgi2cmoMYFN1AbaoMjaGOrFdHFWkJ1Pdhwsn3mrItGG08IoGNnElZdwo21fjQL6NXemXhtZLii1tyDCt3KSPkoRB2_2U0Y6eoZ_RC_DFapxthg.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/N-eCk78CJ0ODOqpjm7AJtqIHUSKYXsaACeYMZbBRJhsIDw-jBbV5C1P4Ihq7XKCTs2qv65Ey7mCvwZK21c2kvCL98ZgaAqBx7fzMWXa-x72UCLz-GHO_vrJNpXOiNJtvPwTWW5xOn8l8iqm1hoY8OQ.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/images/OxDsOSZ6-w-o7SroR_gWBDTougxyb2Bk5dtwlE9nTCmGd4qrD8ZXV8oeXCjW_vclNXhljEuFp5AutnjBXwTYtsVVBgUyXLmSJNSJc4Rl2MD4EAWtaZn_Hlyt01LujPTopwGrmhEZu4waYKEtsq1WSA.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/images/41598_2024_74350_Fig1_HTML.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image11-1774526472748-17.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image12-1774526472749-18.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image13-1774526472749-20.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image14-1774526472749-19.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image15-1774526472749-21.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image16-1774526472749-22.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image17-1774526472749-24.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image18-1774526472749-23.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image19-1774526472749-25.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/image20-1774526472749-26.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/kibana-selks4-1774526472749-27.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/Bro_Arch-1774526472749-28.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/Bro_Arch_Cluster-1774526472749-29.png">
+<meta property="article:published_time" content="2024-09-29T04:39:00.000Z">
+<meta property="article:modified_time" content="2026-03-31T09:12:30.104Z">
+<meta property="article:author" content="w3nq14">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w3nq14.github.io/images/image2-1774526635024-43.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Traditional NIDS</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/09/29/Security-Studies/Security-Studies-Impacket/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/09/29/Security-Studies/Vulnerability-Analysis-CVE-2026-22169/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&text=Traditional NIDS"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&is_video=false&description=Traditional NIDS"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Traditional NIDS&body=Check out this article: https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&name=Traditional NIDS&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&t=Traditional NIDS"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">二、网络入侵检测基础理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">2.1 网络入侵检测的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">1.2.</span> <span class="toc-text">2.2 网络入侵检测系统的基本组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%9A%84%E4%B8%BB%E8%A6%81%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">2.3 网络入侵检测的主要分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E6%8C%89%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.3.1 按数据来源分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-%E6%8C%89%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.3.2 按检测技术分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-%E6%8C%89%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2%E7%BB%93%E6%9E%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.3.</span> <span class="toc-text">2.3.3 按系统部署结构分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">2.4 网络入侵检测的基本流程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BC%A0%E7%BB%9F%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">三、传统网络入侵检测技术的发展历程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-number">2.1.</span> <span class="toc-text">3.1 网络入侵检测技术的起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E4%BC%A0%E7%BB%9F%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E5%8F%91%E5%B1%95%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.</span> <span class="toc-text">3.2 传统网络入侵检测技术的发展阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E5%9F%BA%E4%BA%8E%E5%AE%A1%E8%AE%A1%E8%BF%BD%E8%B8%AA%E7%9A%84%E8%90%8C%E8%8A%BD%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.1.</span> <span class="toc-text">3.2.1 基于审计追踪的萌芽阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E5%9F%BA%E4%BA%8E%E8%A7%84%E5%88%99%E4%B8%8E%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%9A%84%E5%8F%91%E5%B1%95%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.2.</span> <span class="toc-text">3.2.2 基于规则与特征匹配的发展阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-%E5%9F%BA%E4%BA%8E%E7%BB%9F%E8%AE%A1%E4%B8%8E%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90%E7%9A%84%E6%89%A9%E5%B1%95%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.3.</span> <span class="toc-text">3.2.3 基于统计与异常分析的扩展阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4-%E5%B7%A5%E7%A8%8B%E5%8C%96%E3%80%81%E7%B3%BB%E7%BB%9F%E5%8C%96%E4%B8%8E%E4%BA%A7%E5%93%81%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.4.</span> <span class="toc-text">3.2.4 工程化、系统化与产品化阶段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BC%A0%E7%BB%9F%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">四、传统网络入侵检测的主要方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%9F%BA%E4%BA%8E%E7%89%B9%E5%BE%81%E7%9A%84%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%88Signature-based-IDS%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">4.1 基于特征的入侵检测方法（Signature-based IDS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%9F%BA%E4%BA%8E%E5%BC%82%E5%B8%B8%E7%9A%84%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%88Anomaly-based-IDS%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">4.2 基于异常的入侵检测方法（Anomaly-based IDS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E5%9F%BA%E4%BA%8E%E7%8A%B6%E6%80%81%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E7%9A%84%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%88Stateful-Protocol-Analysis%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">4.3 基于状态与协议分析的入侵检测方法（Stateful Protocol Analysis）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BC%A0%E7%BB%9F%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">五、传统网络入侵检测系统的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E4%BC%81%E4%B8%9A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4"><span class="toc-number">4.1.</span> <span class="toc-text">5.1 企业网络安全防护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%94%BF%E5%BA%9C%E4%B8%8E%E5%85%B3%E9%94%AE%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E4%BF%9D%E6%8A%A4"><span class="toc-number">4.2.</span> <span class="toc-text">5.2 政府与关键基础设施保护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E4%B8%8E%E4%BA%91%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83"><span class="toc-number">4.3.</span> <span class="toc-text">5.3 数据中心与云计算环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E4%B8%BB%E6%9C%BA%E7%BA%A7%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%EF%BC%88HIDS%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">5.4 主机级入侵检测（HIDS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E5%BA%94%E7%94%A8%E5%B1%82%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B%EF%BC%88Web-IDS%EF%BC%89"><span class="toc-number">4.5.</span> <span class="toc-text">5.5 应用层安全检测（Web IDS）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F"><span class="toc-number">5.</span> <span class="toc-text">实战入侵检测系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F"><span class="toc-number">5.1.</span> <span class="toc-text">典型部署方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Snort"><span class="toc-number">5.2.</span> <span class="toc-text">Snort</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sonrt%E6%A6%82%E8%BF%B0"><span class="toc-number">5.2.1.</span> <span class="toc-text">Sonrt概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Snort%E8%A7%84%E5%88%99"><span class="toc-number">5.2.2.</span> <span class="toc-text">Snort规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Snort%E6%9E%B6%E6%9E%84"><span class="toc-number">5.2.3.</span> <span class="toc-text">Snort架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Suricata"><span class="toc-number">5.3.</span> <span class="toc-text">Suricata</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bro-Zeek"><span class="toc-number">5.4.</span> <span class="toc-text">Bro &#x2F; Zeek</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIDS-%E5%B7%A5%E5%85%B7%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90%E8%A1%A8"><span class="toc-number">5.5.</span> <span class="toc-text">NIDS 工具对比分析表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Traditional NIDS
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">w3nq14</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-09-29T04:39:00.000Z" class="dt-published" itemprop="datePublished">2024-09-29</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Security-Studies/">Security-Studies</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="二、网络入侵检测基础理论"><a href="#二、网络入侵检测基础理论" class="headerlink" title="二、网络入侵检测基础理论"></a>二、网络入侵检测基础理论</h1><p>网络入侵检测技术是网络安全防护体系的重要组成部分，其主要任务是在计算机系统或网络环境运行过程中，对可能出现的非法访问、异常通信、恶意攻击和安全策略违规行为进行持续监测、分析与识别，并在发现异常后及时发出告警或触发响应措施。与防火墙、访问控制等偏重事前阻断的安全机制不同，入侵检测更强调对系统运行状态和网络行为的动态观察，因此通常被视为网络安全体系中的重要“第二道防线”。为了系统阐述传统网络入侵检测方法，有必要首先说明其基本概念、系统组成、主要分类及工作流程。</p>
+<h2 id="2-1-网络入侵检测的概念"><a href="#2-1-网络入侵检测的概念" class="headerlink" title="2.1 网络入侵检测的概念"></a>2.1 网络入侵检测的概念</h2><p>所谓入侵，是指任何试图破坏信息系统机密性、完整性和可用性，或者绕过既定安全策略实施未授权访问、控制或破坏的行为。从表现形式上看，入侵既包括来自外部攻击者的端口扫描、口令猜测、漏洞利用、拒绝服务攻击和恶意程序植入，也包括内部用户的越权访问、违规操作以及资源滥用等行为。由此可见，入侵检测并不只是对“攻击数据包”的识别，更是对所有违背安全策略行为的综合判别。</p>
+<p>网络入侵检测是指通过采集网络流量、主机日志、审计记录、用户行为信息和系统运行状态，结合特征匹配、规则分析、统计建模或行为基线比较等方法，对系统或网络中的异常活动进行分析，并判断其是否构成入侵的一类安全技术。其核心目标在于尽早发现威胁、发出告警、保留证据，并为后续响应、审计与取证提供依据。IDS 可以检测可疑流量与策略违规，且网络型 IDS 常分析镜像或旁路流量，而不是直接承担业务转发。</p>
+<p>从作用来看，网络入侵检测系统具有以下几个方面的功能。第一，它能够持续监控网络与主机活动，弥补边界防护设备在内部威胁、绕过攻击和复杂攻击链识别方面的不足。第二，它能够对可疑事件进行记录和归档，为后续安全审计和责任追踪提供证据支持。第三，在现代网络环境中，入侵检测还承担着异常预警和风险发现的重要职责。因此，入侵检测并非孤立存在，而是与防火墙、身份认证、访问控制、日志审计和应急响应共同构成网络安全防御体系。</p>
+<p><img src="/images/image2-1774526635024-43.png" alt="图 9-2 入侵检测"></p>
+<hr>
+<h2 id="2-2-网络入侵检测系统的基本组成"><a href="#2-2-网络入侵检测系统的基本组成" class="headerlink" title="2.2 网络入侵检测系统的基本组成"></a>2.2 网络入侵检测系统的基本组成</h2><p>一个完整的网络入侵检测系统通常由数据采集模块、数据预处理模块、分析检测模块、知识库或规则库、告警与响应模块以及管理控制模块等部分构成。不同模块彼此协同，共同完成从信息采集到事件判定再到安全响应的全过程。典型 IDS 架构图通常都包含“检测器&#x2F;传感器—分析引擎—规则或攻击模式库—告警&#x2F;应急措施”这样的链路。</p>
+<p>数据采集模块是入侵检测系统运行的基础，其主要职责是从网络链路、主机设备或应用环境中获取与安全相关的原始数据。在网络型入侵检测系统中，采集对象通常包括数据包内容、连接状态、会话信息和流量统计特征；在主机型入侵检测系统中，采集内容则更多表现为系统日志、登录行为、文件访问记录、进程活动和系统调用等。数据采集的范围和质量将直接影响后续检测效果，因此它是整个系统的前提。</p>
+<p>由于原始安全数据常常具有规模大、来源杂、噪声多和格式不统一等特点，因此在进入分析阶段之前通常需要经过预处理。数据预处理模块的主要任务是对原始信息进行清洗、归并、格式统一、特征提取和必要的筛选压缩。例如，对网络流量可以提取源地址、目的地址、端口号、协议类型、持续时间、报文数量等关键属性；对主机行为则可以提取登录次数、资源访问频率、文件变更情况等描述性特征。预处理的目标是将复杂原始数据转换为适合后续分析判定的特征表示形式。</p>
+<p>分析检测模块是系统核心，其任务是根据一定检测策略判断当前行为是否异常或是否符合已知攻击特征。传统 IDS 的分析模块通常依赖规则匹配、签名识别、统计分析、状态转换分析或正常基线比较等方式完成判断。知识库或规则库则为分析模块提供依据，其中可以包含攻击特征、规则集合、专家经验、正常行为模型或安全策略描述。对传统系统而言，规则库的完整性、准确性和更新效率，直接关系到已知攻击的检测能力。签名型和异常型两大检测思路，正是 IDS 分类中最常见的两条主线。</p>
+<p>告警与响应模块负责在发现可疑行为或确认入侵后，向管理员发送提示，并按预设策略实施相应措施。常见告警方式包括控制台提示、日志写入、邮件通知和审计记录；常见响应措施则包括中断连接、阻断访问、隔离主机和联动其他安全设备。管理控制模块则负责系统配置、规则维护、权限管理、日志审计和运行状态监控，保证整个 IDS 的可维护性与可操作性。</p>
+<p>通用入侵检测框架（Common Intrusion Detection Framework, CIDF）是美国国防高级研究项目局（Defense Advanced Research Projects Agency, DARPA）为 IDS 数据交换而作出的一个尝试。定义了 IDS 表达检测信息的标准语言以及IDS组件之间的通信协议，符合 CIDF 规范的 IDS 和安全设备可以共享检测信息，进行协同工作。并集成了各种安全设备使之协同工作，是分布式入侵检测的基础。</p>
+<p>CIDF的规范文档包括四部分，分别是体系结构（The Common Intrusion Detection Framework Architecture, CIDFA），提出了一个标准的 IDS 的通用模型；规范语言（A Common Intrusion Specification Language, CISL），定义了一个用来描述各种检测信息的标准语言；内部通讯（ Communication in the Common Intrusion Detection Framework），定义了 IDS 组件之间进行通信的标准协议；程序接口（(Common Intrusion Detection Framework APIs, CIDF APIs），提供一整套标准的应用程序接口（API 函数）。</p>
+<p>CIDF 的体系结构文档将一个 IDS 分为以下四个组件:事件产生器(Event generators)、事件分析器(Event analyzers)、事件数据库(Event databases)响应和单元(Response units)。并将 IDS 需要分析的数据统称为事件(event)，它可以是基于网络的 IDS 从网络中提取的数据包，也可以是基于主机的 IDS 从系统日志等其它途径得到的数据信息。CIDF 组件之间是以通用入侵检测对象(generalized intrusion detection objects，gido)的形式交换数据的，一个 gido 可以表示在一些特定时刻发生的一些特定的事件，也可以表示一系列事件中得出的一些结论，还可以表示执行某个行动的指令。</p>
+<p><img src="/images/image10-1774526834402-55.png" alt="图 9-9 通用入侵检测框架（CIDF）体系结构"></p>
+<p>事件产生器进行数据采集，从入侵检测系统外的整个计算环境中获得事件，并以 CIDF gido 格式向系统的其他部分提供此事件。事件产生器是所有IDS所需要的，同时也是可以重用的。</p>
+<p>事件分析器是分析部分，从其他组件接收 gido，分析得到的数据，并产生新的 gido。误用&#x2F;异常检测算法均可以在此得到应用。</p>
+<p>响应单元为响应部分，是对分析结果作出作出反应的功能单元，它可以终止进程、重置连接、改变文件属性等，也可以只是简单的报警，也可以和防火墙等其他安全设备联动响应。</p>
+<p>事件数据库，包含日志，是存放各种中间和最终数据的地方的统称，它可以是复杂的数据库，也可以是简单的文本文件。可以持久化存储。</p>
+<p>通用入侵检测框架的规范语言，是各 IDS 使用统一的 CISL 来表示原始事件信息（审计踪迹记录和网络数据流信息）、分析结果（系统异常和攻击特征描述）、响应指令（停止某些特定的活动或修改组件的安全参数），建立了 IDS 之间信息共享的基础。CISL 是 CIDF 的最核心也是最重要的内容。gido 的构建与编码是 CISL 的重点。</p>
+<p>内部通讯的匹配服务为 CIDF 各组件之间的相互识别、定位和信息共享提供了一个标准的统一的机制，是基于轻量目录访问协议（Lightweight Directory Access Protocol, LDAP）实现的。内部通讯机制的消息层在易受攻击的环境中实现了几种安全（保密、可信、完整）并可靠的信息交换机制，使通信与阻塞和非阻塞处理无关、使通信与数据格式无关、使通信与操作系统无关、使通信与编程语言无关。</p>
+<p>关于通用入侵检测框架的程序接口，程序员可以在不了解编码和传递过程具体细节的情况下，以一种很简单的方式构建和传递 gido，如使用 gido 编解码 API、消息层 API 、gido 传输 API 、gido 动态追加 API 、签名 API 和顶层 CIDF 的 API。</p>
+<hr>
+<h2 id="2-3-网络入侵检测的主要分类"><a href="#2-3-网络入侵检测的主要分类" class="headerlink" title="2.3 网络入侵检测的主要分类"></a>2.3 网络入侵检测的主要分类</h2><p>网络入侵检测系统可以从不同角度进行划分，常见分类方式包括按数据来源分类、按检测技术分类和按部署结构分类。相关综述中的 IDS 分类图通常都会同时给出数据来源、检测技术和部署方式等维度。</p>
+<h3 id="2-3-1-按数据来源分类"><a href="#2-3-1-按数据来源分类" class="headerlink" title="2.3.1 按数据来源分类"></a>2.3.1 按数据来源分类</h3><p>按数据来源不同，入侵检测系统通常可分为主机型入侵检测系统和网络型入侵检测系统。</p>
+<p>主机型入侵检测系统部署在受保护主机内部，主要通过分析操作系统日志、用户行为、文件完整性、进程活动和系统调用记录来识别安全异常。它能够较深入地观察单台主机的内部状态，因此在发现文件篡改、权限滥用和恶意程序活动方面具有优势。但这类系统通常覆盖范围有限，需要逐台部署，维护成本相对较高。</p>
+<p>网络型入侵检测系统则部署于网络关键位置，通过抓取或接收镜像流量来监测网络中的异常通信与攻击行为。它具有部署集中、覆盖范围广和便于统一管理等特点，特别适合发现扫描、爆破、拒绝服务和异常连接等网络层面威胁。很多资料将 NIDS 描述为基于 SPAN&#x2F;TAP 获取流量副本并进行旁路分析。</p>
+<h3 id="2-3-2-按检测技术分类"><a href="#2-3-2-按检测技术分类" class="headerlink" title="2.3.2 按检测技术分类"></a>2.3.2 按检测技术分类</h3><p>按照检测思路，传统入侵检测系统最经典的分类是误用检测与异常检测。</p>
+<p>误用检测又称特征检测或签名检测，其基本思想是将当前行为与已知攻击特征、规则或攻击签名进行比对，一旦匹配成功，即判定为攻击。这类方法逻辑清晰、误报率通常较低，在工程实践中应用广泛，但对未知攻击和变种攻击适应性较差。</p>
+<p>异常检测则首先建立正常行为模型或正常活动基线，再将偏离正常模式的行为识别为可疑事件。其优势在于理论上可以发现未知攻击和新型异常，但由于正常行为本身可能随时间和场景变化而变化，因此异常检测往往更容易出现误报。许多 IDS 分类图都会将 Signature-based IDS 与 Anomaly-based IDS 并列展示。</p>
+<h3 id="2-3-3-按系统部署结构分类"><a href="#2-3-3-按系统部署结构分类" class="headerlink" title="2.3.3 按系统部署结构分类"></a>2.3.3 按系统部署结构分类</h3><p>从系统结构上看，IDS 还可分为集中式和分布式两类。集中式 IDS 将数据采集、分析与管理集中在少数节点中实现，结构相对简单，便于统一部署和维护，适合规模较小或结构较为单一的网络环境。分布式 IDS 则将多个检测节点部署在不同主机或不同网络区域，再通过集中管理或协同分析实现全局监测。这种方式更适合大型企业网络、校园网以及复杂异构网络环境。部分分类图会直接给出 centralized 与 distributed 两类部署模式。</p>
+<p>主机入侵检测系统是监视与分析主机的审计记录，判断能否及时采集到审计记录。可以不运行在监控主机上。 网络入侵检测系统是对通信数据进行侦听采集数据。提供对网络通用的保护，不消耗主机额外资源。</p>
+<p>无论是主机入侵检测系统，还是网络入侵检测系统，都可以采用的系统体系结构包括集中式结构、等级分布式结构以及完全分布式结构。详细介绍如下： 集中式结构是采用分布式的信息收集，然后将收集信息汇总上报，进行集中关联分析的结构形式，具体结构如图 9-7 所示。典型的集中式结构代表有：DIDS（Distributed Intrusion Detection System）（Snapp et al., 1991）、DShield（Internet Storm Center，2000）、NSTAT（Kemmerer,1998）。集中式结构的挑战是单点故障和单点瓶颈。单点故障是指汇总关联分析节点一旦出现故障，则整个系统就会无法工作。单点瓶颈是指汇总关联分析节点的处理能力决定了整个系统的处理能力。因此，集中式结构的应用场景为小型公司网络范围内的IDS协作，不适用于互联网范围内的大规模IDS协作。</p>
+<p><img src="/images/image7-1774526684261-45.png" alt="图 9-6 集中式结构"></p>
+<p>分布式结构是指引擎和控制中心在2个系统之上，可通过网络通讯进行远距离查看和操作的结构形式，可细分为等级分布式和完全分布式。</p>
+<p>等级分布式结构的特点是存在分区和“逐层”汇聚式关联分析。分区可分为地理位置、管理域、相近软件平台以及预期入侵种类，具体结构如图 9-8 所示。等级分布式结构的典型代表是：GrIDS(Staniford-Chen et al., 1996)、The EMERALD project (Porras and Neumann, 1997)、DSOC (Distributed Security Operation Center, Abdoul Karim Ganame et al., 2008)、Servin and Kudenko (2008) 、reinforcement learning based、AAFID(Balasubramaniyan et al., 1998)、NetSTAT (Vigna, 1999)。等级分布式结构的优点是可扩展性略高于集中式结构，挑战是整个系统的处理能力仍受到高层次节点能力的制约；高层节点引发的单点故障也仍可能存在；并且系统的检出率较低，信息在“汇聚”的过程中会由于“压缩”而导致“损失”和“失真”。</p>
+<p><img src="/images/image8-1774526684261-47.png" alt="图 9-7 等级分布式结构"></p>
+<p>完全分布式结构的特点是无超级管理节点，节点间通信方式为P2P、Gossip协议、组播或发布&#x2F;订阅机制，具体结构如图9-9所示。典型代表有：Locasto et al. (2005): P2P based 、The DOMINO project (Yegneswaran et al., 2004; Barford and Jha, 2004)、Dash et al. (2006)、Garcia et al. (2004)、MADIDF (Mobile Agents based Distributed Intrusion Detection Framework) (Dayong Ye et al., 2008) 、Indra (Janakiraman and Zhang, 2003)、CSM (White et al., 1996)。完全分布式的挑战是检测精度低、可扩展性差、负载均衡难度高。</p>
+<p><img src="/images/image9-1774526684261-46.png" alt="图 9-8 完全分布式结构"></p>
+<p>协作式攻击的特点主要是：采用分布式、协同，且有发起源。分布式检测的优势为可快速定位协作式攻击的真正源头，可避免对同源攻击的重复报警。</p>
+<hr>
+<h2 id="2-4-网络入侵检测的基本流程"><a href="#2-4-网络入侵检测的基本流程" class="headerlink" title="2.4 网络入侵检测的基本流程"></a>2.4 网络入侵检测的基本流程</h2><p>尽管不同类型的入侵检测系统在实现方式和技术细节上存在差异，但其基本工作流程通常包括数据采集、数据预处理、行为分析、入侵判定以及告警响应五个环节。典型 IDS 架构图一般也都是沿着“采集—分析—告警&#x2F;处置”的顺序展开。</p>
+<p>首先是数据采集阶段。系统通过网络抓包、流量镜像、日志监控或主机代理等方式，获取与安全事件相关的原始信息。该阶段的任务是尽可能全面地收集网络行为或主机活动数据，为后续分析提供输入。</p>
+<p>其次是数据预处理阶段。原始数据通常包含大量冗余与噪声，因此需要经过格式规范化、无关信息剔除、特征提取和简单统计等处理，使其能够被检测模块有效利用。预处理质量越高，后续判定通常越稳定。</p>
+<p>再次是分析判定阶段。系统根据预设的检测思想对特征进行处理：如果是误用检测，则与规则库或攻击特征进行匹配；如果是异常检测，则与正常行为模型或阈值基线进行比较；如果是统计分析方法，则根据统计偏离程度判断可疑性。这一阶段是 IDS 的核心。</p>
+<p>随后是结果输出阶段。系统会根据分析结果给出正常、异常、可疑或确认攻击等判断，并在必要时进一步标注攻击类别、危害等级和影响范围。</p>
+<p>最后是告警与响应阶段。当系统确认存在可疑事件时，会记录日志并输出告警，必要时联动其他安全系统采取阻断、隔离或封禁措施，从而形成从发现到处置的安全闭环。</p>
+<p><img src="/images/image3-1774526713052-51.png" alt="图 9-3 入侵检测系统的作用"></p>
+<h1 id="三、传统网络入侵检测技术的发展历程"><a href="#三、传统网络入侵检测技术的发展历程" class="headerlink" title="三、传统网络入侵检测技术的发展历程"></a>三、传统网络入侵检测技术的发展历程</h1><p>网络入侵检测技术并不是伴随现代人工智能方法才出现的，而是在计算机安全审计、日志分析和系统行为监控的基础上逐步发展起来的。早期计算机安全主要依靠访问控制、身份认证和权限管理等静态防护措施，但随着系统互联程度不断提高，单纯依赖预防机制已难以应对不断增长的攻击行为。尤其是在网络化环境形成后，攻击者往往能够绕过边界防护，通过口令猜测、漏洞利用、权限提升和恶意代码传播等方式入侵目标系统，这使得“对系统运行过程进行持续监测并发现异常”的思想逐渐受到重视。此后，传统入侵检测技术在理论与工程两个层面不断演进，逐步形成了较为系统的研究体系和应用框架。</p>
+<h2 id="3-1-网络入侵检测技术的起源"><a href="#3-1-网络入侵检测技术的起源" class="headerlink" title="3.1 网络入侵检测技术的起源"></a>3.1 网络入侵检测技术的起源</h2><p>传统网络入侵检测技术的思想基础，最早可以追溯到对计算机系统审计记录的安全分析。早期安全研究认为，系统日志、用户操作记录和资源访问轨迹中往往蕴含着攻击活动的痕迹，因此可以通过对这些信息进行检查来识别潜在威胁。起初，这一过程更多依赖人工审查和经验判断，检测方式较为被动，实时性也较差，但它为后续自动化入侵检测奠定了基础。</p>
+<p>随着计算机网络的普及，安全威胁开始由单机环境扩展到网络环境，研究重点也从主机审计逐步转向通信行为分析。由于网络流量具有连续性、海量性和动态性，人工分析已难以满足需要，因此研究者开始尝试将规则匹配、行为建模和统计分析等方法引入安全监测之中，推动了入侵检测从“安全审计辅助手段”向“专门安全检测技术”转变。现代 IDS 仍然沿袭了这种思路，即通过持续采集系统或网络行为数据，对可疑事件进行检测和告警。</p>
+<p><img src="/images/image1-1774526733027-53.png" alt="图 9-1 入侵检测发展简史"></p>
+<hr>
+<h2 id="3-2-传统网络入侵检测技术的发展阶段"><a href="#3-2-传统网络入侵检测技术的发展阶段" class="headerlink" title="3.2 传统网络入侵检测技术的发展阶段"></a>3.2 传统网络入侵检测技术的发展阶段</h2><p>从总体上看，传统网络入侵检测技术的发展大致可以分为四个阶段，即基于审计追踪的萌芽阶段、基于规则与特征匹配的发展阶段、基于统计与异常分析的扩展阶段，以及面向工程应用的系统化与产品化阶段。</p>
+<h3 id="3-2-1-基于审计追踪的萌芽阶段"><a href="#3-2-1-基于审计追踪的萌芽阶段" class="headerlink" title="3.2.1 基于审计追踪的萌芽阶段"></a>3.2.1 基于审计追踪的萌芽阶段</h3><p>这一阶段的主要特点是依托操作系统日志、用户活动记录和审计数据对异常行为进行人工或半自动分析。其核心思想在于：正常用户和恶意入侵者在访问模式、操作顺序、资源使用频率和命令执行方式上通常存在差异，因此可以通过审计记录发现异常线索。该阶段虽然缺乏成熟的自动化检测模型，但首次将“通过行为痕迹识别安全问题”的思想引入安全防护体系，是传统入侵检测技术的理论起点。</p>
+<p>这一时期的检测能力较为有限，原因在于日志来源分散、处理效率不高、规则表达能力弱，并且缺少统一的检测平台。然而，它明确了入侵检测的两个基本方向：一是基于已知违规行为的识别，二是基于正常行为偏离的异常发现。这两个方向后来分别演化为误用检测和异常检测两条主要技术路线。</p>
+<h3 id="3-2-2-基于规则与特征匹配的发展阶段"><a href="#3-2-2-基于规则与特征匹配的发展阶段" class="headerlink" title="3.2.2 基于规则与特征匹配的发展阶段"></a>3.2.2 基于规则与特征匹配的发展阶段</h3><p>随着网络攻击模式逐渐清晰，研究者开始将大量已知攻击行为抽象为可识别的规则、签名和特征模板，并构建相应的规则库进行自动匹配。该阶段标志着误用检测思想的成熟。所谓误用检测，是指将当前网络流量或系统行为与已知攻击模式进行比较，只要满足规则条件，便将其判定为攻击事件。由于该方法逻辑清晰、工程实现相对容易、对已知攻击检测准确率较高，因此迅速成为传统 IDS 的主流技术路线。</p>
+<p>这一阶段推动了许多典型入侵检测系统和规则引擎的发展，尤其是网络型 IDS 的兴起，使检测对象从主机审计扩展到网络流量。后来广泛使用的 Snort 正是这种签名&#x2F;规则检测思想的代表。Snort 的经典结构通常包括抓包、预处理、检测引擎、规则集以及告警&#x2F;日志输出几个核心部分，体现了传统规则型 NIDS 的标准工程模式。</p>
+<h3 id="3-2-3-基于统计与异常分析的扩展阶段"><a href="#3-2-3-基于统计与异常分析的扩展阶段" class="headerlink" title="3.2.3 基于统计与异常分析的扩展阶段"></a>3.2.3 基于统计与异常分析的扩展阶段</h3><p>虽然规则和特征匹配方法对已知攻击具有良好检测效果，但其对未知攻击和攻击变种的识别能力有限。为弥补这一缺陷，研究者开始关注正常行为模式的建模问题，并尝试利用统计学和行为基线方法发现偏离正常范围的可疑活动，由此推动了异常检测技术的发展。</p>
+<p>异常检测的核心思想是先建立“正常状态”的描述模型，再将当前行为与之进行比较。如果某一行为在访问频率、持续时间、命令序列、连接分布或资源占用等方面偏离正常模式，则可将其视为潜在入侵。与误用检测相比，这种方法不必完全依赖已知规则，因此在理论上更有可能发现未知攻击。但与此同时，它也更容易受到环境变化、用户行为差异和基线漂移的影响，从而导致较高误报率。也正是在这一阶段，传统 IDS 的技术框架逐渐清晰，即签名检测负责高精度识别已知攻击，异常检测负责补充发现未知威胁，这种“双轨并行”的思路一直延续至今。现代分类图中也通常仍将 Signature-based IDS 和 Anomaly-based IDS 并列为两大基本类别。</p>
+<h3 id="3-2-4-工程化、系统化与产品化阶段"><a href="#3-2-4-工程化、系统化与产品化阶段" class="headerlink" title="3.2.4 工程化、系统化与产品化阶段"></a>3.2.4 工程化、系统化与产品化阶段</h3><p>随着企业网络规模不断扩大，以及互联网攻击活动日益频繁，传统入侵检测技术开始由研究型工具走向工程化系统和商用产品。在这一阶段，入侵检测系统不再局限于单纯的理论验证，而是更加重视实时性、稳定性、规则更新、日志管理、告警联动和部署方式优化。网络型 IDS 逐渐形成较成熟的旁路部署方式，通常通过 TAP 或交换机镜像端口获取流量副本，从而在不直接影响业务转发路径的前提下完成安全监测。</p>
+<p>与此同时，传统 IDS 的分类和应用场景也更加清晰。一方面，按照监测对象不同，形成了主机型 IDS 与网络型 IDS 两种典型模式；另一方面，按照检测技术不同，形成了签名检测与异常检测两条主线。此后，不少系统开始尝试将多种技术组合使用，以提高综合检测能力，并逐步向入侵防御、联动响应和集中管理方向扩展。这一阶段奠定了后来 IDS&#x2F;IPS 融合发展和安全运营平台化的基础。</p>
+<h1 id="四、传统网络入侵检测的主要方法"><a href="#四、传统网络入侵检测的主要方法" class="headerlink" title="四、传统网络入侵检测的主要方法"></a>四、传统网络入侵检测的主要方法</h1><p>传统网络入侵检测技术在长期发展过程中，逐渐形成了以规则匹配、行为建模和状态分析为核心的多种方法体系。根据检测机制与建模方式的不同，主要可分为基于特征（Signature-based）、基于异常（Anomaly-based）以及基于状态&#x2F;协议分析（Stateful Protocol Analysis）三类方法。这些方法在检测精度、泛化能力和实时性等方面各具特点，共同构成了传统入侵检测系统的理论基础与技术框架。</p>
+<hr>
+<h2 id="4-1-基于特征的入侵检测方法（Signature-based-IDS）"><a href="#4-1-基于特征的入侵检测方法（Signature-based-IDS）" class="headerlink" title="4.1 基于特征的入侵检测方法（Signature-based IDS）"></a>4.1 基于特征的入侵检测方法（Signature-based IDS）</h2><p><img src="/images/93gc0Cxr2cVOGEVClU4XWsYxIsDXTiAZ7iOsoFiDwEPDGHRsX7lAddL57ZW4gFqpP5YtvndKzaHHLVp4C-DC73YLB-aDhzJVREJ4fgOsjUA9anIBuCDLx3dIKT6GG-ll5fWzDhbs94dstsm8GAiWoA.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;354083895&#x2F;figure&#x2F;fig3&#x2F;AS%3A1139505822216209%401648690767450&#x2F;Signature-based-intrusion-detection-system.png"></p>
+<p>基于特征的入侵检测方法（Signature-based Intrusion Detection System, SIDS）是最早被广泛应用的一类检测技术，其核心思想是通过构建已知攻击行为的特征库（即规则库），对网络流量或系统日志进行模式匹配，从而识别是否存在已知攻击行为。该方法通常依赖专家知识或历史攻击样本，提取攻击特征（如特定字符串、协议字段异常、攻击序列模式等），并将其编码为检测规则。当监测数据与规则匹配时，即判定为入侵行为。</p>
+<p>典型系统如Snort，其采用基于规则的检测引擎，通过高效的字符串匹配算法（如Aho-Corasick算法）实现对网络数据包的实时检测。该方法具有检测准确率高、误报率低、可解释性强等优点，尤其适用于已知攻击的快速识别。然而，其局限性在于对未知攻击（如零日攻击）缺乏检测能力，同时规则库的维护成本较高，需要持续更新以应对新型威胁。</p>
+<hr>
+<h2 id="4-2-基于异常的入侵检测方法（Anomaly-based-IDS）"><a href="#4-2-基于异常的入侵检测方法（Anomaly-based-IDS）" class="headerlink" title="4.2 基于异常的入侵检测方法（Anomaly-based IDS）"></a>4.2 基于异常的入侵检测方法（Anomaly-based IDS）</h2><p><img src="/images/waxPa8pLYe7NfAm44aAlVHW7t6I7pV-31JvItskTIRudWGue8xY-CtBLHPN7p3mDYefOvrGQgVXrn_drwmABPlW9M__v_PX0zYV2mc2tpxQ2Z7YJfymf-N36zbTQfqn799Iy0arKVjf2BK5dLsm0JA.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;324189357&#x2F;figure&#x2F;fig1&#x2F;AS%3A611706963255296%401522853713003&#x2F;a-Anomaly-Based-Intrusion-Detection-System-b-Signature-Based-Intrusion-Detection-System.png"></p>
+<p>基于异常的入侵检测方法（Anomaly-based Intrusion Detection System, AIDS）通过建立系统或网络的“正常行为模型”，并将实时监测数据与该模型进行比较，当检测到显著偏离正常行为的模式时，即认为可能存在入侵行为。该方法通常基于统计分析、概率模型或简单机器学习方法构建行为基线，例如利用均值、方差、时间序列特征或Markov模型描述正常网络流量。</p>
+<p>该方法的优势在于能够检测未知攻击和变种攻击，具有较强的泛化能力。例如，当攻击者采用未被记录的新型攻击方式时，只要其行为偏离正常模式，系统即可识别异常。然而，该方法也存在明显不足，即误报率较高，因为正常行为本身具有一定波动性，容易被误判为异常。此外，正常模型的构建依赖于高质量训练数据，若训练数据受到污染（如包含攻击流量），则会显著降低检测效果。</p>
+<hr>
+<h2 id="4-3-基于状态与协议分析的入侵检测方法（Stateful-Protocol-Analysis）"><a href="#4-3-基于状态与协议分析的入侵检测方法（Stateful-Protocol-Analysis）" class="headerlink" title="4.3 基于状态与协议分析的入侵检测方法（Stateful Protocol Analysis）"></a>4.3 基于状态与协议分析的入侵检测方法（Stateful Protocol Analysis）</h2><p><img src="/images/Ay5QufeAhY6aqSCw0plFHPUlONctXjf0OyqaTaHp7HLjlTckHDJxYBJIZdzPThc_ffvd_X0b_8h5nh2vv4k-o6E4cdKP8kfDzXnGwYIqjLS5LCSBIFouHCsDOrqMc_NgB1ofo7Ha9nclTIphgLSgVg.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;305957314&#x2F;figure&#x2F;fig2&#x2F;AS%3A392491506389011%401470588675324&#x2F;Stateful-protocol-analysis-based-methodology-architecture.png"></p>
+<p>基于状态与协议分析的入侵检测方法通过对网络协议的正常运行状态进行建模，并跟踪通信过程中协议状态的变化，以检测是否存在违反协议规范的行为。该方法通常结合深度包检测（Deep Packet Inspection, DPI）技术，对数据包内容及其上下文进行分析，并依据协议标准（如TCP&#x2F;IP协议栈）构建状态机模型。</p>
+<p>例如，在TCP连接过程中，正常状态应遵循“三次握手”和“四次挥手”的流程，若检测到非法状态转换（如未完成握手即传输数据），则可判定为潜在攻击行为（如会话劫持或扫描攻击）。该方法相比基于特征的方法具有更强的语义理解能力，能够识别复杂攻击行为（如协议滥用攻击）。然而，其实现复杂度较高，对计算资源消耗较大，同时需要对多种协议进行精细建模，增加了系统设计难度。</p>
+<h1 id="五、传统网络入侵检测系统的典型应用"><a href="#五、传统网络入侵检测系统的典型应用" class="headerlink" title="五、传统网络入侵检测系统的典型应用"></a>五、传统网络入侵检测系统的典型应用</h1><p>随着网络安全威胁的不断演化，传统网络入侵检测系统（Intrusion Detection System, IDS）在多个关键领域中得到了广泛应用。基于特征匹配、异常检测以及协议分析等方法的传统IDS，已在企业网络、政府机构、关键基础设施以及云计算环境中发挥了重要作用。以下从典型应用场景出发，对传统入侵检测系统的实际应用进行系统阐述。</p>
+<hr>
+<h2 id="5-1-企业网络安全防护"><a href="#5-1-企业网络安全防护" class="headerlink" title="5.1 企业网络安全防护"></a>5.1 企业网络安全防护</h2><p><img src="/images/kg-_Np-pd2QAVIq6DzaO_UmwF5QjFhyGTC8aQ7zpOPfkoj1MsFOj8Up_7Mh5fBgkCHm7vNqjftJsqC27AdPLot5FZIzhMff-YbWFI0azNnMk9Nb883yq32FgcL2FoKkowJNGXncQeBuub8HLdxI78w.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;360190921&#x2F;figure&#x2F;fig2&#x2F;AS%3A1155212626657440%401652435561819&#x2F;Intrusion-detection-system-deployment-diagram.jpg"></p>
+<p>在企业网络环境中，入侵检测系统通常部署于网络边界或核心交换节点，与防火墙、路由器等设备协同工作，用于实时监测进出网络的数据流量。传统IDS通过规则库匹配已知攻击特征，对常见威胁（如端口扫描、SQL注入、缓冲区溢出等）进行快速识别，并向安全运维人员发出告警。</p>
+<p>典型应用工具如Snort和Suricata，被广泛应用于企业安全运营中心（SOC）中，用于流量分析与威胁检测。这类系统能够有效提升企业网络的安全可见性，并通过日志审计与事件关联分析支持安全响应。然而，在高流量环境下，其性能瓶颈和规则维护成本问题逐渐显现。</p>
+<hr>
+<h2 id="5-2-政府与关键基础设施保护"><a href="#5-2-政府与关键基础设施保护" class="headerlink" title="5.2 政府与关键基础设施保护"></a>5.2 政府与关键基础设施保护</h2><p><img src="/images/8FJ8C0YiUfI-PYCHssbFgvH3RrJisCYQfVmS8P2iCgi2cmoMYFN1AbaoMjaGOrFdHFWkJ1Pdhwsn3mrItGG08IoGNnElZdwo21fjQL6NXemXhtZLii1tyDCt3KSPkoRB2_2U0Y6eoZ_RC_DFapxthg.png" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;228575534&#x2F;figure&#x2F;fig1&#x2F;AS%3A301927112953894%401448996441942&#x2F;SCADA-network-architecture-proposed-by-NISCC.png"></p>
+<p>在政府机构及关键基础设施（如电力系统、交通系统、能源网络）中，传统入侵检测系统承担着重要的安全保障职责。这些系统通常部署在工业控制网络（ICS）或SCADA系统中，对控制指令和通信协议进行实时监测，以防止恶意操作或非法访问。</p>
+<p>由于关键基础设施对实时性和稳定性要求极高，传统IDS通常采用基于协议分析的方法，对工业协议（如Modbus、DNP3等）进行深度解析，从而识别异常行为。例如，在电力调度系统中，IDS可检测异常控制指令或非法设备接入行为，有效防止类似Stuxnet这样的工业网络攻击事件再次发生。</p>
+<hr>
+<h2 id="5-3-数据中心与云计算环境"><a href="#5-3-数据中心与云计算环境" class="headerlink" title="5.3 数据中心与云计算环境"></a>5.3 数据中心与云计算环境</h2><p><img src="/images/N-eCk78CJ0ODOqpjm7AJtqIHUSKYXsaACeYMZbBRJhsIDw-jBbV5C1P4Ihq7XKCTs2qv65Ey7mCvwZK21c2kvCL98ZgaAqBx7fzMWXa-x72UCLz-GHO_vrJNpXOiNJtvPwTWW5xOn8l8iqm1hoY8OQ.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;266291599&#x2F;figure&#x2F;fig2&#x2F;AS%3A295809951256584%401447537996512&#x2F;Proposed-Cloud-IDS-Model.png"></p>
+<p>随着云计算和虚拟化技术的发展，传统入侵检测系统逐渐扩展至数据中心和云环境中。在该场景下，IDS不仅需要监测物理网络流量，还需对虚拟机之间的“东西向流量”进行分析。传统IDS通过镜像流量（port mirroring）或虚拟交换机（vSwitch）获取数据，实现对云环境的安全监测。</p>
+<p>例如，在基于OpenStack或VMware vSphere的云平台中，IDS可以作为虚拟安全设备部署，对租户之间的隔离性和网络行为进行检测。尽管传统方法在云环境中仍具一定效果，但由于流量规模大、动态性强，其检测效率和扩展能力面临挑战。</p>
+<hr>
+<h2 id="5-4-主机级入侵检测（HIDS）"><a href="#5-4-主机级入侵检测（HIDS）" class="headerlink" title="5.4 主机级入侵检测（HIDS）"></a>5.4 主机级入侵检测（HIDS）</h2><p><img src="/images/OxDsOSZ6-w-o7SroR_gWBDTougxyb2Bk5dtwlE9nTCmGd4qrD8ZXV8oeXCjW_vclNXhljEuFp5AutnjBXwTYtsVVBgUyXLmSJNSJc4Rl2MD4EAWtaZn_Hlyt01LujPTopwGrmhEZu4waYKEtsq1WSA.jpeg" alt="https:&#x2F;&#x2F;www.researchgate.net&#x2F;publication&#x2F;379204408&#x2F;figure&#x2F;fig3&#x2F;AS%3A11431281231022977%401711200947077&#x2F;Host-BasedIntrusionDetectionSystemHIDS.jpg"></p>
+<p>除了网络层面的检测外，传统入侵检测系统还广泛应用于主机层面，即主机入侵检测系统（Host-based IDS, HIDS）。该类系统主要通过分析操作系统日志、文件完整性、系统调用等信息来检测潜在攻击行为。</p>
+<p>典型工具如OSSEC，可对关键系统文件进行完整性校验，并监控用户行为和系统日志变化。当检测到异常操作（如权限提升、非法登录）时，系统会立即发出告警。相比网络IDS，HIDS具有更强的细粒度检测能力，但其部署和维护成本较高，且对主机性能存在一定影响。</p>
+<hr>
+<h2 id="5-5-应用层安全检测（Web-IDS）"><a href="#5-5-应用层安全检测（Web-IDS）" class="headerlink" title="5.5 应用层安全检测（Web IDS）"></a>5.5 应用层安全检测（Web IDS）</h2><p><img src="/images/41598_2024_74350_Fig1_HTML.png" alt="https:&#x2F;&#x2F;media.springernature.com&#x2F;full&#x2F;springer-static&#x2F;image&#x2F;art%3A10.1038%2Fs41598-024-74350-3&#x2F;MediaObjects&#x2F;41598_2024_74350_Fig1_HTML.png"></p>
+<p>在Web应用安全领域，传统入侵检测技术主要用于识别针对应用层的攻击行为，如SQL注入、跨站脚本（XSS）、文件包含等。该类系统通常结合Web应用防火墙（WAF）进行部署，通过分析HTTP请求特征或规则匹配实现攻击检测。</p>
+<p>例如，基于ModSecurity的系统，可以对HTTP请求进行深度解析，并通过规则库检测恶意输入模式。传统Web IDS在防御已知攻击方面具有良好效果，但面对复杂的混淆攻击或多阶段攻击时，其检测能力仍存在局限。</p>
+<h1 id="实战入侵检测系统"><a href="#实战入侵检测系统" class="headerlink" title="实战入侵检测系统"></a>实战入侵检测系统</h1><h2 id="典型部署方式"><a href="#典型部署方式" class="headerlink" title="典型部署方式"></a>典型部署方式</h2><p><img src="/images/image11-1774526472748-17.png" alt="图9-10 入侵检测的典型部署模式"></p>
+<p>图9-10是一个 IDS 的典型部署图。在网络中部署 IDS 时，可以使用多个 NIDS 和 HIDS，根据网络的实际情况和自己的需求确定具体的部署情况。入侵检测系统的开源代表是 Snort， Snort 是一个轻量级的NIDS，它具有多模式报文分析工具、嗅探工具、报文记录以及数据取证分析工具。应用场景有在线分析和离线分析。</p>
+<h2 id="Snort"><a href="#Snort" class="headerlink" title="Snort"></a>Snort</h2><h3 id="Sonrt概述"><a href="#Sonrt概述" class="headerlink" title="Sonrt概述"></a>Sonrt概述</h3><p>Snort 具有以下特性：轻巧，源代码不到1MB；具有移植性，在 Linux, Windows, MacOS X, Solaris, BSD, IRIX, Tru64, HP-UX 平台下均可使用；高性能，使用百兆网络线速处理；可配置，使用简单的规则语言，丰富的日志&#x2F;配置分析工具；免费，GPL 开源。</p>
+<p>Snort 的设计遵守轻量级的网络入侵检测系统，基于 Libpcap 的报文嗅探接口，基于规则的检测引擎和支持无限扩展的插件系统。</p>
+<p>Snort 的检测引擎是基于指纹的规则，采用模块化设计。具有丰富的检测能力（内置规则），可进行隐蔽扫描，操作系统识别扫描,、缓冲区溢出攻击、后门和CGI漏洞利用等等。规则系统设计十分灵活，易于创建新规则。</p>
+<p>Snort 的插件有预处理器，报文在被送到检测引擎之前可以先进行预处理；检测功能，针对单个报文&#x2F;报文字段的快速检测；输出功能，获取其他插件的输出结果。</p>
+<p>Snort 有三种主要的工作模式，嗅探模式、报文记录模式和 NIDS 模式，通过命令行选项配置不同的工作模式，NIDS 模式是默认的启动模式。嗅探模式类似 tcpdump，解码报文后输出到标准输出(控制台)，可支持 BPF 过滤规则，图 9-11 为捕获的数据报文截图。报文记录模式，可使用 ASCII, tcpdump, XML 和数据库等多种方式对记录的报文进行后续的分析、取证。NIDS 模式，在 BackTrack5 自带的 Snort 2.8.5.2 (Build 121) 上有4000多条规则，可支持多种检测模式，例如基于规则、统计异常、基于协议等。</p>
+<p><img src="/images/image12-1774526472749-18.png" alt="图 9-11 捕获的数据报文"></p>
+<h3 id="Snort规则"><a href="#Snort规则" class="headerlink" title="Snort规则"></a>Snort规则</h3><p><img src="/images/image13-1774526472749-20.png" alt="图 9-12 Snort规则"></p>
+<p>Snort 为单行规则，大多数 snort 规则都写在一个单行上，或者在多行之间的行尾用”&#x2F;“分隔。Snort 规则被分成两个逻辑部分：规则头和规则选项。规则头包含规则的动作，协议，源和目标ip地址与网络掩码，以及源和目标端口信息；规则选项部分包含报警消息内容和要检查的包的具体部分。</p>
+<p>snort.conf 定义了默认规则文件的位置：var RULE_PATH &#x2F;etc&#x2F;snort&#x2F;rules</p>
+<p>绝大多数 snort 规则都是误用检测规则，即识别已知的入侵行为，其主要计算资源都用在了字符串匹配上。极少数的 snort 规则是异常检测规则，即基于统计异常的检测，例如 threshold.conf 使用阈值法，该方法中，Limit 是每统计周期的第一次阈值到达时就报警，每次统计周期最多报警一次。Threshold 是每统计周期的每M次阈值到达时报警，每次统计周报报警次数不限，Both 是以上2种的综合。</p>
+<p><img src="/images/image14-1774526472749-19.png" alt="图 9-13 Snort规则格式"></p>
+<p>规则执行事的顺序并不是按照规则的出现顺序，而是按规则类型的优先级执行，优先级如下依次递减：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pass &gt;Drop &gt; Alert &gt; Log</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/image15-1774526472749-21.png" alt="图9-14 处理流程"></p>
+<p><img src="/images/image16-1774526472749-22.png" alt="图 9-15 误用检测规则"></p>
+<p>绝大多数 snort 规则都是误用检测规则，识别已知的入侵行为，Snort 的主要计算资源都用在了字符串匹配上。极少数的 snort 规则是异常检测，基于统计异常。有 threshold.conf 使用阈值法，Limit 是每统计周期的第一次阈值到达时就报警，每次统计周期最多报警一次。Threshold 是每统计周期的每M次阈值到达时报警，每次统计周报报警次数不限，Both 是以上2种的综合。</p>
+<p><img src="/images/image17-1774526472749-24.png" alt="图 9-16 异常检测规则"></p>
+<h3 id="Snort架构"><a href="#Snort架构" class="headerlink" title="Snort架构"></a>Snort架构</h3><p><img src="/images/image18-1774526472749-23.png" alt="图 9-17 Snort 数据流图"></p>
+<p>Snort 的结构由4大软件模块组成，它们分别是：</p>
+<p>（1）数据包嗅探模块——负责监听网络数据包，对网络进行分析；</p>
+<p>（2）预处理模块——该模块用相应的插件来检查原始数据包，从中发现原始数据的“行为”，如端口扫描，IP 碎片等，数据包经过预处理后才传到检测引擎；</p>
+<p>（3）检测引擎——该模块是 Snort 的核心模块。当数据包从预处理器送过来后，检测引擎依据预先设置的规则检查数据包，一旦发现数据包中的内容和某条规则相匹配，就通知报警模块，图9-18为检测引擎内部数据结构表示，图 9-19 为数据结构完全展开视图；</p>
+<p>（4）输出报警&#x2F;日志模块——经检测引擎检查后的Snort数据需要以某种方式输出。如果检测引擎中的某条规则被匹配，则会触发一条报警，这条报警信息会通过网络、UNIXsocket、WindowsPopup(SMB)、SNMP 协议的 trap 命令传送给日志文件，甚至可以将报警传送给第三方插件（如SnortSam），另外报警信息也可以记入 SQL 数据库。</p>
+<p><img src="/images/image19-1774526472749-25.png" alt="图 9-18 检测引擎内部数据结构表示"></p>
+<p><img src="/images/image20-1774526472749-26.png" alt="图 9-19 检测引擎内部数据结构展开图"></p>
+<p>关于 Snort 的配置命令：&#x2F;etc&#x2F;snort&#x2F;snort.conf，主要是定义网络环境相关变量，配置动态加载的库，配置预处理器，配置输出插件，增加运行时配置指令，定义启用的规则集。</p>
+<h2 id="Suricata"><a href="#Suricata" class="headerlink" title="Suricata"></a>Suricata</h2><p><a target="_blank" rel="noopener" href="https://suricata-ids.org/">Suricata</a> 是非盈利性组织开放信息安全基金会（Open Information Security Foundation, OISF）主导和支持的一个免费、开源、成熟、高性能和健壮的网络威胁检测引擎，可以提供实时入侵检测、内联入侵保护（Intrusion Prevention System, IPS）、网络安全监控（Network Security Monitoring, NSM）和离线 pcap 处理。Suricata 使用可扩展的规则和签名语言来检查网络，流量，支持使用Lua脚本语言检测复杂威胁。Suricata 使用标准 YAML 输入格式和 JSON 输出格式，使得和第三方安全信息和事件管理（Security Information and Event Management, SIEM）工具（例如Splunk、ELK和其他数据库）集成十分容易。</p>
+<p><img src="/images/kibana-selks4-1774526472749-27.png" alt="图 9-20 Suricata产生的报警日志可视化效果图"></p>
+<p>Suricata和Snort的特性对比如下表格所示：</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>Snort</th>
+<th>Suricata</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开发者</td>
+<td>Sourcefire, Inc.</td>
+<td>Open Information Security Foundation (OISF)</td>
+</tr>
+<tr>
+<td>项目历史</td>
+<td>1998 -</td>
+<td>2009 -</td>
+</tr>
+<tr>
+<td>编程语言</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>跨平台</td>
+<td>跨平台</td>
+</tr>
+<tr>
+<td>最新稳定版</td>
+<td><a target="_blank" rel="noopener" href="https://s3.amazonaws.com/snort-org-site/production/release_files/files/000/006/397/original/release_notes_2.9.11.txt?AWSAccessKeyId=AKIAIXACIED2SPMSC7GA&Expires=1511841091&Signature=JGm6my+W7l8Dvb+jakXkOYLF0pg=">2.9.11 (2017&#x2F;09&#x2F;05)</a></td>
+<td>4.0.1 (2017&#x2F;10&#x2F;18)</td>
+</tr>
+<tr>
+<td>并行处理</td>
+<td>单线程（<a target="_blank" rel="noopener" href="https://github.com/snort3/snort3">Snort3完全重写支持多线程</a>）</td>
+<td>多线程</td>
+</tr>
+<tr>
+<td>IPv6支持</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td>Snort (VRT)规则语法兼容性</td>
+<td>兼容</td>
+<td>兼容</td>
+</tr>
+<tr>
+<td>Emerging Threats Rules 兼容性</td>
+<td>兼容</td>
+<td>兼容</td>
+</tr>
+<tr>
+<td>日志格式</td>
+<td>Unified2</td>
+<td>Unified2 &#x2F; JSON</td>
+</tr>
+</tbody></table>
+<p>关于Suricata的使用可以查看<a target="_blank" rel="noopener" href="http://suricata.readthedocs.io/en/latest/">官网在线手册</a>。</p>
+<h2 id="Bro-Zeek"><a href="#Bro-Zeek" class="headerlink" title="Bro &#x2F; Zeek"></a>Bro &#x2F; Zeek</h2><p><a target="_blank" rel="noopener" href="https://blog.zeek.org//2018/10/renaming-bro-project_11.html">2018 年 10 月 11 日</a> 原 <code>Bro</code> 开发者团队宣布将拥有 20 年历史的开源项目 <code>Bro</code> 更名为 <code>Zeek</code> ，原有 <code>Bro</code> 相关文档和工具包内包含的程序命名将经历一段 <code>Bro</code> 和 <code>Zeek</code> 共存的时期，最终会将所有名称中包含 <code>bro</code> 的工具和术语统一迁移到 <code>zeek</code> 相关命名规范。</p>
+<blockquote>
+<p>Zeek is the new name for the long-established Bro system. Note that parts of the system retain the “Bro” name, and it also often appears in the documentation and distributions.</p>
+</blockquote>
+<p>根据 Zeek 官网的文档介绍，可以总结出 Zeek 的主要特性：</p>
+<ul>
+<li>部署<ul>
+<li>运行在普通硬件和标准UNIX系统（包括 Linux, FreeBSD, MacOS）</li>
+<li>基于网络流量分流或镜像端口方式的完全被动流量分析</li>
+<li>基于标准 libpcap 接口捕获数据报文</li>
+<li>实时和离线分析</li>
+<li>支持大规模集群部署</li>
+<li>同时支持单机和集群配置的统一管理框架</li>
+<li>基于 BSD 协议开源</li>
+</ul>
+</li>
+<li>分析<ul>
+<li>全面行为日志记录用于离线分析和取证</li>
+<li>端口无关的应用层协议分析</li>
+<li>支持多种应用层协议（包括：DNS、FTP、HTTP、IRC、SMTP、SSH、SSL）</li>
+<li>应用层负载内容分析包括 MD5&#x2F;SHA1 计算用于指纹</li>
+<li>完全 IPv6 支持</li>
+<li>隧道协议检测和分析（包括 Ayiya, Teredo, GTPv1）。Zeek 重组识别的隧道协议负载就像没有使用隧道协议一样去分析内层应用层协议数据。</li>
+<li>协议分析期间支持大量合法性检查方法</li>
+<li>支持 IDS 风格的模式匹配</li>
+</ul>
+</li>
+<li>可编程性<ul>
+<li>使用图灵完备语言来完成任意分析任务的表达刻画</li>
+<li>基于事件编程模型</li>
+<li>内置专业领域数据结构支持，例如 IP 地址（IPv4 和 IPv6 地址透明处理）、端口号和时钟</li>
+<li>广泛支持基于时间（窗口）的追踪和网络状态管理</li>
+</ul>
+</li>
+<li>接口<ul>
+<li>默认输出为格式化后的 ASCII 日志</li>
+<li>可选后端支持 ElasticSearch 和数据序列。更多数据库接口仍在开发中。</li>
+<li>支持外部数据实时导入集成分析。实时数据库仍在开发中。</li>
+<li>外部C语言编程库用于 Zeek 事件和外部程序交换。支持 Perl、Python 和 Ruby 语言混编。</li>
+<li>支持从脚本语言调用任何外部可执行程序。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/Bro_Arch-1774526472749-28.png" alt="图 9-21 Bro 架构图"></p>
+<p>Zeek 在架构上有2个主要组件：事件引擎（核心）将入站报文流处理减少为一系列更高层次事件。这些事件采用策略无关术语刻画了网络行为，即：描述了观测到的表现（what）而不是为什么（why）或重要性程度。例如，每个网络 HTTP 请求都被转换为一系列相关的http_request事件，包括：参与的 IP 地址、端口、URI、HTTP 版本等。事件本身并没有任何进一步解读，例如：URI是否对应一个已知恶意站点。</p>
+<p>上述语义特征则来自 Zeek 的第二个核心组件输出：脚本解释引擎，该引擎执行一组使用 Zeek 自定义脚本语言编写的事件处理函数。这些脚本可以描述一个站点的安全策略，即：当检测到不同行为时该采取哪些响应行动。更一般的情形是 Zeek 能够从输入流量中推导出任意想得到的特征和统计数据。Zeek 编程语言内置一系列（入侵检测）领域相关数据结构和相关处理函数，更为关键的是支持脚本维护时间状态机，从而可以跨连接会话和主机边界对观测到的行为进行追溯和关联。Zeek 脚本可以产生实时告警并按需执行任意外部程序，例如：对检测到的一个攻击触发一次主动响应。</p>
+<p>Zeek 相比较于 Snort 和 Suricata 具有以下独特特性：</p>
+<ul>
+<li>可扩展性。同时支持单机和集群配置的统一管理框架，这使得我们所做的系统不会局限于原型演示系统，可以随时在流量采集这个需求上实现快速扩展；</li>
+<li>全面行为日志记录用于离线分析和取证，特别是这些日志还可以实时输出为 ASCII 格式文本文件，我们可以很方便的把这些日志实时导入到一个实时日志分析引擎进行二次分析。结合主机和设备日志、情景数据和威胁情报，为关联分析提供了必要的来源输入数据；</li>
+<li>可编程性，使得我们可以按需实时对网络流量进行就近在线分析和关键信息抽取，可以随时根据系统架构中不同组件的实现方案进行灵活适配，满足系统总体架构设计需求。</li>
+</ul>
+<p>下图就是 Zeek 集群模式运行的系统架构拓扑图，通过使用流量负载均衡设备、增加 Zeek 引擎数量，可以实现系统处理能力的水平平滑扩展升级。</p>
+<p><img src="/images/Bro_Arch_Cluster-1774526472749-29.png" alt="图 9-22 Bro 集群架构拓扑图"></p>
+<p>Zeek 对网络流量实时分析并将分析结果分类存储到本地文件系统的不同文件，根据<a target="_blank" rel="noopener" href="https://www.zeek.org/sphinx/script-reference/log-files.html">官方文档说明</a>，具体来说分成几个大类，每个大类中又细分了多种不同的日志类别：</p>
+<table>
+<thead>
+<tr>
+<th>日志类别</th>
+<th>文件名</th>
+<th>文件内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议解析</td>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx-git/scripts/base/protocols/conn/main.bro.html">conn.log</a></td>
+<td>TCP&#x2F;UDP&#x2F;ICMP 连接历史记录</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx-git/scripts/base/protocols/dns/main.bro.html">dns.log</a></td>
+<td>DNS 解析历史记录</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx-git/scripts/base/protocols/dhcp/main.bro.html">dhcp.log</a></td>
+<td>DHCP 活动记录，可以用于发现新入网主机</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/protocols/http/main.bro.html#type-HTTP::Info">http.log</a></td>
+<td>HTTP 请求响应活动记录</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/protocols/ssh/main.bro.html#type-SSH::Info">ssh.log</a></td>
+<td>SSH 活动记录</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/frameworks/tunnels/main.bro.html#type-Tunnel::Info">tunnel.log</a></td>
+<td>隧道协议活动记录</td>
+<td></td>
+</tr>
+<tr>
+<td>文件负载提取、还原和分析</td>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/frameworks/files/main.bro.html#type-Files::Info">files.log</a></td>
+<td>文件分析记录（散列值计算结果、文件还原存储路径、文件大小、恶意代码开放API检索结果记录等）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/files/x509/main.bro.html#type-X509::Info">x509.log</a></td>
+<td>识别提取成功的 X.509 证书信息</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/files/pe/main.bro.html#type-PE::Info">pe.log</a></td>
+<td>PE 文件识别记录</td>
+<td></td>
+</tr>
+<tr>
+<td>检测报警</td>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/frameworks/intel/main.bro.html#type-Intel::Info">intel.log</a></td>
+<td>威胁情报匹配记录</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/frameworks/notice/main.bro.html#type-Notice::Info">notice.log</a></td>
+<td>Bro通知事件记录，目前已实现的包含 APT 检测相关重要告警信息类型包括：SSL 证书未通过合法性校验、请求疑似恶意 &#x2F;C2 域名以及 ARP 欺骗类消息告警</td>
+<td></td>
+</tr>
+<tr>
+<td>情景数据（网络概况）</td>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/policy/protocols/ssl/known-certs.bro.html#type-Known::CertsInfo">known_certs.log</a></td>
+<td>已识别 SSL 证书记录，用于避免在 x509.log 中重复记录条目</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/frameworks/software/main.bro.html#type-Software::Info">software.log</a></td>
+<td>已识别通信软件详细版本信息记录</td>
+<td></td>
+</tr>
+<tr>
+<td>杂项</td>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/frameworks/dpd/main.bro.html#type-DPD::Info">dpd.log</a></td>
+<td>深度包检测失败消息</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/frameworks/notice/weird.bro.html#type-Weird::Info">weird.log</a></td>
+<td>异常网络协议行为记录</td>
+<td></td>
+</tr>
+<tr>
+<td>Bro 状态诊断</td>
+<td><a target="_blank" rel="noopener" href="https://www.bro.org/sphinx/scripts/base/protocols/ssl/main.bro.html#type-SSL::Info">ssl.log</a></td>
+<td>SSL&#x2F;TLS 握手信息记录</td>
+</tr>
+</tbody></table>
+<h2 id="NIDS-工具对比分析表"><a href="#NIDS-工具对比分析表" class="headerlink" title="NIDS 工具对比分析表"></a>NIDS 工具对比分析表</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>Snort</th>
+<th>Suricata</th>
+<th>Bro（Zeek）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>支持平台</td>
+<td>Windows、MacOS、Unix</td>
+<td>Windows、MacOS、Unix</td>
+<td>类Unix系统、MacOS</td>
+</tr>
+<tr>
+<td>许可证</td>
+<td>GNU GPL V2</td>
+<td>GNU GPL V2</td>
+<td>BSD</td>
+</tr>
+<tr>
+<td>IPS 功能</td>
+<td>支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>PGP 签名</td>
+<td>支持</td>
+<td>不适用</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>高速网络支持</td>
+<td>中等</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>图形界面（GUI）</td>
+<td>支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>离线分析</td>
+<td>支持多文件</td>
+<td>支持单文件</td>
+<td>支持单文件</td>
+</tr>
+<tr>
+<td>线程模型</td>
+<td>单线程</td>
+<td>多线程</td>
+<td>单线程</td>
+</tr>
+<tr>
+<td>IPv6 支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>安装与部署</td>
+<td>简单</td>
+<td>简单</td>
+<td>较困难</td>
+</tr>
+</tbody></table>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://c4pr1c3.github.io/cuc-ns/chap0x09/main.html#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B">https://c4pr1c3.github.io/cuc-ns/chap0x09/main.html#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B</a></p>
+<p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/7456901">https://ieeexplore.ieee.org/abstract/document/7456901</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">二、网络入侵检测基础理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">2.1 网络入侵检测的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">1.2.</span> <span class="toc-text">2.2 网络入侵检测系统的基本组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%9A%84%E4%B8%BB%E8%A6%81%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">2.3 网络入侵检测的主要分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E6%8C%89%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.3.1 按数据来源分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-%E6%8C%89%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.3.2 按检测技术分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-%E6%8C%89%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2%E7%BB%93%E6%9E%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.3.</span> <span class="toc-text">2.3.3 按系统部署结构分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">2.4 网络入侵检测的基本流程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BC%A0%E7%BB%9F%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">三、传统网络入侵检测技术的发展历程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-number">2.1.</span> <span class="toc-text">3.1 网络入侵检测技术的起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E4%BC%A0%E7%BB%9F%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%9A%84%E5%8F%91%E5%B1%95%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.</span> <span class="toc-text">3.2 传统网络入侵检测技术的发展阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E5%9F%BA%E4%BA%8E%E5%AE%A1%E8%AE%A1%E8%BF%BD%E8%B8%AA%E7%9A%84%E8%90%8C%E8%8A%BD%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.1.</span> <span class="toc-text">3.2.1 基于审计追踪的萌芽阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E5%9F%BA%E4%BA%8E%E8%A7%84%E5%88%99%E4%B8%8E%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%9A%84%E5%8F%91%E5%B1%95%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.2.</span> <span class="toc-text">3.2.2 基于规则与特征匹配的发展阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-%E5%9F%BA%E4%BA%8E%E7%BB%9F%E8%AE%A1%E4%B8%8E%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90%E7%9A%84%E6%89%A9%E5%B1%95%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.3.</span> <span class="toc-text">3.2.3 基于统计与异常分析的扩展阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4-%E5%B7%A5%E7%A8%8B%E5%8C%96%E3%80%81%E7%B3%BB%E7%BB%9F%E5%8C%96%E4%B8%8E%E4%BA%A7%E5%93%81%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.4.</span> <span class="toc-text">3.2.4 工程化、系统化与产品化阶段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BC%A0%E7%BB%9F%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">四、传统网络入侵检测的主要方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%9F%BA%E4%BA%8E%E7%89%B9%E5%BE%81%E7%9A%84%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%88Signature-based-IDS%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">4.1 基于特征的入侵检测方法（Signature-based IDS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%9F%BA%E4%BA%8E%E5%BC%82%E5%B8%B8%E7%9A%84%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%88Anomaly-based-IDS%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">4.2 基于异常的入侵检测方法（Anomaly-based IDS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E5%9F%BA%E4%BA%8E%E7%8A%B6%E6%80%81%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E7%9A%84%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%88Stateful-Protocol-Analysis%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">4.3 基于状态与协议分析的入侵检测方法（Stateful Protocol Analysis）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BC%A0%E7%BB%9F%E7%BD%91%E7%BB%9C%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">五、传统网络入侵检测系统的典型应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E4%BC%81%E4%B8%9A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4"><span class="toc-number">4.1.</span> <span class="toc-text">5.1 企业网络安全防护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%94%BF%E5%BA%9C%E4%B8%8E%E5%85%B3%E9%94%AE%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E4%BF%9D%E6%8A%A4"><span class="toc-number">4.2.</span> <span class="toc-text">5.2 政府与关键基础设施保护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E4%B8%8E%E4%BA%91%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83"><span class="toc-number">4.3.</span> <span class="toc-text">5.3 数据中心与云计算环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E4%B8%BB%E6%9C%BA%E7%BA%A7%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%EF%BC%88HIDS%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">5.4 主机级入侵检测（HIDS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E5%BA%94%E7%94%A8%E5%B1%82%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B%EF%BC%88Web-IDS%EF%BC%89"><span class="toc-number">4.5.</span> <span class="toc-text">5.5 应用层安全检测（Web IDS）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F"><span class="toc-number">5.</span> <span class="toc-text">实战入侵检测系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F"><span class="toc-number">5.1.</span> <span class="toc-text">典型部署方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Snort"><span class="toc-number">5.2.</span> <span class="toc-text">Snort</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sonrt%E6%A6%82%E8%BF%B0"><span class="toc-number">5.2.1.</span> <span class="toc-text">Sonrt概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Snort%E8%A7%84%E5%88%99"><span class="toc-number">5.2.2.</span> <span class="toc-text">Snort规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Snort%E6%9E%B6%E6%9E%84"><span class="toc-number">5.2.3.</span> <span class="toc-text">Snort架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Suricata"><span class="toc-number">5.3.</span> <span class="toc-text">Suricata</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bro-Zeek"><span class="toc-number">5.4.</span> <span class="toc-text">Bro &#x2F; Zeek</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIDS-%E5%B7%A5%E5%85%B7%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90%E8%A1%A8"><span class="toc-number">5.5.</span> <span class="toc-text">NIDS 工具对比分析表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&text=Traditional NIDS"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&is_video=false&description=Traditional NIDS"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Traditional NIDS&body=Check out this article: https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&title=Traditional NIDS"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&name=Traditional NIDS&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Traditional%20NIDS/&t=Traditional NIDS"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    w3nq14
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

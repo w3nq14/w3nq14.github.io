@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="security-studies-Impacket 源码研究：一个以协议实现为核心的 Windows 安全研究框架摘要在很多安全从业者的印象里，Impacket 往往等同于若干经典脚本；但从官方仓库与源码组织方式来看，它首先是一个面向网络协议的 Python 类库，其重点是提供对协议报文的低层编程访问，并对部分协议直接给出实现。官方 README 列出的能力范围覆盖 SMB1&#x2F;2&amp;#x2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Security-Studies-Impacket">
+<meta property="og:url" content="https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/index.html">
+<meta property="og:site_name" content="w3nq14">
+<meta property="og:description" content="security-studies-Impacket 源码研究：一个以协议实现为核心的 Windows 安全研究框架摘要在很多安全从业者的印象里，Impacket 往往等同于若干经典脚本；但从官方仓库与源码组织方式来看，它首先是一个面向网络协议的 Python 类库，其重点是提供对协议报文的低层编程访问，并对部分协议直接给出实现。官方 README 列出的能力范围覆盖 SMB1&#x2F;2&amp;#x2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w3nq14.github.io/images/624439edeeb658fc911b39f5db8c3866_MD5.jpg">
+<meta property="og:image" content="https://w3nq14.github.io/images/f6dab4e3b9e1f34c19b5e1209c1e65cd_MD5.jpg">
+<meta property="og:image" content="https://w3nq14.github.io/images/f241bdd4c6514e70c7c2b620c6d4e074_MD5.jpg">
+<meta property="og:image" content="https://w3nq14.github.io/images/e0c7496fa377487830a918e7a0c34e0c_MD5.jpg">
+<meta property="og:image" content="https://w3nq14.github.io/images/e510a6e8e582678b397e6622a64be27f_MD5.jpg">
+<meta property="article:published_time" content="2024-09-29T04:39:00.000Z">
+<meta property="article:modified_time" content="2026-03-31T09:12:19.812Z">
+<meta property="article:author" content="w3nq14">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w3nq14.github.io/images/624439edeeb658fc911b39f5db8c3866_MD5.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Security-Studies-Impacket</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/10/14/Security-Studies/NIDS%20Based%20on%20AI/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/09/29/Security-Studies/Traditional%20NIDS/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&text=Security-Studies-Impacket"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&is_video=false&description=Security-Studies-Impacket"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Security-Studies-Impacket&body=Check out this article: https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&name=Security-Studies-Impacket&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&t=Security-Studies-Impacket"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#security-studies-Impacket-%E6%BA%90%E7%A0%81%E7%A0%94%E7%A9%B6%EF%BC%9A%E4%B8%80%E4%B8%AA%E4%BB%A5%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0%E4%B8%BA%E6%A0%B8%E5%BF%83%E7%9A%84-Windows-%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6%E6%A1%86%E6%9E%B6"><span class="toc-number">1.</span> <span class="toc-text">security-studies-Impacket 源码研究：一个以协议实现为核心的 Windows 安全研究框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88-Impacket-%E5%80%BC%E5%BE%97%E5%81%9A%E6%BA%90%E7%A0%81%E7%BA%A7%E7%A0%94%E7%A9%B6"><span class="toc-number">1.2.</span> <span class="toc-text">一、为什么 Impacket 值得做源码级研究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%8E%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E7%90%86%E8%A7%A3%E9%A1%B9%E7%9B%AE%EF%BC%9Aexamples-%E6%98%AF%E5%B1%95%E7%A4%BA%E5%B1%82%EF%BC%8Cimpacket-%E6%89%8D%E6%98%AF%E8%83%BD%E5%8A%9B%E5%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">二、从目录结构理解项目：examples&#x2F; 是展示层，impacket&#x2F; 才是能力层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81structure-py%EF%BC%9AImpacket-%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD"><span class="toc-number">1.4.</span> <span class="toc-text">三、structure.py：Impacket 真正的基础设施</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81SMBConnection%EF%BC%9A%E7%BB%9F%E4%B8%80-SMB1-2-3-%E7%9A%84%E9%AB%98%E5%B1%82%E5%8C%85%E8%A3%85%E5%B1%82"><span class="toc-number">1.5.</span> <span class="toc-text">四、SMBConnection：统一 SMB1&#x2F;2&#x2F;3 的高层包装层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81ntlm-py%EF%BC%9A%E8%AE%A4%E8%AF%81%E8%BF%87%E7%A8%8B%E5%B9%B6%E4%B8%8D%E6%98%AF%E9%BB%91%E7%9B%92%EF%BC%8C%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E4%B8%8E%E8%AE%A1%E7%AE%97%E9%80%BB%E8%BE%91%E7%9A%84%E7%BB%84%E5%90%88"><span class="toc-number">1.6.</span> <span class="toc-text">五、ntlm.py：认证过程并不是黑盒，而是对象与计算逻辑的组合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81DCOM-WMI-%E4%B8%8E-RPC%EF%BC%9AImpacket-%E4%B8%8D%E6%98%AF%E2%80%9C%E5%8F%AA%E4%BC%9A-SMB%E2%80%9D"><span class="toc-number">1.7.</span> <span class="toc-text">六、DCOM&#x2F;WMI 与 RPC：Impacket 不是“只会 SMB”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81psexec-py%EF%BC%9A%E5%85%B8%E5%9E%8B%E7%9A%84%E5%8D%8F%E8%AE%AE%E7%BC%96%E6%8E%92%E5%99%A8%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%8D%95%E7%82%B9%E6%8A%80%E5%B7%A7%E8%84%9A%E6%9C%AC"><span class="toc-number">1.8.</span> <span class="toc-text">七、psexec.py：典型的协议编排器，而不是单点技巧脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81wmiexec-py%EF%BC%9A%E5%AF%B9%E8%B1%A1%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%BF%9C%E7%A8%8B%E8%B7%AF%E5%BE%84"><span class="toc-number">1.9.</span> <span class="toc-text">八、wmiexec.py：对象驱动的另一种远程路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81regsecrets-py-%E4%B8%8E-ntlmrelayx-py%EF%BC%9AImpacket-%E5%B9%B3%E5%8F%B0%E5%8C%96%E7%89%B9%E5%BE%81%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%A0%B7%E6%9C%AC"><span class="toc-number">1.10.</span> <span class="toc-text">九、regsecrets.py 与 ntlmrelayx.py：Impacket 平台化特征的两个样本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81Impacket-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%BB%E7%BA%BF%EF%BC%9A%E7%BB%93%E6%9E%84%E4%BD%93%E5%85%88%E8%A1%8C%E3%80%81%E9%AB%98%E5%B1%82%E7%BB%9F%E4%B8%80%E3%80%81%E8%84%9A%E6%9C%AC%E7%BC%96%E6%8E%92"><span class="toc-number">1.11.</span> <span class="toc-text">十、Impacket 的设计主线：结构体先行、高层统一、脚本编排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.12.</span> <span class="toc-text">结语</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Security-Studies-Impacket
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">w3nq14</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-09-29T04:39:00.000Z" class="dt-published" itemprop="datePublished">2024-09-29</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Security-Studies/">Security-Studies</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="security-studies-Impacket-源码研究：一个以协议实现为核心的-Windows-安全研究框架"><a href="#security-studies-Impacket-源码研究：一个以协议实现为核心的-Windows-安全研究框架" class="headerlink" title="security-studies-Impacket 源码研究：一个以协议实现为核心的 Windows 安全研究框架"></a>security-studies-Impacket 源码研究：一个以协议实现为核心的 Windows 安全研究框架</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>在很多安全从业者的印象里，Impacket 往往等同于若干经典脚本；但从官方仓库与源码组织方式来看，它首先是一个面向网络协议的 Python 类库，其重点是提供对协议报文的低层编程访问，并对部分协议直接给出实现。官方 README 列出的能力范围覆盖 SMB1&#x2F;2&#x2F;3、MSRPC、NTLM、Kerberos、WMI、DCOM 等多个 Windows 核心协议面，而当前 GitHub 仓库显示最新正式版本为 <strong>0.13.0（2025-10-22）</strong>。这决定了 Impacket 的真正价值并不只是“脚本可用”，而是“协议、认证与远程接口如何被工程化组织”。</p>
+<p><img src="/images/624439edeeb658fc911b39f5db8c3866_MD5.jpg" alt="624439edeeb658fc911b39f5db8c3866_MD5.jpg"></p>
+<h2 id="一、为什么-Impacket-值得做源码级研究"><a href="#一、为什么-Impacket-值得做源码级研究" class="headerlink" title="一、为什么 Impacket 值得做源码级研究"></a>一、为什么 Impacket 值得做源码级研究</h2><p>Impacket 官方将自己定义为“用于网络协议的 Python 类集合”，并强调其目标是提供对报文的<strong>低层程序化访问</strong>；对于 SMB1-3 和 MSRPC 等协议，项目还直接提供协议实现本身。README 同时说明，库中附带的一系列工具只是“展示这些类可以做什么”的示例。这一点很关键：Impacket 的核心并不是 <code>examples/</code> 目录，而是 <code>impacket/</code> 目录中的协议对象、认证逻辑与传输抽象。</p>
+<p>也正因为如此，研究 Impacket 的源码，本质上是在研究 Windows 网络安全生态中的三个基础问题：第一，复杂二进制协议结构如何对象化；第二，认证层如何在 SMB、RPC、WMI、Kerberos 等多条协议路径上复用；第三，上层“动作脚本”如何把这些底层能力编排为完整流程。与其说它是工具仓库，不如说它更接近一个研究型协议框架。</p>
+<h2 id="二、从目录结构理解项目：examples-是展示层，impacket-才是能力层"><a href="#二、从目录结构理解项目：examples-是展示层，impacket-才是能力层" class="headerlink" title="二、从目录结构理解项目：examples/ 是展示层，impacket/ 才是能力层"></a>二、从目录结构理解项目：<code>examples/</code> 是展示层，<code>impacket/</code> 才是能力层</h2><p>从官方 README 和仓库结构可以看出，Impacket 至少包含三层：其一是 <code>impacket/</code> 目录中的协议实现与基础设施；其二是 <code>examples/</code> 目录中的示例脚本；其三是配套测试与工程文件。README 明确列出它支持 IPv4&#x2F;IPv6、SMB1&#x2F;2&#x2F;3、高层 MSRPC，以及 Plain、NTLM、Kerberos 等多种认证方式，并支持基于口令、哈希、票据或密钥的认证输入。也就是说，项目本身首先解决的是“协议与认证的实现问题”，而不是“把某个脚本跑起来”。</p>
+<p>从源码阅读的角度，一个更合理的理解方式是：</p>
+<ul>
+<li><code>structure.py</code>：通用二进制结构体抽象</li>
+<li><code>smb.py</code> &#x2F; <code>smb3*.py</code> &#x2F; <code>smbconnection.py</code>：SMB 协议与高层连接包装</li>
+<li><code>ntlm.py</code>：NTLM 认证消息与响应计算</li>
+<li><code>krb5/</code>：Kerberos 认证与缓存对象</li>
+<li><code>dcerpc/v5/</code>：MSRPC、DCOM、WMI 等远程接口</li>
+<li><code>examples/</code>：将上述能力编排成完整工作流的示例入口</li>
+</ul>
+<p><img src="/images/f6dab4e3b9e1f34c19b5e1209c1e65cd_MD5.jpg" alt="f6dab4e3b9e1f34c19b5e1209c1e65cd_MD5.jpg"></p>
+<h2 id="三、structure-py：Impacket-真正的基础设施"><a href="#三、structure-py：Impacket-真正的基础设施" class="headerlink" title="三、structure.py：Impacket 真正的基础设施"></a>三、<code>structure.py</code>：Impacket 真正的基础设施</h2><p>如果只选一个文件作为理解 Impacket 的起点，我会选择 <code>impacket/structure.py</code>。源码中 <code>Structure</code> 类的注释写得非常清楚：子类可以定义 <code>commonHdr</code> 和 <code>structure</code>，其中字段以有序元组的形式描述，之所以不用字典，是因为“顺序很重要”。这实际上说明 <code>Structure</code> 的定位不是普通工具类，而是一种轻量级的协议结构描述机制。</p>
+<p>这层抽象的意义非常大。传统协议脚本通常充斥着手工偏移、字节切片和零散的 <code>pack/unpack</code> 调用，而 Impacket 选择把协议对象先声明出来，再由公共逻辑负责序列化与反序列化。这样一来，NTLM 消息、RPC 数据结构、SMB 控制块、示例脚本中的 RemCom 消息都可以用统一方式表达。换言之，Impacket 之所以能覆盖如此多的 Windows 协议，不仅因为它“支持的协议多”，更因为它先解决了“二进制对象怎么工程化表达”的问题。</p>
+<h2 id="四、SMBConnection：统一-SMB1-2-3-的高层包装层"><a href="#四、SMBConnection：统一-SMB1-2-3-的高层包装层" class="headerlink" title="四、SMBConnection：统一 SMB1&#x2F;2&#x2F;3 的高层包装层"></a>四、<code>SMBConnection</code>：统一 SMB1&#x2F;2&#x2F;3 的高层包装层</h2><p>在 SMB 这条主线上，最值得关注的不只是 <code>smb.py</code> 本身，而是 <code>smbconnection.py</code>。源码注释直接说明：<code>SMBConnection</code> 是对 SMB1&#x2F;2&#x2F;3 的包装类，目的是让这些方言对客户端“透明”；同时它又保留了低层入口，调用者仍可通过 <code>getSMBServer()</code> 继续操作版本相关的方法。 </p>
+<p>这种设计体现了 Impacket 的成熟取舍。它没有让上层脚本反复处理 SMB 方言差异，也没有把底层完全封死。对工具作者来说，这意味着更统一的 API；对源码研究者来说，这意味着高层统一和低层可达同时成立。值得注意的是，0.13.0 的发布说明中，SMB 相关更新仍然占据很大比重，包括客户端&#x2F;服务端重构、<code>setInfo</code> 支持、UTF-8 感知的 SMB 结构以及多个协商边界修复，这说明 SMB 子系统一直是该项目持续演进的核心区域。</p>
+<p><img src="/images/f241bdd4c6514e70c7c2b620c6d4e074_MD5.jpg" alt="f241bdd4c6514e70c7c2b620c6d4e074_MD5.jpg"></p>
+<h2 id="五、ntlm-py：认证过程并不是黑盒，而是对象与计算逻辑的组合"><a href="#五、ntlm-py：认证过程并不是黑盒，而是对象与计算逻辑的组合" class="headerlink" title="五、ntlm.py：认证过程并不是黑盒，而是对象与计算逻辑的组合"></a>五、<code>ntlm.py</code>：认证过程并不是黑盒，而是对象与计算逻辑的组合</h2><p><code>ntlm.py</code> 很能代表 Impacket 的整体设计风格。源码中它直接引入 <code>Structure</code>，同时明确写出一条很关键的注释：<strong>NTLMv2 不是由客户端或服务端协商出来的，而是本地设置决定是否使用</strong>。相关实现中，<code>computeResponse()</code> 会根据配置进入 NTLMv1 或 NTLMv2 分支。(<a target="_blank" rel="noopener" href="https://github.com/fortra/impacket/blob/master/impacket/ntlm.py">GitHub</a>)</p>
+<p>从代码研究视角看，这意味着 Impacket 并不是把 NTLM 当成一个外部认证黑盒，而是把消息对象、标志位和响应计算路径都暴露在源码层。这样做带来的最大收益是“认证可编程”：同一套 NTLM 逻辑可以被 SMB、RPC 等多个子系统复用，研究者也可以更准确地理解认证字段和上下文是如何在不同协议链路中传递的。对于协议分析、检测工程和流量建模而言，这种透明度远比“知道命令怎么敲”更有价值。(<a target="_blank" rel="noopener" href="https://github.com/fortra/impacket/blob/master/impacket/ntlm.py">GitHub</a>)</p>
+<p><img src="/images/e0c7496fa377487830a918e7a0c34e0c_MD5.jpg" alt="e0c7496fa377487830a918e7a0c34e0c_MD5.jpg"></p>
+<h2 id="六、DCOM-WMI-与-RPC：Impacket-不是“只会-SMB”"><a href="#六、DCOM-WMI-与-RPC：Impacket-不是“只会-SMB”" class="headerlink" title="六、DCOM&#x2F;WMI 与 RPC：Impacket 不是“只会 SMB”"></a>六、DCOM&#x2F;WMI 与 RPC：Impacket 不是“只会 SMB”</h2><p>很多人会把 Impacket 简化理解为 SMB 相关工具包，但 README 与源码都表明这种理解并不准确。项目除了高层 SMB 和 MSRPC 外，还覆盖 WMI、DCOM 等 Windows 远程管理核心接口；<code>impacket/dcerpc/v5/dcom/wmi.py</code> 的源码注释甚至直接指出，这里实现的是 <strong>Windows Management Instrumentation Remote Protocol 的部分实现</strong>，并提醒读者最好结合协议标准和测试用例阅读。</p>
+<p>这一点在设计层面很重要：Impacket 并不是把“远程动作”硬塞进某一条固定链路，而是尽量按 Windows 原生的接口边界去组织代码。SMB、RPC、DCOM、WMI 在源码里不是替代关系，而是职责不同、可组合的模块关系。这种模块化建模能力，是它能从“协议库”发展为“安全研究框架”的关键原因之一。</p>
+<hr>
+<h2 id="七、psexec-py：典型的协议编排器，而不是单点技巧脚本"><a href="#七、psexec-py：典型的协议编排器，而不是单点技巧脚本" class="headerlink" title="七、psexec.py：典型的协议编排器，而不是单点技巧脚本"></a>七、<code>psexec.py</code>：典型的协议编排器，而不是单点技巧脚本</h2><p><code>examples/psexec.py</code> 的说明写得很明确：它是一个“PSEXEC like functionality example”，并且源码中可以直接看到 <code>RemComMessage</code>、<code>RemComResponse</code> 这样的结构体定义。这一点非常有代表性：<code>psexec.py</code> 的核心价值，并不在于“它能做某件事”，而在于它展示了 Impacket 如何把结构体、SMB 连接、RPC 传输和远程服务控制编排成一个完整流程。</p>
+<p>因此，研究 <code>psexec.py</code> 的正确方式，不是把它当成某种单一技巧的载体，而是把它看作 Impacket 上层架构样板。它说明了这样一种设计思路：底层协议对象和传输层能力先被稳定实现出来，然后由上层脚本负责组织控制流、消息流和输出回传。Impacket 的很多经典示例，真正值得学习的其实是这种“编排方式”。</p>
+<hr>
+<h2 id="八、wmiexec-py：对象驱动的另一种远程路径"><a href="#八、wmiexec-py：对象驱动的另一种远程路径" class="headerlink" title="八、wmiexec.py：对象驱动的另一种远程路径"></a>八、<code>wmiexec.py</code>：对象驱动的另一种远程路径</h2><p>与 <code>psexec.py</code> 相比，<code>wmiexec.py</code> 的说明更直接地揭示了差异：它采用的是“类似 smbexec，但通过 WMI 执行命令”的方式。换句话说，它所展示的不是服务控制路径，而是 DCOM&#x2F;WMI 对象路径。源码层面，WMI 的基础实现位于 <code>dcerpc/v5/dcom/wmi.py</code>，而该文件又强调 DCOM 更接近“面向对象的 RPC”。</p>
+<p>这很能体现 Impacket 的工程特征：同样是“远程执行”这一高层动作，不同脚本可以依赖不同协议链路，但这些链路最终都建立在统一的认证与对象抽象上。<code>wmiexec.py</code> 之所以值得研究，不是因为它只是另一种替代脚本，而是因为它向读者展示了 Impacket 如何把对象接口纳入同一个框架下。</p>
+<p><img src="/images/e510a6e8e582678b397e6622a64be27f_MD5.jpg" alt="e510a6e8e582678b397e6622a64be27f_MD5.jpg"></p>
+<h2 id="九、regsecrets-py-与-ntlmrelayx-py：Impacket-平台化特征的两个样本"><a href="#九、regsecrets-py-与-ntlmrelayx-py：Impacket-平台化特征的两个样本" class="headerlink" title="九、regsecrets.py 与 ntlmrelayx.py：Impacket 平台化特征的两个样本"></a>九、<code>regsecrets.py</code> 与 <code>ntlmrelayx.py</code>：Impacket 平台化特征的两个样本</h2><p><code>regsecrets.py</code> 的文件说明指出，它会尝试多种方式从远端主机提取 secrets，并强调其目标是在<strong>不在远端执行任何代理程序</strong>的情况下完成相关工作。这个描述非常关键，因为它揭示了 Impacket 在上层脚本设计上的一个新趋势：脚本不再只是单一路径 demo，而是在统一目标下准备多种后端实现。</p>
+<p><code>ntlmrelayx.py</code> 则更进一步。源码开头直接将其定义为 <strong>Generic NTLM Relay Module</strong>，表明它不是某个具体协议的小脚本，而是一个更通用的中继模块。再结合 0.13.0 发布说明中关于 WinRMS relay、RPC relay、SCCM relay、SOCKS 插件与目标轮转的更新，可以看出 Impacket 已经在若干方向上呈现出平台化倾向：它不仅提供协议能力，也开始提供更高层的认证中继与工作流容器。</p>
+<h2 id="十、Impacket-的设计主线：结构体先行、高层统一、脚本编排"><a href="#十、Impacket-的设计主线：结构体先行、高层统一、脚本编排" class="headerlink" title="十、Impacket 的设计主线：结构体先行、高层统一、脚本编排"></a>十、Impacket 的设计主线：结构体先行、高层统一、脚本编排</h2><p>如果必须用一句话概括 Impacket 的代码哲学，那就是：<strong>先把协议对象和认证逻辑做稳定，再把动作脚本建立在这些稳定抽象之上</strong>。<code>Structure</code> 解决的是对象表示问题，<code>SMBConnection</code> 解决的是协议方言统一问题，<code>ntlm.py</code> 和相关认证模块解决的是认证过程复用问题，而 <code>psexec.py</code>、<code>wmiexec.py</code>、<code>regsecrets.py</code>、<code>ntlmrelayx.py</code> 则分别展示了不同层次的编排模式。</p>
+<p>这也是为什么 Impacket 对研究者和防守方同样重要。对研究者来说，它是 Windows 网络协议与认证流程工程化实现的高质量样本；对检测工程师来说，它则是分析真实远程访问与认证路径的一份“可执行参考模型”。与很多只强调结果的工具不同，Impacket 的优势在于它没有隐藏复杂性，而是把复杂性组织成了可以阅读、复用和扩展的代码体系。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>如果只把 Impacket 当成若干知名脚本的来源，就只能理解它的表层；真正进入 <code>structure.py</code>、<code>SMBConnection</code>、<code>ntlm.py</code>、DCOM&#x2F;WMI 与若干示例脚本之后，会发现它更准确的定位是一套<strong>以协议实现为核心的 Windows 安全研究框架</strong>。从官方 README，到源码注释，再到 0.13.0 的持续更新方向，这三者共同指向同一个结论：Impacket 的长期生命力来自它把协议、认证和工作流做成了可重组的工程体系。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#security-studies-Impacket-%E6%BA%90%E7%A0%81%E7%A0%94%E7%A9%B6%EF%BC%9A%E4%B8%80%E4%B8%AA%E4%BB%A5%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0%E4%B8%BA%E6%A0%B8%E5%BF%83%E7%9A%84-Windows-%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6%E6%A1%86%E6%9E%B6"><span class="toc-number">1.</span> <span class="toc-text">security-studies-Impacket 源码研究：一个以协议实现为核心的 Windows 安全研究框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88-Impacket-%E5%80%BC%E5%BE%97%E5%81%9A%E6%BA%90%E7%A0%81%E7%BA%A7%E7%A0%94%E7%A9%B6"><span class="toc-number">1.2.</span> <span class="toc-text">一、为什么 Impacket 值得做源码级研究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%8E%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E7%90%86%E8%A7%A3%E9%A1%B9%E7%9B%AE%EF%BC%9Aexamples-%E6%98%AF%E5%B1%95%E7%A4%BA%E5%B1%82%EF%BC%8Cimpacket-%E6%89%8D%E6%98%AF%E8%83%BD%E5%8A%9B%E5%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">二、从目录结构理解项目：examples&#x2F; 是展示层，impacket&#x2F; 才是能力层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81structure-py%EF%BC%9AImpacket-%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD"><span class="toc-number">1.4.</span> <span class="toc-text">三、structure.py：Impacket 真正的基础设施</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81SMBConnection%EF%BC%9A%E7%BB%9F%E4%B8%80-SMB1-2-3-%E7%9A%84%E9%AB%98%E5%B1%82%E5%8C%85%E8%A3%85%E5%B1%82"><span class="toc-number">1.5.</span> <span class="toc-text">四、SMBConnection：统一 SMB1&#x2F;2&#x2F;3 的高层包装层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81ntlm-py%EF%BC%9A%E8%AE%A4%E8%AF%81%E8%BF%87%E7%A8%8B%E5%B9%B6%E4%B8%8D%E6%98%AF%E9%BB%91%E7%9B%92%EF%BC%8C%E8%80%8C%E6%98%AF%E5%AF%B9%E8%B1%A1%E4%B8%8E%E8%AE%A1%E7%AE%97%E9%80%BB%E8%BE%91%E7%9A%84%E7%BB%84%E5%90%88"><span class="toc-number">1.6.</span> <span class="toc-text">五、ntlm.py：认证过程并不是黑盒，而是对象与计算逻辑的组合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81DCOM-WMI-%E4%B8%8E-RPC%EF%BC%9AImpacket-%E4%B8%8D%E6%98%AF%E2%80%9C%E5%8F%AA%E4%BC%9A-SMB%E2%80%9D"><span class="toc-number">1.7.</span> <span class="toc-text">六、DCOM&#x2F;WMI 与 RPC：Impacket 不是“只会 SMB”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81psexec-py%EF%BC%9A%E5%85%B8%E5%9E%8B%E7%9A%84%E5%8D%8F%E8%AE%AE%E7%BC%96%E6%8E%92%E5%99%A8%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%8D%95%E7%82%B9%E6%8A%80%E5%B7%A7%E8%84%9A%E6%9C%AC"><span class="toc-number">1.8.</span> <span class="toc-text">七、psexec.py：典型的协议编排器，而不是单点技巧脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81wmiexec-py%EF%BC%9A%E5%AF%B9%E8%B1%A1%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%BF%9C%E7%A8%8B%E8%B7%AF%E5%BE%84"><span class="toc-number">1.9.</span> <span class="toc-text">八、wmiexec.py：对象驱动的另一种远程路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81regsecrets-py-%E4%B8%8E-ntlmrelayx-py%EF%BC%9AImpacket-%E5%B9%B3%E5%8F%B0%E5%8C%96%E7%89%B9%E5%BE%81%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%A0%B7%E6%9C%AC"><span class="toc-number">1.10.</span> <span class="toc-text">九、regsecrets.py 与 ntlmrelayx.py：Impacket 平台化特征的两个样本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81Impacket-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%BB%E7%BA%BF%EF%BC%9A%E7%BB%93%E6%9E%84%E4%BD%93%E5%85%88%E8%A1%8C%E3%80%81%E9%AB%98%E5%B1%82%E7%BB%9F%E4%B8%80%E3%80%81%E8%84%9A%E6%9C%AC%E7%BC%96%E6%8E%92"><span class="toc-number">1.11.</span> <span class="toc-text">十、Impacket 的设计主线：结构体先行、高层统一、脚本编排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.12.</span> <span class="toc-text">结语</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&text=Security-Studies-Impacket"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&is_video=false&description=Security-Studies-Impacket"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Security-Studies-Impacket&body=Check out this article: https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&title=Security-Studies-Impacket"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&name=Security-Studies-Impacket&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2024/09/29/Security-Studies/Security-Studies-Impacket/&t=Security-Studies-Impacket"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    w3nq14
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
