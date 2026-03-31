@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="CTFShow-MISC入门篇CTFShow 平台：https:&#x2F;&#x2F;ctf.show&#x2F; 图片篇(基础操作)：misc1打开就是flag  misc2 发现是PNG的格式直接改后缀png 即可得到flag。  misc3下载下来里面是一个BPG 的格式文件 需要用能打开软件的工具：https:&#x2F;&#x2F;bellard.org&#x2F;bpg&#x2F;   misc4下载下来有6个txt文件 分别是6个文件 可以通过文件头">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFShow-Misc">
+<meta property="og:url" content="https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/index.html">
+<meta property="og:site_name" content="w3nq14">
+<meta property="og:description" content="CTFShow-MISC入门篇CTFShow 平台：https:&#x2F;&#x2F;ctf.show&#x2F; 图片篇(基础操作)：misc1打开就是flag  misc2 发现是PNG的格式直接改后缀png 即可得到flag。  misc3下载下来里面是一个BPG 的格式文件 需要用能打开软件的工具：https:&#x2F;&#x2F;bellard.org&#x2F;bpg&#x2F;   misc4下载下来有6个txt文件 分别是6个文件 可以通过文件头">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w3nq14.github.io/images/8eca41a4c4fb739cc17c987c6716d504.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/4a06ccb1a4243ab726a7198959aa219f.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/d657e09f19c1cca8dcd8a0ea8760a064.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/aeede7045b6116c9d9f9c6d8e980b60a.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/578f21aff9fa990529fd2f7bb0217eaf.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/8be4454ac9f99c915589525646825d72.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/de6ae9b195fe0f1dab56730e4e2245ea.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/ab8805fc84c6da4e3e01714db38423e9.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/5165307ebb3b576f61869180479f793b.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/d00662029c5eb98b11b6f4d38986aead.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/593e02a3fd6e1849a063af1c2a43ad72.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/ce016449b311d7adfe924c2ef91ebe53.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/cf99721534ef030f8885621a7ecce5fe.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/ac5156663bf2ddd9de2d1218fec06da2.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/d78d2e8c476a97c3c8f022ce4faaadbd.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/40f0e98df332009465d09b209fc659a4.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/6373ff82de1aecf9383f04246f861375.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/46c6ac2b6b789493308e684383dca7f8.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/0662b0478e3319efe72b4360d1c594da.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/eaa7f7d3c2e0f9596adfabb49bc8b8b1.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/43c9bc7b6766ecd388cb5b0bac4ae0d9.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/1b30000f4a23296f95ca076b1cb37ed5.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/882bf8fb2dcf2182bb69f6a484520d4f.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/b16ab44a3ea3c766122e71a2368535b8.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/42eac6d00a1f0521eb47c0b8125d1f5e.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/0cdf816f7649be32632493be9a534b2d.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/329706e4733501416c4371a33b73aed2.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/7f0e813499d5f8aed50a63e4c051205e.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/d45bf2c619aa9684807be30783ad048a.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/e8f6e27e004681d3bdfd7f03b5f2a1f2.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/e5485ef8ef6a784bc2f7945916b82e0b.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/f513ddc4d68712889f5258da443446e1.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/1ead50198c53eda0e6f0eee1faa6b99a.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/5b2be09a92e6369d5975ef7c03ccf662.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/c2ee3d8b504a5b5cbbd4144452175c8f.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/5cb60cf2d5a6845d47e60e7569caf988.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/83150fa69d7659b3283546a1408130f3.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/6b9464bda8c36f9db68b0792f43e0193.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/597b289371c52d076b53ddcda570d64e.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/3534cc7944924db41048e845a8dcc175.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/c7f8bc77c975e74d1eff77f55243946a.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/ce46d2dbb9b04f4f88b57fd5a396fd4b.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/449d533474610cad7bdc96e86c4bbe02.jpeg">
+<meta property="og:image" content="https://w3nq14.github.io/images/0beb2545b8c32840f7e565e5a1475dcb.gif">
+<meta property="og:image" content="https://w3nq14.github.io/images/1dee37ba9361da7626e808c22ff4e4de.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/a3391f559e815e1d93b8035af006150d.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/0f56009353f1cc01c0e6048c66a7471f.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/d9c9d786695b9bfa2f6211e938a1f987.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/100ee10a96aa704b10528bf85af934ce.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/8102a9c5c599cfbd6100175612d97e0d.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/5005307d912e1c3156d97e6154aac08d.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/520df5136f58d4c78a4d184bbf96b15b.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/12dd202b803df3b1fac5739b2040f9c7.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/f7fa80da67bcb28080d7a349f1a10bdf.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/ec4879a04469d0362ed1dbe707b819b9.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/94cfb4e30c9c2809d44b2b5e9c41b75e.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/e1f9e1d9f4a54b9767196cc61780f4bf.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/d979a0beb47adb9303ceb84d0ef832f2.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/d8de9861fa888fbfc115042f234078d1.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/357a99bf8cdc154175b0a0ae61cfab51.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/738cfbe32589d3ee2550eaf4a58e66e0.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/e1bef8f65f40a11f6fbce3ba66c90c12.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/7b6710d305e96c8cc23a8e0e0a13265b.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/dc98a7ae0a5b01eebd4b4deee37af850.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/5421602f0816881e3bf503da7021500a.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/5153e6f678e3d9601b07f8691b107d0d.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/4b10cc82ecdc23aafa31255eed48a12f.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/2372e077b031c913536135ae56e26c16.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/8e39bb740eaf72c53b5823531a1cf950.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/6bbcd3e710f90696b02fe944786589cf.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/9b5d374aa833cccf783617e6da6d8903.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/7d93f65216702ebc54cc362649b1c5ca.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/8cdc140cdac010705afa760b05896073.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/c3ad1ce87bd7489d52d0241408695177.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/fdf0c2ee27e872d67931479e3338473f.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/705e7e35a85fe3ee4e8a75bd42b34e1e.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/2c4b4d4d0af9cca88e042328f2bef3ed.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/2dd87bdf1624465bd521ca2eae27826f.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/76c4af29fc04b6bd8e064ad8b3f1b5af.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/f3d8b84bc87873e5be29108b51da68fa.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/7377cffff13719f3998352dc50efc012.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/d176a66a65c88f686d96516a1f202ce3.png">
+<meta property="og:image" content="https://w3nq14.github.io/images/e284ce578f1272edc7bf875966dee536.png">
+<meta property="article:published_time" content="2021-06-04T03:39:00.000Z">
+<meta property="article:modified_time" content="2026-03-31T07:43:46.361Z">
+<meta property="article:author" content="w3nq14">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w3nq14.github.io/images/8eca41a4c4fb739cc17c987c6716d504.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>CTFShow-Misc</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/WHOAMI-xiaoyu">项目</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2021/06/22/CTF/CTFShow-Crypto/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2021/05/21/CTF/CTFShow-Web-Part2/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&text=CTFShow-Misc"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&is_video=false&description=CTFShow-Misc"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CTFShow-Misc&body=Check out this article: https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&name=CTFShow-Misc&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&t=CTFShow-Misc"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#CTFShow-MISC%E5%85%A5%E9%97%A8%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">CTFShow-MISC入门篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C-%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">图片篇(基础操作)：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#misc1"><span class="toc-number">2.1.</span> <span class="toc-text">misc1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc2"><span class="toc-number">2.2.</span> <span class="toc-text">misc2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc3"><span class="toc-number">2.3.</span> <span class="toc-text">misc3</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc4"><span class="toc-number">2.4.</span> <span class="toc-text">misc4</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E4%BF%A1%E6%81%AF%E9%99%84%E5%8A%A0-%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">图片篇(信息附加)：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#misc5"><span class="toc-number">3.1.</span> <span class="toc-text">misc5</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc6"><span class="toc-number">3.2.</span> <span class="toc-text">misc6</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc7"><span class="toc-number">3.3.</span> <span class="toc-text">misc7</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc8"><span class="toc-number">3.4.</span> <span class="toc-text">misc8</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc9"><span class="toc-number">3.5.</span> <span class="toc-text">misc9</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc10"><span class="toc-number">3.6.</span> <span class="toc-text">misc10</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc11"><span class="toc-number">3.7.</span> <span class="toc-text">misc11</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc12"><span class="toc-number">3.8.</span> <span class="toc-text">misc12</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc13"><span class="toc-number">3.9.</span> <span class="toc-text">misc13</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc14"><span class="toc-number">3.10.</span> <span class="toc-text">misc14</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc15"><span class="toc-number">3.11.</span> <span class="toc-text">misc15</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc16"><span class="toc-number">3.12.</span> <span class="toc-text">misc16</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc17"><span class="toc-number">3.13.</span> <span class="toc-text">misc17</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc18"><span class="toc-number">3.14.</span> <span class="toc-text">misc18</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc19"><span class="toc-number">3.15.</span> <span class="toc-text">misc19</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc20"><span class="toc-number">3.16.</span> <span class="toc-text">misc20</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc21"><span class="toc-number">3.17.</span> <span class="toc-text">misc21</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc22"><span class="toc-number">3.18.</span> <span class="toc-text">misc22</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc23"><span class="toc-number">3.19.</span> <span class="toc-text">misc23</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc41"><span class="toc-number">3.20.</span> <span class="toc-text">misc41</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84-%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">图片篇(文件结构)：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#misc24"><span class="toc-number">4.1.</span> <span class="toc-text">misc24</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc25"><span class="toc-number">4.2.</span> <span class="toc-text">misc25</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc26"><span class="toc-number">4.3.</span> <span class="toc-text">misc26</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc27"><span class="toc-number">4.4.</span> <span class="toc-text">misc27</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc28"><span class="toc-number">4.5.</span> <span class="toc-text">misc28</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc29"><span class="toc-number">4.6.</span> <span class="toc-text">misc29</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc30"><span class="toc-number">4.7.</span> <span class="toc-text">misc30</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc31"><span class="toc-number">4.8.</span> <span class="toc-text">misc31</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc32"><span class="toc-number">4.9.</span> <span class="toc-text">misc32</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc33"><span class="toc-number">4.10.</span> <span class="toc-text">misc33</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc34"><span class="toc-number">4.11.</span> <span class="toc-text">misc34</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc35"><span class="toc-number">4.12.</span> <span class="toc-text">misc35</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc36"><span class="toc-number">4.13.</span> <span class="toc-text">misc36</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc37"><span class="toc-number">4.14.</span> <span class="toc-text">misc37</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc38"><span class="toc-number">4.15.</span> <span class="toc-text">misc38</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc39"><span class="toc-number">4.16.</span> <span class="toc-text">misc39</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc40"><span class="toc-number">4.17.</span> <span class="toc-text">misc40</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc42"><span class="toc-number">4.18.</span> <span class="toc-text">misc42</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc43"><span class="toc-number">4.19.</span> <span class="toc-text">misc43</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc44"><span class="toc-number">4.20.</span> <span class="toc-text">misc44</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc45"><span class="toc-number">4.21.</span> <span class="toc-text">misc45</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc46"><span class="toc-number">4.22.</span> <span class="toc-text">misc46</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc47"><span class="toc-number">4.23.</span> <span class="toc-text">misc47</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc48"><span class="toc-number">4.24.</span> <span class="toc-text">misc48</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc49"><span class="toc-number">4.25.</span> <span class="toc-text">misc49</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E9%A2%9C%E8%89%B2%E9%80%9A%E9%81%93-%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">图片篇(颜色通道)：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#misc50"><span class="toc-number">5.1.</span> <span class="toc-text">misc50</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc51"><span class="toc-number">5.2.</span> <span class="toc-text">misc51</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc52"><span class="toc-number">5.3.</span> <span class="toc-text">misc52</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc53"><span class="toc-number">5.4.</span> <span class="toc-text">misc53</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc54"><span class="toc-number">5.5.</span> <span class="toc-text">misc54</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc55"><span class="toc-number">5.6.</span> <span class="toc-text">misc55</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc56"><span class="toc-number">5.7.</span> <span class="toc-text">misc56</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        CTFShow-Misc
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">w3nq14</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-06-04T03:39:00.000Z" class="dt-published" itemprop="datePublished">2021-06-04</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/CTF/">CTF</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h4 id="CTFShow-MISC入门篇"><a href="#CTFShow-MISC入门篇" class="headerlink" title="CTFShow-MISC入门篇"></a>CTFShow-MISC入门篇</h4><p><strong>CTFShow 平台：<a target="_blank" rel="noopener" href="https://ctf.show/">https://ctf.show/</a></strong></p>
+<h3 id="图片篇-基础操作-："><a href="#图片篇-基础操作-：" class="headerlink" title="图片篇(基础操作)："></a>图片篇(基础操作)：</h3><h5 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h5><p><strong>打开就是flag</strong></p>
+<p><img src="/images/8eca41a4c4fb739cc17c987c6716d504.png" alt="在这里插入图片描述"></p>
+<h5 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h5><p><img src="/images/4a06ccb1a4243ab726a7198959aa219f.png" alt="在这里插入图片描述"></p>
+<p><strong>发现是<code>PNG</code>的格式直接改后缀<code>png</code> 即可得到<code>flag</code>。</strong></p>
+<p><img src="/images/d657e09f19c1cca8dcd8a0ea8760a064.png" alt="在这里插入图片描述"></p>
+<h5 id="misc3"><a href="#misc3" class="headerlink" title="misc3"></a>misc3</h5><p><strong>下载下来里面是一个<code>BPG</code> 的格式文件 需要用能打开软件的工具：<a target="_blank" rel="noopener" href="https://bellard.org/bpg/">https://bellard.org/bpg/</a></strong></p>
+<p><img src="/images/aeede7045b6116c9d9f9c6d8e980b60a.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/578f21aff9fa990529fd2f7bb0217eaf.png" alt="在这里插入图片描述"></p>
+<h5 id="misc4"><a href="#misc4" class="headerlink" title="misc4"></a>misc4</h5><p><strong>下载下来有<code>6</code>个<code>txt</code>文件 分别是<code>6</code>个文件 可以通过文件头 来判断文件的类型：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">JPEG (jpg) 文件头：FF D8 FF  文件尾：FF D9</span><br><span class="line"></span><br><span class="line">PNG (png)，文件头：89504E47</span><br><span class="line"></span><br><span class="line">Windows Bitmap (bmp)， 文件头：424D 文件尾：</span><br><span class="line"></span><br><span class="line">GIF (gif)，文件头：47494638</span><br><span class="line"></span><br><span class="line">XML (xml)，文件头：3C3F786D6C</span><br><span class="line"></span><br><span class="line">HTML (html)，文件头：68746D6C3E</span><br><span class="line"></span><br><span class="line">MS Word/Excel (xls.or.doc)，文件头：D0CF11E0</span><br><span class="line"></span><br><span class="line">MS Access (mdb)，文件头：5374616E64617264204A</span><br><span class="line"></span><br><span class="line">Adobe Acrobat (pdf)，文件头：255044462D312E</span><br><span class="line"></span><br><span class="line">Windows Password (pwl)，文件头：E3828596</span><br><span class="line"></span><br><span class="line">ZIP Archive (zip)，文件头：504B0304</span><br><span class="line"></span><br><span class="line">RAR Archive (rar)，文件头：52617221</span><br><span class="line"></span><br><span class="line">Wave (wav)，文件头：57415645</span><br><span class="line"></span><br><span class="line">AVI (avi)，文件头：41564920</span><br><span class="line"></span><br><span class="line">TIFF (tif)， 文件头：49492A00 文件尾：</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/8be4454ac9f99c915589525646825d72.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{4314e2b15ad9a960e7d9d8fc2ff902da}</code></p>
+</blockquote>
+<h3 id="图片篇-信息附加-："><a href="#图片篇-信息附加-：" class="headerlink" title="图片篇(信息附加)："></a>图片篇(信息附加)：</h3><h5 id="misc5"><a href="#misc5" class="headerlink" title="misc5"></a>misc5</h5><p><img src="/images/de6ae9b195fe0f1dab56730e4e2245ea.png" alt="在这里插入图片描述"></p>
+<p><strong><code>no flag</code> 被骗了 然后使用<code>010Editor</code> 在最下面发现了<code>flag</code></strong></p>
+<p><img src="/images/ab8805fc84c6da4e3e01714db38423e9.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{2a476b4011805f1a8e4b906c8f84083e}</code></p>
+</blockquote>
+<h5 id="misc6"><a href="#misc6" class="headerlink" title="misc6"></a>misc6</h5><p><strong>和上一题一样 搜索<code>ctf</code> 可以得到<code>flag</code>。</strong></p>
+<p><img src="/images/5165307ebb3b576f61869180479f793b.png" alt="在这里插入图片描述"></p>
+<h5 id="misc7"><a href="#misc7" class="headerlink" title="misc7"></a>misc7</h5><p><strong>直接使用 <code>notepad</code>打开搜索<code>flag</code></strong></p>
+<p><img src="/images/d00662029c5eb98b11b6f4d38986aead.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{c5e77c9c289275e3f307362e1ed86bb7}</code></p>
+</blockquote>
+<h5 id="misc8"><a href="#misc8" class="headerlink" title="misc8"></a>misc8</h5><p><strong>使用<code>foremost</code> 分离 发现里面有两张图片 其中一张就是<code>flag</code>。</strong></p>
+<p><img src="/images/593e02a3fd6e1849a063af1c2a43ad72.png" alt="在这里插入图片描述"></p>
+<h5 id="misc9"><a href="#misc9" class="headerlink" title="misc9"></a>misc9</h5><p><strong>直接使用 <code>HxD</code> 打开 看到<code>flag</code></strong></p>
+<p><img src="/images/ce016449b311d7adfe924c2ef91ebe53.png" alt="在这里插入图片描述"></p>
+<h5 id="misc10"><a href="#misc10" class="headerlink" title="misc10"></a>misc10</h5><p><strong>使用<code>binwalk -e</code> 第一 <code>10E5</code> 打开就是<code>flag</code>。</strong></p>
+<p><img src="/images/cf99721534ef030f8885621a7ecce5fe.png" alt="在这里插入图片描述"></p>
+<h5 id="misc11"><a href="#misc11" class="headerlink" title="misc11"></a>misc11</h5><p><strong>根据提示 在另一个图片 这里一个新的知识点 需要使用一个新工具：<a target="_blank" rel="noopener" href="http://entropymine.com/jason/tweakpng/">Tweakpng</a></strong></p>
+<p><strong>把第二个 <code>IDAT</code> 数据删除 从新打开图片 发现 有<code>flag</code> (就很神奇！)</strong></p>
+<p><img src="/images/ac5156663bf2ddd9de2d1218fec06da2.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/d78d2e8c476a97c3c8f022ce4faaadbd.png" alt="在这里插入图片描述"></p>
+<h5 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h5><p><strong>这里又学了一个新的工具：<a target="_blank" rel="noopener" href="https://github.com/rvong/png-debugger">PNG Debugger</a></strong></p>
+<p><strong>具体使用可以参考这篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Goodric/article/details/119732559">https://blog.csdn.net/Goodric/article/details/119732559</a></strong></p>
+<p><img src="/images/40f0e98df332009465d09b209fc659a4.png" alt="在这里插入图片描述"></p>
+<p><strong>发现跑出来的 数据块都是对的 和上一题一样 这里只是学一下这个工具 之前没用过 需要删除8个才能得到flag。</strong></p>
+<p><img src="/images/6373ff82de1aecf9383f04246f861375.png" alt="在这里插入图片描述"></p>
+<h5 id="misc13"><a href="#misc13" class="headerlink" title="misc13"></a>misc13</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a=&quot;631A74B96685738668AA6F4B77B07B216114655336A5655433346578612534DD38EF66AB35103195381F628237BA6545347C3254647E373A64E465F136FA66F5341E3107321D665438F1333239E9616C7D&quot;</span><br><span class="line">r = &#x27;&#x27;</span><br><span class="line">s=bytes.fromhex(a)</span><br><span class="line">for i in range(0,len(s),2):</span><br><span class="line">        r+=chr(s[i])</span><br><span class="line">print(r)</span><br><span class="line">#fromhex函数把一串16进制字符，每两位转换成16进制的对象</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/46c6ac2b6b789493308e684383dca7f8.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{ae6e3ea48f518b7e42d7de6f412f839a}</code></p>
+</blockquote>
+<h5 id="misc14"><a href="#misc14" class="headerlink" title="misc14"></a>misc14</h5><p><strong>先使用<code>binwalk -e</code> 分离出来 然后使用<code>dd</code> 得到<code>flag</code>。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=misc14.jpg of=1.jpeg skip=2103 bs=1</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0662b0478e3319efe72b4360d1c594da.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/eaa7f7d3c2e0f9596adfabb49bc8b8b1.png" alt="在这里插入图片描述"></p>
+<h5 id="misc15"><a href="#misc15" class="headerlink" title="misc15"></a>misc15</h5><p><strong>直接文本编辑器打开 搜索 <code>ctf</code> 即可 得到<code>flag</code></strong></p>
+<p><img src="/images/43c9bc7b6766ecd388cb5b0bac4ae0d9.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{fbe7bb657397e6e0a6adea3e40265425}</code></p>
+</blockquote>
+<h5 id="misc16"><a href="#misc16" class="headerlink" title="misc16"></a>misc16</h5><p><strong>还是 <code>binwalk -e</code> 分离 然后直接打开 第三个 <code>LZMA</code> 得到<code>flag</code>。</strong></p>
+<p><img src="/images/1b30000f4a23296f95ca076b1cb37ed5.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{a7e32f131c011290a62476ae77190b52}</code></p>
+</blockquote>
+<h5 id="misc17"><a href="#misc17" class="headerlink" title="misc17"></a>misc17</h5><p><strong>使用 <code>zsteg</code> 这个工具 使用命令：<code>zsteg -e extradata:0 misc17.png &gt; 1.txt</code> 提权出来即可得到<code>flag</code>。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zed-0xff/zsteg</span><br><span class="line"></span><br><span class="line">cd zsteg/</span><br><span class="line"></span><br><span class="line">gem install zsteg</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/882bf8fb2dcf2182bb69f6a484520d4f.png" alt="在这里插入图片描述"></p>
+<p><strong>在使用 <code>binwalk -e 1.txt</code> 分离一次 得到<code>flag</code>。</strong></p>
+<p><img src="/images/b16ab44a3ea3c766122e71a2368535b8.png" alt="在这里插入图片描述"></p>
+<h5 id="misc18"><a href="#misc18" class="headerlink" title="misc18"></a>misc18</h5><p><strong>提示：flag在标题、作者、照相机和镜头型号里 直接看图片属性即可得到<code>flag</code>。</strong></p>
+<p><img src="/images/42eac6d00a1f0521eb47c0b8125d1f5e.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/0cdf816f7649be32632493be9a534b2d.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{325d60c208f728ac17e5f02d4cf5a839}</code></p>
+</blockquote>
+<h5 id="misc19"><a href="#misc19" class="headerlink" title="misc19"></a>misc19</h5><p><strong>根据提示：flag在主机上的文档名里 直接使用网站查看：<a target="_blank" rel="noopener" href="https://exif.tuchong.com/view/12432993/">https://exif.tuchong.com/view/12432993/</a></strong></p>
+<p><img src="/images/329706e4733501416c4371a33b73aed2.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{dfdcf08038cd446a5eb50782f8d3605d}</code></p>
+</blockquote>
+<h5 id="misc20"><a href="#misc20" class="headerlink" title="misc20"></a>misc20</h5><p><strong>提示：flag在评论里。</strong></p>
+<p><img src="/images/7f0e813499d5f8aed50a63e4c051205e.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{c97964b1aecf06e1d79c21ddad593e42}</code></p>
+</blockquote>
+<h5 id="misc21"><a href="#misc21" class="headerlink" title="misc21"></a>misc21</h5><p><strong>提示：flag在序号里。</strong></p>
+<p><img src="/images/d45bf2c619aa9684807be30783ad048a.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/e8f6e27e004681d3bdfd7f03b5f2a1f2.png" alt="在这里插入图片描述"></p>
+<p><strong>因为我们知道 <code>flag</code>的规律 直接提交肯定不对 所以需要把 <code>xy</code> 四段转为 <code>16</code>进制 然后在加上<code>flag</code>格式。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3902939465237161861910824528172980145261</span>  #转<span class="number">16</span>进制 即可</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>ctfshow{e8a221498d5c073b4084eb51b1a1686d}</code></p>
+</blockquote>
+<h5 id="misc22"><a href="#misc22" class="headerlink" title="misc22"></a>misc22</h5><p><strong>这里要使用一个新工具：<a target="_blank" rel="noopener" href="https://www.magicexif.com/start">MagicEXIF</a> 直接打开即可看到<code>flag</code>。</strong></p>
+<blockquote>
+<p>magicexif元数据编辑器是一款非常专业的照片magicexif元数据编辑器，该软件可以通过分析照片的元数据以及编码特征来计算图像可信度，从而判断照片是否被修改，同时还能对相机的快门次数、镜头参数、光圈档位等进行查看和编辑。</p>
+</blockquote>
+<p><img src="/images/e5485ef8ef6a784bc2f7945916b82e0b.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{dbf7d3f84b0125e833dfd3c80820a129}</code></p>
+</blockquote>
+<h5 id="misc23"><a href="#misc23" class="headerlink" title="misc23"></a>misc23</h5><p><strong>提示：flag在时间里。</strong></p>
+<p><strong>使用工具 <code>exiftool</code> + 图片名称</strong></p>
+<p><img src="/images/f513ddc4d68712889f5258da443446e1.png" alt="在这里插入图片描述"></p>
+<p><strong>使用在线时间戳转换：<a target="_blank" rel="noopener" href="https://tool.lu/timestamp/">https://tool.lu/timestamp/</a></strong> 一共有四段</p>
+<p><img src="/images/1ead50198c53eda0e6f0eee1faa6b99a.png" alt="在这里插入图片描述"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">874865822 2699237688 2156662245 460377706  #全部转为16进制</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>ctfshow{3425649ea0e31938808c0de51b70ce6a}</code></p>
+</blockquote>
+<h5 id="misc41"><a href="#misc41" class="headerlink" title="misc41"></a>misc41</h5><p><strong>这题还是比较有意思的 根据提示：<code>H4ppy Apr1l F001&#39;s D4y！</code></strong></p>
+<p><strong>愚人节到了，一群笨蛋往南飞，一会儿排成S字，一会儿排成B字。</strong></p>
+<p><strong>使用<code>Editor</code> 打开 搜索 <code>F001</code> 可以看到 <code>ctf</code> 的样式 把他提取 出来即可。</strong></p>
+<p><img src="/images/5b2be09a92e6369d5975ef7c03ccf662.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{fcbd427caf4a52f1147ab44346cd1cdd}</code></p>
+</blockquote>
+<h3 id="图片篇-文件结构-："><a href="#图片篇-文件结构-：" class="headerlink" title="图片篇(文件结构)："></a>图片篇(文件结构)：</h3><h5 id="misc24"><a href="#misc24" class="headerlink" title="misc24"></a>misc24</h5><p><strong>提示：flag在题目上面</strong></p>
+<p><strong>根据提示应该是修改图片的高度 改为<code>EE</code></strong></p>
+<p><img src="/images/c2ee3d8b504a5b5cbbd4144452175c8f.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/5cb60cf2d5a6845d47e60e7569caf988.png" alt="在这里插入图片描述"></p>
+<h5 id="misc25"><a href="#misc25" class="headerlink" title="misc25"></a>misc25</h5><p><strong>提示：flag在图片下面</strong></p>
+<p><strong>和上一题一样 使用 <code>TweakPNG</code>查看图片发现图片的<code>CRC</code>值不对</strong></p>
+<p><img src="/images/83150fa69d7659b3283546a1408130f3.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/6b9464bda8c36f9db68b0792f43e0193.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/597b289371c52d076b53ddcda570d64e.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{494f611cc5842dd597f460874ce38f57}</code></p>
+</blockquote>
+<h5 id="misc26"><a href="#misc26" class="headerlink" title="misc26"></a>misc26</h5><p><strong>提示：flag还是在图片下面，但到底有多下面？</strong></p>
+<p><strong>还是和上一题一样判断高度 然后<code>00 96</code> 修改为<code>02 5E</code> 得到图片 但是<code>flag</code>不全。</strong></p>
+<p><img src="/images/3534cc7944924db41048e845a8dcc175.png" alt="在这里插入图片描述"></p>
+<p><strong>需要得到实际长度的<code>16</code>进制 使用脚本 最后得到实际高度为<code>606</code> 转为16进制是<code>0x25e</code></strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import binascii</span><br><span class="line">import struct</span><br><span class="line">crcbp = open(&quot;misc26.png&quot;, &quot;rb&quot;).read()    #打开图片</span><br><span class="line">for i in range(1024):</span><br><span class="line">    for j in range(1024):</span><br><span class="line">        data = crcbp[12:16] + struct.pack(&#x27;&gt;i&#x27;, i)+struct.pack(&#x27;&gt;i&#x27;, j)+crcbp[24:29]#从IHDR开始17个字节，其中宽和高用i和j代替，并以4个字节存放i和j。</span><br><span class="line">        crc32 = binascii.crc32(data) &amp; 0xffffffff</span><br><span class="line">        if(crc32 == 0xec9ccbc6):   #010Editor第二行倒数3字节，加第三行第一字节。按顺序写就行，不用改。</span><br><span class="line">            print(i, j)</span><br><span class="line">            print(&#x27;hex:&#x27;, hex(i), hex(j))</span><br><span class="line">#900 606</span><br><span class="line">#hex: 0x384 0x25e</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/c7f8bc77c975e74d1eff77f55243946a.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{94aef125e087a7ccf2e28e742efd704c}</code></p>
+</blockquote>
+<h5 id="misc27"><a href="#misc27" class="headerlink" title="misc27"></a>misc27</h5><p><strong>提示：flag在图片下面</strong></p>
+<p><img src="/images/ce46d2dbb9b04f4f88b57fd5a396fd4b.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/449d533474610cad7bdc96e86c4bbe02.jpeg" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{5cc4f19eb01705b99bf41492430a1a14}</code></p>
+</blockquote>
+<h5 id="misc28"><a href="#misc28" class="headerlink" title="misc28"></a>misc28</h5><p><strong>放进010软件进行查看 修改高度<code>9600</code> 为<code>FF00</code></strong> <strong>或者使用<code>Stegsolve</code>直接打开也可以得到<code>flag</code>。</strong></p>
+<p><img src="/images/0beb2545b8c32840f7e565e5a1475dcb.gif" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{59c8bc525426166b1c893fe12a387fd7}</code></p>
+</blockquote>
+<h5 id="misc29"><a href="#misc29" class="headerlink" title="misc29"></a>misc29</h5><p><strong>提示：flag在图片下面。</strong></p>
+<p><strong>这题还是<code>gif</code> 格式文件 和上一题一样 但是这有<code>10</code>帧数 需要把所有高度都改了<code>9600</code> 为<code>FF00</code> 然后使用<code>Stegsolve</code> 打开第<code>8</code>帧就是flag。</strong></p>
+<p><img src="/images/1dee37ba9361da7626e808c22ff4e4de.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{03ce5be6d60a4b3c7465ab9410801440}</code></p>
+</blockquote>
+<h5 id="misc30"><a href="#misc30" class="headerlink" title="misc30"></a>misc30</h5><p><strong>提示：正确的宽度是950。</strong></p>
+<p><strong>是一个<code>bmp</code>文件 <code>010</code> 打开修改宽度为<code>950</code> 即可得到<code>flag</code>。</strong></p>
+<p><img src="/images/a3391f559e815e1d93b8035af006150d.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/0f56009353f1cc01c0e6048c66a7471f.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{6db8536da312f6aeb42da2f45b5f213c}</code></p>
+</blockquote>
+<h5 id="misc31"><a href="#misc31" class="headerlink" title="misc31"></a>misc31</h5><p><strong>使用010打开复制<code>FF</code> 到<code>3A</code>结束 所有字节是<code>487253</code> 减去文件头<code>53</code>个字节 <code>RGB</code> 每个像素由<code>3</code>个字节表示</strong></p>
+<p><img src="/images/d9c9d786695b9bfa2f6211e938a1f987.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/100ee10a96aa704b10528bf85af934ce.png" alt="在这里插入图片描述"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = （487256-54）/ 3</span><br><span class="line">a  / = 150</span><br><span class="line">print（a）</span><br><span class="line">1082.6666666666667</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/8102a9c5c599cfbd6100175612d97e0d.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/5005307d912e1c3156d97e6154aac08d.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{fb09dcc9005fe3feeefb73646b55efd5}</code></p>
+</blockquote>
+<h5 id="misc32"><a href="#misc32" class="headerlink" title="misc32"></a>misc32</h5><p><strong>提示：高度是正确的，但正确的宽度是多少呢</strong></p>
+<p><strong>先爆破出正确的宽高 然后使用<code>010</code> 宽度修改为<code>1044</code> 打开即可得到<code>flag</code>。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import zlib</span><br><span class="line">import struct</span><br><span class="line"></span><br><span class="line"># 同时爆破宽度和高度</span><br><span class="line">filename = &quot;misc32.png&quot;</span><br><span class="line">with open(filename, &#x27;rb&#x27;) as f:</span><br><span class="line">    all_b = f.read()</span><br><span class="line">    data = bytearray(all_b[12:29])</span><br><span class="line">    n = 4095</span><br><span class="line">    for w in range(n):</span><br><span class="line">        width = bytearray(struct.pack(&#x27;&gt;i&#x27;, w))</span><br><span class="line">        for h in range(n):</span><br><span class="line">            height = bytearray(struct.pack(&#x27;&gt;i&#x27;, h))</span><br><span class="line">            for x in range(4):</span><br><span class="line">                data[x+4] = width[x]</span><br><span class="line">                data[x+8] = height[x]</span><br><span class="line">            crc32result = zlib.crc32(data)</span><br><span class="line">            #替换成图片的crc</span><br><span class="line">            if crc32result == 0xE14A4C0B:</span><br><span class="line">                print(&quot;宽为：&quot;, end = &#x27;&#x27;)</span><br><span class="line">                print(width, end = &#x27; &#x27;)</span><br><span class="line">                print(int.from_bytes(width, byteorder=&#x27;big&#x27;))</span><br><span class="line">                print(&quot;高为：&quot;, end = &#x27;&#x27;)</span><br><span class="line">                print(height, end = &#x27; &#x27;)</span><br><span class="line">                print(int.from_bytes(height, byteorder=&#x27;big&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/520df5136f58d4c78a4d184bbf96b15b.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/12dd202b803df3b1fac5739b2040f9c7.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/f7fa80da67bcb28080d7a349f1a10bdf.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{685082227bcf70d17d1b39a5c1195aa9}</code></p>
+</blockquote>
+<h5 id="misc33"><a href="#misc33" class="headerlink" title="misc33"></a>misc33</h5><p>ctfshow{03070a10ec3a3282ba1e352f4e07b0a9}</p>
+<h5 id="misc34"><a href="#misc34" class="headerlink" title="misc34"></a>misc34</h5><p>ctfshow{03e102077e3e5de9dd9c04aba16ef014}</p>
+<h5 id="misc35"><a href="#misc35" class="headerlink" title="misc35"></a>misc35</h5><p>ctfshow{ca35201ca9ed607e5a68f44ef573fbc3}</p>
+<h5 id="misc36"><a href="#misc36" class="headerlink" title="misc36"></a>misc36</h5><p>ctfshow{1ebf739f832906d60f57436b8179166f}</p>
+<h5 id="misc37"><a href="#misc37" class="headerlink" title="misc37"></a>misc37</h5><p><strong>提示：flag在图片里</strong></p>
+<p><strong>直接在线gif 分离：<a target="_blank" rel="noopener" href="https://tu.sioe.cn/gj/fenjie/">https://tu.sioe.cn/gj/fenjie/</a></strong></p>
+<p><strong>分别在 第<code>9、14、21、31、34</code>帧</strong></p>
+<p><img src="/images/ec4879a04469d0362ed1dbe707b819b9.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/94cfb4e30c9c2809d44b2b5e9c41b75e.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/e1f9e1d9f4a54b9767196cc61780f4bf.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/d979a0beb47adb9303ceb84d0ef832f2.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/d8de9861fa888fbfc115042f234078d1.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{2056782cd57b13261dcbbe3d6eecda17}</code></p>
+</blockquote>
+<h5 id="misc38"><a href="#misc38" class="headerlink" title="misc38"></a>misc38</h5><p><strong>提示：flag在图片里</strong></p>
+<p><strong>这里使用这个工具：<code>Honeyview</code> 分别在第<code>9、17、36、40</code>帧中 发现部分<code>flag</code> 最后进行拼接得到完整的<code>flag</code></strong></p>
+<p><img src="/images/357a99bf8cdc154175b0a0ae61cfab51.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{48b722b570c603ef58cc0b83bbf7680d}</code></p>
+</blockquote>
+<h5 id="misc39"><a href="#misc39" class="headerlink" title="misc39"></a>misc39</h5><p><strong>提示：flag就像水，忽快忽慢地流</strong></p>
+<p><strong>这里要使用一个工具：<code>identify</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install imagemagick</span><br><span class="line"></span><br><span class="line">identify -format <span class="string">&quot;%T &quot;</span> misc39.gif &gt; 1.txt  <span class="comment">#进行提取</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>得到的一串<code>36</code>和<code>37</code>，考虑把<code>37</code>换成<code>1</code>、<code>36</code>换成<code>0</code>，就得到长度为<code>287</code>的二进制字符串，考虑每<code>7</code>位转一个字符(正常是<code>8</code>位一组)，得到<code>flag</code>。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s=&quot;11000111110100110011011100111101000110111111101111111011011010101100100111000011000101100101100110110011001110010111001011010111001101100010011011111000101100101011001001101100111000110010001110010110110011001111000010111001110010111000101100011110000101100000110100011010101110011111101&quot;</span><br><span class="line">flag=&quot;&quot;</span><br><span class="line">for i in range(41): #287//7</span><br><span class="line">    flag += chr(int(s[7*i:7*(i+1)],2))</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/738cfbe32589d3ee2550eaf4a58e66e0.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{52812ff995fb7be268d963a9ebca0459}</code></p>
+</blockquote>
+<h5 id="misc40"><a href="#misc40" class="headerlink" title="misc40"></a>misc40</h5><p><strong>提示：flag就像歌，有长有短仿佛岁月悠悠</strong></p>
+<p><strong>使用 <code>Honeyview</code> 查看 是一个 <code>APNG</code> 图片格式的动图</strong></p>
+<p><strong>这里用到一个工具 <code>APNG Disassembler</code></strong></p>
+<p><strong><code>APNG</code>图片分解器<code>(APNG Disassembler)</code>是一个用来分解<code>APNG</code>图片的软件，使用这个工具你可以把<code>APNG</code>动画图片中的每一帧都分解出来，并且把帧导出保存为图片文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flag=&quot;&quot;</span><br><span class="line">for i in range(28,69): #flag内容从28位开始</span><br><span class="line">    f = open(&#x27;apngframe&#x27;+str(i)+&#x27;.txt&#x27;)</span><br><span class="line">    s = f.read()</span><br><span class="line">    flag += chr(int(s.split(&quot;/&quot;)[0][6:]))</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/e1bef8f65f40a11f6fbce3ba66c90c12.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{95ca0297dff0f6b1bdaca394a6fcb95b}</code></p>
+</blockquote>
+<h5 id="misc42"><a href="#misc42" class="headerlink" title="misc42"></a>misc42</h5><p><strong>提示：flag有多长？2cm……不好意思打错了，41位</strong></p>
+<p><strong>使用<code>010</code> 发现有很多 <code>IDAT</code>块（48个）</strong></p>
+<p><strong>使用工具：<code>TweakPNG</code>打开查看<code>IDAT</code>块 将长度进行<code>chr</code>转换</strong></p>
+<p><img src="/images/7b6710d305e96c8cc23a8e0e0a13265b.png" alt="在这里插入图片描述"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [229,152,191,229,152,191,49,99,116,102,115,104,111,119,123,48,55,56,99,98,100,48,102,57,99,56,100,51,102,50,49,53,56,101,55,48,53,50,57,102,56,57,49,51,99,54,53,125]</span><br><span class="line">for i in s:</span><br><span class="line">    print(chr(i),end=&#x27;&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/dc98a7ae0a5b01eebd4b4deee37af850.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{078cbd0f9c8d3f2158e70529f8913c65}</code></p>
+</blockquote>
+<h5 id="misc43"><a href="#misc43" class="headerlink" title="misc43"></a>misc43</h5><p><strong>提示：错误中隐藏着通往正确答案的道路</strong></p>
+<p><strong>使用 <code>PNG Debugger</code> 查看 <code>CRC32</code>的值都是错的</strong></p>
+<p><strong>GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/rvong/png-debugger">https://github.com/rvong/png-debugger</a></strong></p>
+<p><img src="/images/5421602f0816881e3bf503da7021500a.png" alt="在这里插入图片描述"></p>
+<p><strong>将错误的<code>IDAT</code>块的<code>crc-code</code>提取出来，拼接起来转字符串即可得到<code>flag</code></strong></p>
+<p><img src="/images/5153e6f678e3d9601b07f8691b107d0d.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{6eb2589ffff5e390fe6b87504dbc0892}</code></p>
+</blockquote>
+<h5 id="misc44"><a href="#misc44" class="headerlink" title="misc44"></a>misc44</h5><p><strong>提示：错误中还隐藏着坑</strong></p>
+<p><img src="/images/4b10cc82ecdc23aafa31255eed48a12f.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/2372e077b031c913536135ae56e26c16.png" alt="在这里插入图片描述"></p>
+<h5 id="misc45"><a href="#misc45" class="headerlink" title="misc45"></a>misc45</h5><h5 id="misc46"><a href="#misc46" class="headerlink" title="misc46"></a>misc46</h5><h5 id="misc47"><a href="#misc47" class="headerlink" title="misc47"></a>misc47</h5><h5 id="misc48"><a href="#misc48" class="headerlink" title="misc48"></a>misc48</h5><h5 id="misc49"><a href="#misc49" class="headerlink" title="misc49"></a>misc49</h5><h3 id="图片篇-颜色通道-："><a href="#图片篇-颜色通道-：" class="headerlink" title="图片篇(颜色通道)："></a>图片篇(颜色通道)：</h3><h5 id="misc50"><a href="#misc50" class="headerlink" title="misc50"></a>misc50</h5><p><img src="/images/8e39bb740eaf72c53b5823531a1cf950.png" alt="在这里插入图片描述"></p>
+<p><strong>使用工具：<code>Stegsolve</code> 简单的翻了一下 得到了部分拼接一下得到完整的<code>flag。</code></strong></p>
+<p><img src="/images/6bbcd3e710f90696b02fe944786589cf.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/9b5d374aa833cccf783617e6da6d8903.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/7d93f65216702ebc54cc362649b1c5ca.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{84470883ee1eec2e886436461bf79111}</code></p>
+</blockquote>
+<h5 id="misc51"><a href="#misc51" class="headerlink" title="misc51"></a>misc51</h5><p><strong>提示：你会数数吗。</strong></p>
+<p><img src="/images/8cdc140cdac010705afa760b05896073.png" alt="在这里插入图片描述"></p>
+<p>参考文章 ：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45696568/article/details/125006011?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166082940516782350824509%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=166082940516782350824509&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-4-125006011-null-null.142%5Ev42%5Epc_ran_alice,185%5Ev2%5Econtrol&utm_term=ctfshow%20misc%E5%85%A5%E9%97%A851&spm=1018.2226.3001.4187">得到脚本</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line">im=Image.open(&#x27;misc51.png&#x27;)</span><br><span class="line">im = im.convert(&#x27;RGB&#x27;)</span><br><span class="line">img = Image.new(&quot;RGB&quot;,(900,150))</span><br><span class="line"></span><br><span class="line">dic = &#123;&#125;</span><br><span class="line"></span><br><span class="line">for h in range(900):</span><br><span class="line">    for w in range(150):</span><br><span class="line">        s = im.getpixel((h,w))</span><br><span class="line">        dic[s] = dic.get(s,0)+1</span><br><span class="line">lt = list(dic.items())</span><br><span class="line">lt.sort(key = lambda x:x[-1])</span><br><span class="line">print(lt)</span><br></pre></td></tr></table></figure>
+
+<p>再次便利 然后运行 脚本 得到flag。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line">im=Image.open(&#x27;misc51.png&#x27;)</span><br><span class="line">im = im.convert(&#x27;RGB&#x27;)</span><br><span class="line">img = Image.new(&quot;RGB&quot;,(900,150))</span><br><span class="line"></span><br><span class="line">for h in range(900):</span><br><span class="line">    for w in range(150):</span><br><span class="line">        s = im.getpixel((h,w))</span><br><span class="line">        if s == (64, 96, 128) or s == (128, 96, 64):</span><br><span class="line">            img.putpixel([h, w], (255, 255, 255))</span><br><span class="line">img.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/c3ad1ce87bd7489d52d0241408695177.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{51fcc6228d768a3acab1d05572e52133}</code></p>
+</blockquote>
+<h5 id="misc52"><a href="#misc52" class="headerlink" title="misc52"></a>misc52</h5><p><strong>不会数数没关系，这次可以用眼睛瞪。</strong></p>
+<p><strong>和上一题差不多还是需要使用脚本便利然后获取到了flag。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line">im=Image.open(&#x27;misc52.png&#x27;)</span><br><span class="line">im = im.convert(&#x27;RGB&#x27;)</span><br><span class="line">img = Image.new(&quot;RGB&quot;,(900,150))</span><br><span class="line">lt = [(130, 176, 116),(72, 217, 123),(146, 16, 141),(130, 241, 105),(251, 160, 136),(5, 129, 88),(167, 46, 187),(20, 65, 141),(96, 231, 225),(196, 144, 18)]</span><br><span class="line">for h in range(900):</span><br><span class="line">    for w in range(150):</span><br><span class="line">        s = im.getpixel((h,w))</span><br><span class="line">        if s in lt:</span><br><span class="line">            img.putpixel([h, w], (255, 255, 255))</span><br><span class="line">img.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/fdf0c2ee27e872d67931479e3338473f.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{f87ad503c2c163471fbe768c9d7a9d6c}</code></p>
+</blockquote>
+<h5 id="misc53"><a href="#misc53" class="headerlink" title="misc53"></a>misc53</h5><p><strong>提示：开始愉快的<code>LSB</code>部分。</strong></p>
+<p><strong>使用工具<code>Stegsolve</code> <code>RGB</code> 通道设置都为<code>0</code> 即可得到<code>flag</code>。</strong></p>
+<p><img src="/images/705e7e35a85fe3ee4e8a75bd42b34e1e.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/2c4b4d4d0af9cca88e042328f2bef3ed.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{69830d5a3a3b5006f7b11193e9bc22a2}</code></p>
+</blockquote>
+<h5 id="misc54"><a href="#misc54" class="headerlink" title="misc54"></a>misc54</h5><p><strong>提示：还是愉快的<code>LSB</code>部分。</strong></p>
+<p><strong>和上一题一样使用工具<code>Stegsolve</code>查看 但是这里是竖排的所以需要调整一下参数</strong></p>
+<p><img src="/images/2dd87bdf1624465bd521ca2eae27826f.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/76c4af29fc04b6bd8e064ad8b3f1b5af.png" alt="在这里插入图片描述"></p>
+<h5 id="misc55"><a href="#misc55" class="headerlink" title="misc55"></a>misc55</h5><p><strong>提示：怎么又是愉快的<code>LSB</code>部分。</strong></p>
+<p><img src="/images/f3d8b84bc87873e5be29108b51da68fa.png" alt="在这里插入图片描述"></p>
+<p><strong>这里的图片是反过来的 使用<code>Stegsolve</code> 发现通道存在隐写但是提取不了 所以 需要把图片发过来在进行操作 使用脚本：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">&#x27;misc55.png&#x27;</span>)</span><br><span class="line"></span><br><span class="line">img.transpose(Image.FLIP_TOP_BOTTOM).save(<span class="string">&#x27;out.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/7377cffff13719f3998352dc50efc012.png" alt="在这里插入图片描述"></p>
+<p><strong>然后发现是<code>PK</code>头 保存<code>bin</code> 另存为 解压即可得到<code>flag</code>。</strong></p>
+<p><img src="/images/d176a66a65c88f686d96516a1f202ce3.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{daf256838e19a19d9e7b0a69642ad5ee}</code></p>
+</blockquote>
+<h5 id="misc56"><a href="#misc56" class="headerlink" title="misc56"></a>misc56</h5><p><strong>提示：怎么老是愉快的<code>LSB</code>部分。</strong></p>
+<p><strong>使用工具<code>Stegsolve</code> <code>R4、R2、R1、G4、G2、G1</code>通道有隐写痕迹</strong></p>
+<p><img src="/images/e284ce578f1272edc7bf875966dee536.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>ctfshow{1b30c28a5fca6cec5886b1d2cc8b1263}</code></p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/WHOAMI-xiaoyu">项目</a></li>
+        
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#CTFShow-MISC%E5%85%A5%E9%97%A8%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">CTFShow-MISC入门篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C-%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">图片篇(基础操作)：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#misc1"><span class="toc-number">2.1.</span> <span class="toc-text">misc1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc2"><span class="toc-number">2.2.</span> <span class="toc-text">misc2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc3"><span class="toc-number">2.3.</span> <span class="toc-text">misc3</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc4"><span class="toc-number">2.4.</span> <span class="toc-text">misc4</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E4%BF%A1%E6%81%AF%E9%99%84%E5%8A%A0-%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">图片篇(信息附加)：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#misc5"><span class="toc-number">3.1.</span> <span class="toc-text">misc5</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc6"><span class="toc-number">3.2.</span> <span class="toc-text">misc6</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc7"><span class="toc-number">3.3.</span> <span class="toc-text">misc7</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc8"><span class="toc-number">3.4.</span> <span class="toc-text">misc8</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc9"><span class="toc-number">3.5.</span> <span class="toc-text">misc9</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc10"><span class="toc-number">3.6.</span> <span class="toc-text">misc10</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc11"><span class="toc-number">3.7.</span> <span class="toc-text">misc11</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc12"><span class="toc-number">3.8.</span> <span class="toc-text">misc12</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc13"><span class="toc-number">3.9.</span> <span class="toc-text">misc13</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc14"><span class="toc-number">3.10.</span> <span class="toc-text">misc14</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc15"><span class="toc-number">3.11.</span> <span class="toc-text">misc15</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc16"><span class="toc-number">3.12.</span> <span class="toc-text">misc16</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc17"><span class="toc-number">3.13.</span> <span class="toc-text">misc17</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc18"><span class="toc-number">3.14.</span> <span class="toc-text">misc18</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc19"><span class="toc-number">3.15.</span> <span class="toc-text">misc19</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc20"><span class="toc-number">3.16.</span> <span class="toc-text">misc20</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc21"><span class="toc-number">3.17.</span> <span class="toc-text">misc21</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc22"><span class="toc-number">3.18.</span> <span class="toc-text">misc22</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc23"><span class="toc-number">3.19.</span> <span class="toc-text">misc23</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc41"><span class="toc-number">3.20.</span> <span class="toc-text">misc41</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84-%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">图片篇(文件结构)：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#misc24"><span class="toc-number">4.1.</span> <span class="toc-text">misc24</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc25"><span class="toc-number">4.2.</span> <span class="toc-text">misc25</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc26"><span class="toc-number">4.3.</span> <span class="toc-text">misc26</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc27"><span class="toc-number">4.4.</span> <span class="toc-text">misc27</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc28"><span class="toc-number">4.5.</span> <span class="toc-text">misc28</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc29"><span class="toc-number">4.6.</span> <span class="toc-text">misc29</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc30"><span class="toc-number">4.7.</span> <span class="toc-text">misc30</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc31"><span class="toc-number">4.8.</span> <span class="toc-text">misc31</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc32"><span class="toc-number">4.9.</span> <span class="toc-text">misc32</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc33"><span class="toc-number">4.10.</span> <span class="toc-text">misc33</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc34"><span class="toc-number">4.11.</span> <span class="toc-text">misc34</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc35"><span class="toc-number">4.12.</span> <span class="toc-text">misc35</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc36"><span class="toc-number">4.13.</span> <span class="toc-text">misc36</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc37"><span class="toc-number">4.14.</span> <span class="toc-text">misc37</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc38"><span class="toc-number">4.15.</span> <span class="toc-text">misc38</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc39"><span class="toc-number">4.16.</span> <span class="toc-text">misc39</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc40"><span class="toc-number">4.17.</span> <span class="toc-text">misc40</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc42"><span class="toc-number">4.18.</span> <span class="toc-text">misc42</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc43"><span class="toc-number">4.19.</span> <span class="toc-text">misc43</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc44"><span class="toc-number">4.20.</span> <span class="toc-text">misc44</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc45"><span class="toc-number">4.21.</span> <span class="toc-text">misc45</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc46"><span class="toc-number">4.22.</span> <span class="toc-text">misc46</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc47"><span class="toc-number">4.23.</span> <span class="toc-text">misc47</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc48"><span class="toc-number">4.24.</span> <span class="toc-text">misc48</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc49"><span class="toc-number">4.25.</span> <span class="toc-text">misc49</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E9%A2%9C%E8%89%B2%E9%80%9A%E9%81%93-%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">图片篇(颜色通道)：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#misc50"><span class="toc-number">5.1.</span> <span class="toc-text">misc50</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc51"><span class="toc-number">5.2.</span> <span class="toc-text">misc51</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc52"><span class="toc-number">5.3.</span> <span class="toc-text">misc52</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc53"><span class="toc-number">5.4.</span> <span class="toc-text">misc53</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc54"><span class="toc-number">5.5.</span> <span class="toc-text">misc54</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc55"><span class="toc-number">5.6.</span> <span class="toc-text">misc55</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#misc56"><span class="toc-number">5.7.</span> <span class="toc-text">misc56</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&text=CTFShow-Misc"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&is_video=false&description=CTFShow-Misc"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CTFShow-Misc&body=Check out this article: https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&title=CTFShow-Misc"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&name=CTFShow-Misc&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://w3nq14.github.io/2021/06/04/CTF/CTFShow-Misc/&t=CTFShow-Misc"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    w3nq14
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/WHOAMI-xiaoyu">项目</a></li><!--
+     --><!--
+       --><li><a href="/links/">Links</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
